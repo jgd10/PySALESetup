@@ -133,6 +133,8 @@ class PySALEMesh:
         self._velocities = None
         self._extension_zones = extension_zones
         self._extension_factor = extension_factor
+        self._y_physical_length = 0.
+        self._x_physical_length = 0.
 
     @property
     def x_range(self):
@@ -143,24 +145,49 @@ class PySALEMesh:
     @property
     def y_range(self):
         if self._y_range is None:
-            self._populate_y_range(self.cell_size, self.y)
+            self._populate_y_range()
         return self._y_range
 
-    def _populate_y_range(self, cell_size, y_cells):
-        max_size = self.extension_factor.max_cell_size
-        factor = self.extension_factor.multiplier
-        for zone in self.extension_zones:
-            if zone.region == ExtensionZoneRegion.SOUTH:
-                y_cells += zone.depth
-                south_range = [min((j*factor+0.5)*cell_size, max_size)
-                               for j in range(zone.depth)]
-                south_range = south_range[::-1]
-                highres_start = np.amax(south_range)
-            elif zone.region == ExtensionZoneRegion.NORTH:
-                y_cells += zone.depth
-                north_range = [min((j*factor+0.5)*cell_size, max_size)
-                               for j in range(zone.depth)]
-        self._y_range = (np.arange(y_cells) + 0.5) * cell_size
+    def _populate_y_range(self):
+        total_length = self.y
+        self._y_physical_length = (self.y - 1) * self.cell_size
+        zones = {zone.region: zone for zone in self.extension_zones}
+        highres_start = 0
+        highres_end = self.y + 1
+        south_range = [0]
+        if ExtensionZoneRegion.SOUTH in zones:
+            zone = zones[ExtensionZoneRegion.SOUTH]
+            total_length += zone.depth
+            highres_start = zone.depth
+            highres_end += zone.depth
+            south_range = self._insert_south_zone(zone)
+        if ExtensionZoneRegion.NORTH in zones:
+            zone = zones[ExtensionZoneRegion.NORTH]
+            total_length += zone.depth
+            north_range = self._insert_north_zone(zone)
+            highres_end = highres_start + self.y + 1
+
+        self._y_range = np.zeros((total_length))
+        highres_end_pos = (self.y+.5) * self.cell_size
+        if ExtensionZoneRegion.SOUTH in zones:
+            self._y_range[:highres_start] = south_range
+            highres_start_pos = np.amax(south_range)
+            highres_end_pos += highres_start_pos
+
+        self._insert_highres_y_zone(highres_end, highres_start, south_range)
+
+        if ExtensionZoneRegion.NORTH in zones:
+            self._y_range[highres_end-1:] = north_range
+
+        return self._y_range
+
+    def _insert_highres_y_zone(self,
+                               highres_end,
+                               highres_start,
+                               south_range):
+        highres_zone = [np.amax(south_range) + i * self.cell_size
+                        for i in range(1, self.y + 1)]
+        self._y_range[highres_start:highres_end - 1] = np.array(highres_zone)
 
     def _populate_x_range(self, cell_size, x_cells):
         self._x_range = (np.arange(x_cells) + 0.5) * cell_size
@@ -486,18 +513,45 @@ class PySALEMesh:
                                                   material_numbers)
                                 for cell in self._cells])
 
-    def _populate_extension_zones(self):
-        for zone in self.extension_zones:
-            if zone.region == ExtensionZoneRegion.SOUTH:
-                self._insert_south_zone(zone)
-            elif zone.region == ExtensionZoneRegion.WEST:
-                self._insert_west_zone(zone)
-
-    def _insert_south_zone(self, zone: ExtensionZone) -> None:
+    def _insert_south_zone(self, zone: ExtensionZone):
         factor = self.extension_factor.multiplier
         max_size = self.extension_factor.max_cell_size
-        # self.y_range
-        raise NotImplementedError
+        varying_cell_size = self.cell_size
+        counter = 1
+        position = -0.5*self.cell_size
+        y_coord = [position]
+        while counter < zone.depth:
+            if varying_cell_size < max_size:
+                varying_cell_size = counter*factor*self.cell_size
+            else:
+                varying_cell_size = max_size
+            position -= varying_cell_size
+            y_coord.append(position)
+            counter += 1
+        south_y_range = np.array(y_coord)
+        south_y_range += abs(np.amin(south_y_range)) + varying_cell_size
+        self._y_physical_length += np.amax(south_y_range)
+        return south_y_range[::-1]
+
+    def _insert_north_zone(self, zone: ExtensionZone):
+        factor = self.extension_factor.multiplier
+        max_size = self.extension_factor.max_cell_size
+        varying_cell_size = self.cell_size
+        counter = 1
+        position = self._y_physical_length + self.cell_size*2
+        y_coord = [position]
+        while counter < zone.depth:
+            if varying_cell_size < max_size:
+                varying_cell_size = counter*factor*self.cell_size
+            else:
+                varying_cell_size = max_size
+            position += varying_cell_size
+            y_coord.append(position)
+            counter += 1
+        north_y_range = np.array(y_coord)
+        #north_y_range += self._y_physical_length
+        self._y_physical_length += np.ptp(north_y_range)
+        return north_y_range
 
     def _insert_west_zone(self, zone: ExtensionZone) -> None:
         raise NotImplementedError
