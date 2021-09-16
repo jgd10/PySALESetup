@@ -1,4 +1,4 @@
-from PySALESetup.domain import PySALEObject, PySALEDomain, translate_polygon
+from PySALESetup import PySALEObject, PySALEDomain, translate_polygon
 import pytest
 
 
