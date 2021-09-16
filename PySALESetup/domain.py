@@ -384,6 +384,7 @@ class PySALEObject(Polygon, ABC):
         if include_children and self.has_children:
             for child in self._children:
                 child.plot(ax, include_children, cmap)
+        ax.set_aspect(1)
         return fig, ax
 
     def set_material_colormap(self,
