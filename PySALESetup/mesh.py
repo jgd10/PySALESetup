@@ -63,7 +63,7 @@ class ExtensionZone:
         for i in range(self.depth):
             if cell_size < extension_factor.max_cell_size:
                 cell_size *= extension_factor.multiplier
-            total_length += i * cell_size
+            total_length += cell_size
         return total_length
 
 
@@ -191,7 +191,7 @@ class PySALEMesh:
         zones = {zone.region: zone for zone in self.extension_zones}
         highres_start = 0
         highres_end = self.y + 1
-        south_range = [0]
+        south_range = [-0.5]
         if Region.SOUTH in zones:
             zone = zones[Region.SOUTH]
             total_length += zone.depth
@@ -235,7 +235,7 @@ class PySALEMesh:
         zones = {zone.region: zone for zone in self.extension_zones}
         highres_start = 0
         highres_end = self.x + 1
-        west_range = [0]
+        west_range = [-0.5]
         if Region.WEST in zones:
             zone = zones[Region.WEST]
             total_length += zone.depth
@@ -269,7 +269,7 @@ class PySALEMesh:
         x_cells = self.x_range.size
         y_cells = self.y_range.size
         self._velocities = {r: np.zeros((x_cells, y_cells))
-                           for r in ['x', 'y']}
+                            for r in ['x', 'y']}
 
     def _populate_material_meshes(self):
         x_cells = self.x_range.size
@@ -448,8 +448,8 @@ class PySALEMesh:
         `plt.show()` to visualise the object you could just as easily
         save the figure instead.
 
-        >>> from PySALESetup.domain import PySALEObject
-        >>> from PySALESetup.mesh import PySALEMesh
+        >>> from PySALESetup import PySALEObject
+        >>> from PySALESetup import PySALEMesh
         >>> import matplotlib.pyplot as plt
         >>> impactor = PySALEObject.generate_ellipse([5., 8.], 2., 2., 0.)
         >>> impactor.set_material(1)
@@ -544,7 +544,7 @@ class PySALEMesh:
                             else '0.000' for m in materials]
         row = f'{cell.i} {cell.j} ' \
               + ' '.join(material_columns) \
-              + f' {cell.velocity.x} {cell.velocity.y}\n'
+              + f' {cell.velocity.x:.2f} {cell.velocity.y:.2f}\n'
         return row
 
     def save(self, file_name: Path = Path('./meso_m.iSALE'),
@@ -688,4 +688,5 @@ class PySALEMesh:
             self._extension_factor = \
                 ExtensionZoneFactor(1., self.cell_size)
         return self._extension_factor
+
 
