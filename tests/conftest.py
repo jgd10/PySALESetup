@@ -1,4 +1,4 @@
-from PySALESetup.domain import PySALEObject
+from PySALESetup.objects import PySALEObject
 import pytest
 
 
