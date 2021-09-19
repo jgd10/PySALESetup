@@ -1,4 +1,5 @@
 from abc import ABC
+from math import pi, sqrt
 from shapely.geometry import Polygon, Point
 import shapely.affinity as affinity
 import matplotlib.pyplot as plt
@@ -21,7 +22,7 @@ class PySALEObject(Polygon, ABC):
     This object forms the basis of everything we do in PySALESetup.
     First here's an example of a rectangular object 10 m x 15 m.
 
-    >>> from PySALESetup.domain import PySALEObject
+    >>> from PySALESetup import PySALEObject
     >>> import matplotlib.pyplot as plt
     >>> main = PySALEObject([(0, 0), (0, 15), (10, 15), (10, 0)])
     >>> main.plot()
@@ -29,7 +30,7 @@ class PySALEObject(Polygon, ABC):
 
     This example creates a triangular object.
 
-    >>> from PySALESetup.domain import PySALEObject
+    >>> from PySALESetup import PySALEObject
     >>> import matplotlib.pyplot as plt
     >>> main = PySALEObject([(0, 0), (5, 5), (10, 0)])
     >>> main.plot()
@@ -38,7 +39,7 @@ class PySALEObject(Polygon, ABC):
     This example creates an elliptical object with centroid (5, 5)
     major axis 1, minor axis 0.5 and roateted by 10 degrees.
 
-    >>> from PySALESetup.domain import PySALEObject
+    >>> from PySALESetup import PySALEObject
     >>> import matplotlib.pyplot as plt
     >>> main = PySALEObject.generate_ellipse([5., 5.], 1., .5, 10.)
     >>> main.plot()
@@ -86,7 +87,8 @@ class PySALEObject(Polygon, ABC):
         -------
         target : PySALEObject
         """
-        polygon._children = self._children[:]
+        polygon._children = self._children[:] \
+            if self._children is not None else None
         polygon._velocity = self._velocity
         polygon._material_colors = self._material_colors
         polygon._material = self._material
@@ -267,6 +269,17 @@ class PySALEObject(Polygon, ABC):
         else:
             self._material = material
 
+    def calculate_equivalent_radius(self):
+        """Calculate the radius of the circle with the same area.
+
+        Returns
+        -------
+        float
+            Radius of the equivalent circle
+        """
+
+        return sqrt(self.area/pi)
+
     @property
     def has_children(self) -> bool:
         """Returns True if object has children.
@@ -348,6 +361,27 @@ class PySALEObject(Polygon, ABC):
                                                 rotation)
         self._process_new_child(ellipse)
         return ellipse
+
+    def scale_object(self, factor, area: bool = False) -> 'PySALEObject':
+        """Create new scaled object from current object.
+
+        Parameters
+        ----------
+        factor : float
+        area : bool
+            Does the factor refer to area or equivalent radius?
+
+        Returns
+        -------
+        PySALEObject
+            The new scaled object
+        """
+        if area is True:
+            new_area = self.area * factor
+            old_radius = self.calculate_equivalent_radius()
+            new_radius = sqrt(new_area/pi)
+            factor = new_radius/old_radius
+        return resize_polygon(self, factor, factor)
 
     def plot(self,
              ax: Optional[plt.Axes] = None,
@@ -458,4 +492,24 @@ def rotate_polygon(polygon: PySALEObject, angle: float,
             rotate_polygon(child, angle, origin=origin)
     return polygon.copy_properties_to_new_polygon(
         affinity.rotate(polygon, angle, origin=origin)
+    )
+
+
+def resize_polygon(polygon: PySALEObject,
+                   xfactor: float = 1.,
+                   yfactor: float = 1.):
+    """Resize polygon by xfactor and yfactor in the x and y directions.
+
+    Parameters
+    ----------
+    polygon : PySALEObject
+    xfactor : float
+    yfactor : float
+
+    Returns
+    -------
+    PySALEObject
+    """
+    return polygon.copy_properties_to_new_polygon(
+        affinity.scale(polygon, xfactor, yfactor)
     )
