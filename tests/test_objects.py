@@ -1,7 +1,8 @@
 import copy
-from PySALESetup import PySALEObject, PySALEDomain, translate_polygon,\
+from PySALESetup import PySALEObject, resize_polygon, translate_polygon,\
     Velocity, rotate_polygon
 from shapely.geometry import Point
+from math import isclose
 import pytest
 
 
@@ -69,6 +70,30 @@ class TestTranslatePolygon:
                                        simple_object.centroid.y - 1.)
         assert new_object.centroid.x == simple_object.centroid.x - 1.
         assert new_object.centroid.y == simple_object.centroid.y - 1.
+
+
+class TestResizePolygon:
+    @pytest.mark.parametrize('factor', [1, 2, 0.5, 10, -1, 0])
+    def test_resize_area(self, simple_object, factor):
+        old_area = simple_object.area
+        new_area = old_area * abs(factor)
+        new_object = simple_object.scale_object(factor, True)
+        assert isclose(new_area, new_object.area)
+
+    @pytest.mark.parametrize('factor', [(1, 1), (1, 2), (2, 1), (2, 2),
+                                        (0.5, 0.5), (0, 1), (1, 0),
+                                        (0, 0), (-1, -1)])
+    def test_resize_function(self, simple_object, factor):
+        xfact, yfact = factor
+        centroid = simple_object.centroid.coords.xy
+        centroid = (centroid[0][0], centroid[1][0])
+        new = resize_polygon(simple_object, xfact, yfact)
+        for old_coords, new_coords in zip(simple_object.exterior.coords,
+                                          new.exterior.coords):
+            assert new_coords[0] - centroid[0] \
+                   == (old_coords[0] - centroid[0]) * xfact
+            assert new_coords[1] - centroid[1] \
+                   == (old_coords[1] - centroid[1]) * yfact
 
 
 class TestRotatePolygon:

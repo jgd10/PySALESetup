@@ -362,7 +362,8 @@ class PySALEObject(Polygon, ABC):
         self._process_new_child(ellipse)
         return ellipse
 
-    def scale_object(self, factor, area: bool = False) -> 'PySALEObject':
+    def scale_object(self, factor: float,
+                     area: bool = False) -> 'PySALEObject':
         """Create new scaled object from current object.
 
         Parameters
@@ -377,7 +378,7 @@ class PySALEObject(Polygon, ABC):
             The new scaled object
         """
         if area is True:
-            new_area = self.area * factor
+            new_area = self.area * abs(factor)
             old_radius = self.calculate_equivalent_radius()
             new_radius = sqrt(new_area/pi)
             factor = new_radius/old_radius
