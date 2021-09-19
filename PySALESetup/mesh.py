@@ -1,4 +1,4 @@
-from PySALESetup.domain import PySALEObject, Velocity
+from PySALESetup.objects import PySALEObject, Velocity
 from collections import namedtuple
 import numpy as np
 from dataclasses import dataclass
@@ -504,7 +504,7 @@ class PySALEMesh:
         Examples
         --------
 
-        >>> from PySALESetup.domain import PySALEObject
+        >>> from PySALESetup import PySALEObject
         >>> from PySALESetup.mesh import PySALEMesh
         >>> import matplotlib.pyplot as plt
         >>> impactor = PySALEObject.generate_ellipse([5., 8.], 2., 2., 0.)
@@ -671,16 +671,6 @@ class PySALEMesh:
         varying_cell_size, x_coord = self._create_extension_zone_coordinates(
             factor, max_size, [position], varying_cell_size, zone,
             'north/east')
-        # x_coord = [position]
-        # while counter < zone.depth:
-        #     if varying_cell_size < max_size:
-        #         varying_cell_size = counter*factor*self.cell_size
-        #     else:
-        #         varying_cell_size = max_size
-        #     position += varying_cell_size
-        #     x_coord.append(position)
-        #     counter += 1
-        #
 
         east_x_range = np.array(x_coord)
         self._x_physical_length += np.ptp(east_x_range)
