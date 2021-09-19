@@ -1,9 +1,11 @@
-from PySALESetup.domain import PySALEObject, translate_polygon, rotate_polygon
+from PySALESetup.objects import PySALEObject, translate_polygon, \
+    rotate_polygon, resize_polygon
 import warnings
-from typing import Union, Tuple, List, Callable
+from typing import Tuple, List, Callable
 from shapely.geometry import MultiPolygon
 import numpy as np
 import scipy.special as scsp
+import random
 
 
 class PySALEDistributionBase:
@@ -363,7 +365,7 @@ class PySALEDomain:
     --------
 
 
-    >>> from PySALESetup.domain import PySALEObject, PySALEDomain
+    >>> from PySALESetup import PySALEObject, PySALEDomain
     >>> main = PySALEObject([(0, 0), (0, 30), (30, 30), (30, 0)])
     >>> main.set_material(0)
     >>> domain = PySALEDomain(main)
@@ -406,13 +408,17 @@ class PySALEDomain:
             inserted_area = sum([c.area for c in self.object.children])
         return inserted_area
 
-    def fill_with_random_grains(self,
-                                grain_object: PySALEObject,
-                                threshold_fill_percent: float,
-                                rotation_distribution:
-                                PySALEDistributionBase = None,
-                                size_distribution:
-                                PySALEDistributionBase = None) -> None:
+    def fill_with_random_grains_to_threshold(self,
+                                             grain_object: PySALEObject,
+                                             threshold_fill_percent: float,
+                                             rotation_distribution:
+                                             PySALEDistributionBase
+                                             = None,
+                                             size_distribution:
+                                             PySALEDistributionBase
+                                             = None,
+                                             max_retries: int = 10
+                                             ) -> float:
         """Fill host object to threshold fill percent.
         
         Parameters
@@ -424,14 +430,20 @@ class PySALEDomain:
             The distribution for the rotation angles.
         size_distribution : PySALEDistributionBase
             The distribution for the grain sizes.
+        max_retries : int
+            If a grain fails to be placed how many 
+            retries with new grains before giving up? Does not reset
+            between grains.
 
         Returns
         -------
-        None
+        float
+            Inserted area
         """
         inserted_area, insertion_possible, threshold \
             = self._check_threshold_input(threshold_fill_percent)
-        while inserted_area <= threshold and insertion_possible:
+        retries = 0
+        while inserted_area <= threshold and retries <= max_retries:
             if rotation_distribution is not None:
                 grain_object = self.randomly_rotate_object(
                     grain_object, rotation_distribution
@@ -441,6 +453,9 @@ class PySALEDomain:
                     grain_object, size_distribution
                 )
             insertion_possible = self.insert_randomly(grain_object)
+            if insertion_possible is not True:
+                retries += 1
+                continue
             inserted_area = sum([c.area for c in self.object.children])
         return inserted_area
 
@@ -469,22 +484,41 @@ class PySALEDomain:
         return duplicated_grain_object
 
     @staticmethod
-    def randomly_resize_object(duplicated_grain_object: PySALEObject,
-                               rotation_distribution:
-                               PySALEDistributionBase = None) \
+    def randomly_resize_object(grain_object: PySALEObject,
+                               size_distribution:
+                               PySALEDistributionBase = None,
+                               area: bool = False) \
             -> PySALEObject:
-        """Rotate the supplied object by a random amount.
+        """Resize the supplied object by a random amount.
+        
+        The supplied distribution should return either areas or radii.
+        Areas and radii are taken to be "equivalent" radii. I.e. the
+        radius of the equivalent circle to the polygon with the same
+        area.
         
         Parameters
         ----------
-        duplicated_grain_object : PySALEObject
-        rotation_distribution : PySALEDistributionBase
+        grain_object : PySALEObject
+        size_distribution : PySALEDistributionBase
+        area : bool
+            True if the distribution is returning an area, False if its
+            an equivalent radius.
 
         Returns
         ------- 
         rotated_object : PySALEObject
         """
-        raise NotImplementedError
+        if size_distribution is not None:
+            rand_val = size_distribution.random_number()
+        else:
+            rand_val = grain_object.area if area \
+                else grain_object.calculate_equivalent_radius()
+
+        if area is True:
+            factor = rand_val/grain_object.area
+        else:
+            factor = rand_val/grain_object.calculate_equivalent_radius()
+        return grain_object.scale_object(factor, area)
 
     def _check_threshold_input(self, threshold_fill_percent: float):
         target_fraction = threshold_fill_percent / 100.
@@ -502,7 +536,7 @@ class PySALEDomain:
         return inserted_area, insertion_possible, threshold
 
     def insert_randomly(self, grain_object: PySALEObject,
-                        max_attempts: int = 1000) -> bool:
+                        max_attempts: int = 100) -> bool:
         """Insert object into the host at random locations until it fits
 
         "fits" means - "is not intersecting with any other objects.
@@ -601,13 +635,13 @@ class PySALEDomain:
         for child in self.object.children:
             ordered_neighbours = sorted(self.object.children[1:],
                                         key=child.centroid.distance)
-            assigned_materials = {ordered_neighbours[i].material
-                                  for i in range(num_materials)}
-            if len(assigned_materials) == len(allowed_materials):
+            assigned_materials = list({o.material
+                                       for o in ordered_neighbours})
+            if len(assigned_materials) == num_materials:
                 # All material numbers have been used up and no repeats!
                 # (if there were repeats not all would have
                 # been used...)
-                new_material = assigned_materials.pop()
+                new_material = random.choice(assigned_materials)
             else:
                 missing_materials = [item
                                      for item in allowed_materials
