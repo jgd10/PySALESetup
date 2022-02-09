@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PySALESetup package &mdash; PySALESetup 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PySALESetup
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">PySALESetup package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-PySALESetup.creation">PySALESetup.creation module</a></li>
+<li><a class="reference internal" href="#pysalesetup-domain-module">PySALESetup.domain module</a></li>
+<li><a class="reference internal" href="#module-PySALESetup.mesh">PySALESetup.mesh module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PySALESetup</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>PySALESetup package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/PySALESetup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pysalesetup-package">
+<h1>PySALESetup package<a class="headerlink" href="#pysalesetup-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-PySALESetup.creation">
+<span id="pysalesetup-creation-module"></span><h2>PySALESetup.creation module<a class="headerlink" href="#module-PySALESetup.creation" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDistributionBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.creation.</span></span><span class="sig-name descname"><span class="pre">PySALEDistributionBase</span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDistributionBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for distributions.</p>
+<p>In PySALESetup it is not uncommon to want to feed specific sizes,
+or rotations, or radii, to a setup routine. These distribution
+classes provide this capability. Everything random always comes
+from a distribution and if it’s not specified, it’s probably a
+uniform one.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDistributionBase.details">
+<span class="sig-name descname"><span class="pre">details</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEDistributionBase.details" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDistributionBase.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDistributionBase.frequency" title="Permalink to this definition"></a></dt>
+<dd><p>Get the frequency from the PDF over a specified interval.</p>
+<p>Integrates over the probability density function of the
+chosen distribution over a specified interval
+to return an estimated frequency. Limits MUST be provided
+in the form of <cite>bounds</cite>, which allows for uneven limits and is
+always applied as + and - the given value of x.</p>
+<p>Returns the probability DENSITY! this must be converted to a
+useful value outside of the function.
+:param x:
+:type x: float
+:param bounds:
+:type bounds: Tuple[float, float]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>frequency_density</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDistributionBase.cdf">
+<span class="sig-name descname"><span class="pre">cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEDistributionBase.cdf" title="Permalink to this definition"></a></dt>
+<dd><p>Base method for calculating the CDF at a specified point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDistributionBase.random_number">
+<span class="sig-name descname"><span class="pre">random_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEDistributionBase.random_number" title="Permalink to this definition"></a></dt>
+<dd><p>Base method for getting a random number by the distribution.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEUniformDistribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.creation.</span></span><span class="sig-name descname"><span class="pre">PySALEUniformDistribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEUniformDistribution" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></code></a></p>
+<p>The uniform distribution.</p>
+<p>All values are equally likely.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEUniformDistribution.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEUniformDistribution.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a uniform distribution given a pair of limits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>limits</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEUniformDistribution.cdf">
+<span class="sig-name descname"><span class="pre">cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEUniformDistribution.cdf" title="Permalink to this definition"></a></dt>
+<dd><p>CDF for a uniform probability density function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>probability</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEUniformDistribution.random_number">
+<span class="sig-name descname"><span class="pre">random_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEUniformDistribution.random_number" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a random number from the uniform distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>number</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALENormalDistribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.creation.</span></span><span class="sig-name descname"><span class="pre">PySALENormalDistribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALENormalDistribution" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></code></a></p>
+<p>Normal distribution.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALENormalDistribution.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALENormalDistribution.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructs a normal distribution given a mean and std.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> (<em>float</em>) – mean</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – standard deviation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALENormalDistribution.cdf">
+<span class="sig-name descname"><span class="pre">cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALENormalDistribution.cdf" title="Permalink to this definition"></a></dt>
+<dd><p>CDF for a normal probability density function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>probability</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALENormalDistribution.random_number">
+<span class="sig-name descname"><span class="pre">random_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALENormalDistribution.random_number" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a random number from the Normal distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>random_number</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALELogNormalDistribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.creation.</span></span><span class="sig-name descname"><span class="pre">PySALELogNormalDistribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALELogNormalDistribution" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></code></a></p>
+<p>Lognormal distribution.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALELogNormalDistribution.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALELogNormalDistribution.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Construct a Lognormal distribution from a mean and std.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> (<em>float</em>) – mean</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – standard deviation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALELogNormalDistribution.cdf">
+<span class="sig-name descname"><span class="pre">cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALELogNormalDistribution.cdf" title="Permalink to this definition"></a></dt>
+<dd><p>CDF for the log-normal probability density function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>probability</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALELogNormalDistribution.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALELogNormalDistribution.frequency" title="Permalink to this definition"></a></dt>
+<dd><p>Frequency of the Lognormal PDF over a given range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – </p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>frequency</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALELogNormalDistribution.random_number">
+<span class="sig-name descname"><span class="pre">random_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALELogNormalDistribution.random_number" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a random number from the Lognormal distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>random_number</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEWeibull2Distribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.creation.</span></span><span class="sig-name descname"><span class="pre">PySALEWeibull2Distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEWeibull2Distribution" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></code></a></p>
+<p>Weibull 2-parameter distribution.</p>
+<p>This distribution is typically used for Particle Size Distributions
+generated by grinding, milling, and crushing operations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEWeibull2Distribution.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEWeibull2Distribution.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Construct a Weibull 2-parameter distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lambda</strong> (<em>float</em>) – The ‘scale’ of the distribution</p></li>
+<li><p><strong>k</strong> (<em>float</em>) – The ‘shape’ of the distribution.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEWeibull2Distribution.cdf">
+<span class="sig-name descname"><span class="pre">cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEWeibull2Distribution.cdf" title="Permalink to this definition"></a></dt>
+<dd><p>CDF for a Weibull 2-parameter distribution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>probability</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEWeibull2Distribution.random_number">
+<span class="sig-name descname"><span class="pre">random_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEWeibull2Distribution.random_number" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a random number from the Weibull2 distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>random_number</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALECustomDistribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.creation.</span></span><span class="sig-name descname"><span class="pre">PySALECustomDistribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cdf_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_number_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALECustomDistribution" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></code></a></p>
+<p>A user-defined distribution.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALECustomDistribution.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cdf_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_number_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALECustomDistribution.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Construct a user-defined distribution from two functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cdf_function</strong> (<em>Callable</em>) – </p></li>
+<li><p><strong>random_number_function</strong> (<em>Callable</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALECustomDistribution.cdf">
+<span class="sig-name descname"><span class="pre">cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALECustomDistribution.cdf" title="Permalink to this definition"></a></dt>
+<dd><p>Overwritten by the constructor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALECustomDistribution.random_number">
+<span class="sig-name descname"><span class="pre">random_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALECustomDistribution.random_number" title="Permalink to this definition"></a></dt>
+<dd><p>Overwritten by the constructor</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.creation.</span></span><span class="sig-name descname"><span class="pre">PySALEDomain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Domain class providing insertion methods and statistics.</p>
+<p>Create an instance from an existing PySALEObject and then use the
+class to insert objects in more complex ways than available on the
+standard object class. In particular <cite>optimise_materials</cite> is
+available as a way to distribute materials in a host object such
+that as few objects of the same material are in contact as possible.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="k">import</span> <span class="n">PySALEObject</span><span class="p">,</span> <span class="n">PySALEDomain</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">main</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">main</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">PySALEDomain</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">circle</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="o">.</span><span class="n">fill_to_threshold_area</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="o">.</span><span class="n">optimise_materials</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;PySALEDomain_example.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>domain_object</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain.fill_to_threshold_area">
+<span class="sig-name descname"><span class="pre">fill_to_threshold_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grain_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_fill_percent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain.fill_to_threshold_area" title="Permalink to this definition"></a></dt>
+<dd><p>Fill host object to threshold fill percent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grain_object</strong> (<em>PySALEObject</em>) – The filler object</p></li>
+<li><p><strong>threshold_fill_percent</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain.fill_with_random_grains_to_threshold">
+<span class="sig-name descname"><span class="pre">fill_with_random_grains_to_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grain_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_fill_percent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_retries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain.fill_with_random_grains_to_threshold" title="Permalink to this definition"></a></dt>
+<dd><p>Fill host object to threshold fill percent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grain_object</strong> (<em>PySALEObject</em>) – The filler object</p></li>
+<li><p><strong>threshold_fill_percent</strong> (<em>float</em>) – </p></li>
+<li><p><strong>rotation_distribution</strong> (<a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><em>PySALEDistributionBase</em></a>) – The distribution for the rotation angles.</p></li>
+<li><p><strong>size_distribution</strong> (<a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><em>PySALEDistributionBase</em></a>) – The distribution for the grain sizes.</p></li>
+<li><p><strong>max_retries</strong> (<em>int</em>) – If a grain fails to be placed how many
+retries with new grains before giving up? Does not reset
+between grains.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Inserted area</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain.randomly_rotate_object">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">randomly_rotate_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duplicated_grain_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PySALESetup.objects.PySALEObject</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain.randomly_rotate_object" title="Permalink to this definition"></a></dt>
+<dd><p>Rotate the supplied object by a random amount.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>duplicated_grain_object</strong> (<em>PySALEObject</em>) – </p></li>
+<li><p><strong>rotation_distribution</strong> (<a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><em>PySALEDistributionBase</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rotated_object</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>PySALEObject</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain.randomly_resize_object">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">randomly_resize_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grain_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><span class="pre">PySALESetup.creation.PySALEDistributionBase</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PySALESetup.objects.PySALEObject</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain.randomly_resize_object" title="Permalink to this definition"></a></dt>
+<dd><p>Resize the supplied object by a random amount.</p>
+<p>The supplied distribution should return either areas or radii.
+Areas and radii are taken to be “equivalent” radii. I.e. the
+radius of the equivalent circle to the polygon with the same
+area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grain_object</strong> (<em>PySALEObject</em>) – </p></li>
+<li><p><strong>size_distribution</strong> (<a class="reference internal" href="#PySALESetup.creation.PySALEDistributionBase" title="PySALESetup.creation.PySALEDistributionBase"><em>PySALEDistributionBase</em></a>) – </p></li>
+<li><p><strong>area</strong> (<em>bool</em>) – True if the distribution is returning an area, False if its
+an equivalent radius.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rotated_object</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>PySALEObject</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain.insert_randomly">
+<span class="sig-name descname"><span class="pre">insert_randomly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grain_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain.insert_randomly" title="Permalink to this definition"></a></dt>
+<dd><p>Insert object into the host at random locations until it fits</p>
+<p>“fits” means - “is not intersecting with any other objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grain_object</strong> (<em>PySALEObject</em>) – </p></li>
+<li><p><strong>max_attempts</strong> (<em>int</em>) – The number of attempts the algorithm will make
+before giving up</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>success</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain.optimise_materials">
+<span class="sig-name descname"><span class="pre">optimise_materials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allowed_materials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain.optimise_materials" title="Permalink to this definition"></a></dt>
+<dd><p>Redistribute material numbers to not be in contact.</p>
+<p>This function has the greatest success and is based on that
+used in JP Borg’s work with CTH.</p>
+<p>Function to assign material numbers to each particle
+This function tries to optimise the assignments such
+that as few particles of the same material are in contact as
+possible. It works by creating a list of the Mth
+closest polygons, where “M” is the number of
+different materials being used.</p>
+<p>Then they are sorted into the order closest -&gt; furthest.</p>
+<p>If the list contains all the same elements, as the
+allowed materials then there are necessarily no repeats
+and all material numbers are used up. So,
+=&gt; use the number of the particle furthest away.</p>
+<p>If there is at least one repeat, then at least one
+material number has not been used. Select the
+first remaining material number that is unused
+and assign that.</p>
+<p>Continue until all the particles are assigned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>allowed_materials</strong> (<em>List</em><em>[</em><em>int</em><em>]</em>) – defaults to all materials except for void.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="pysalesetup-domain-module">
+<h2>PySALESetup.domain module<a class="headerlink" href="#pysalesetup-domain-module" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-PySALESetup.mesh">
+<span id="pysalesetup-mesh-module"></span><h2>PySALESetup.mesh module<a class="headerlink" href="#module-PySALESetup.mesh" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Region">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">Region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.Region" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Region.NORTH">
+<span class="sig-name descname"><span class="pre">NORTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#PySALESetup.mesh.Region.NORTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Region.SOUTH">
+<span class="sig-name descname"><span class="pre">SOUTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#PySALESetup.mesh.Region.SOUTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Region.EAST">
+<span class="sig-name descname"><span class="pre">EAST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#PySALESetup.mesh.Region.EAST" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Region.WEST">
+<span class="sig-name descname"><span class="pre">WEST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#PySALESetup.mesh.Region.WEST" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.ExtensionZoneFactor">
+<span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">ExtensionZoneFactor</span></span><a class="headerlink" href="#PySALESetup.mesh.ExtensionZoneFactor" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.mesh.ExtensionZoneFactors</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.mesh.ExtensionZone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">ExtensionZone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.mesh.Region" title="PySALESetup.mesh.Region"><span class="pre">PySALESetup.mesh.Region</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">PySALESetup.mesh.ExtensionZoneFactors</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.ExtensionZone" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>iSALE Extension zone object.</p>
+<p>Extension zones can be bolted onto the main mesh (aka the
+high resolution zone). These can only have one material,
+a fixed velocity and a specific depth. Up to four can be
+added at a time and the order they appear in the PySALEMesh
+object is the order they will be applied.</p>
+<blockquote>
+<div><dl>
+<dt>North</dt><dd><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<dl>
+<dt>West—-MESH—-East</dt><dd><blockquote>
+<div><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<p>South</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.ExtensionZone.length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#PySALESetup.mesh.ExtensionZone.length" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.ExtensionZone.calculate_zone_length">
+<span class="sig-name descname"><span class="pre">calculate_zone_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#PySALESetup.mesh.ExtensionZone.calculate_zone_length" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate physical length of the zone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Cell">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">Cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">shapely.geometry.point.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Velocity(x=0.0,</span> <span class="pre">y=0.0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.Cell" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>PySALEMesh cell dataclass object.</p>
+<p>Contains cell information including the physical centroid of a cell
+as a shapely.geometry.Point object; the indices of the cell in the
+mesh as integers; the material in the cell as an integer;
+the velocity of the cell as a pss Velocity object.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Cell.point">
+<span class="sig-name descname"><span class="pre">point</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">shapely.geometry.point.Point</span></em><a class="headerlink" href="#PySALESetup.mesh.Cell.point" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Cell.i">
+<span class="sig-name descname"><span class="pre">i</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#PySALESetup.mesh.Cell.i" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Cell.j">
+<span class="sig-name descname"><span class="pre">j</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#PySALESetup.mesh.Cell.j" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Cell.material">
+<span class="sig-name descname"><span class="pre">material</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#PySALESetup.mesh.Cell.material" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PySALESetup.mesh.Cell.velocity">
+<span class="sig-name descname"><span class="pre">velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Velocity(x=0.0,</span> <span class="pre">y=0.0)</span></em><a class="headerlink" href="#PySALESetup.mesh.Cell.velocity" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PySALESetup.mesh.get_figure_from_ax">
+<span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">get_figure_from_ax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">matplotlib.figure.Figure</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#PySALESetup.mesh.get_figure_from_ax" title="Permalink to this definition"></a></dt>
+<dd><p>Get the matplotlib figure from an Axes or create some if None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ax</strong> (<em>plt.Axes</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>(ax, fig)</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[plt.Axes, plt.figure]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">PySALEMesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_cells</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_cells</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension_zones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><span class="pre">PySALESetup.mesh.ExtensionZone</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Mesh object of discrete cells which polygons can be projected on.</p>
+<p class="rubric">Examples</p>
+<p>Once creating a polygon (or polygons) to represent your simulation
+it must then be projected onto/applied to this mesh object in order
+to save the resulting mesh to an iSALE input file.</p>
+<p>Here we create a void polygon that is 10 m x 15 m and populate
+it to 40% area fraction with circles of radius 1 m. Then we
+optimise the material distribution and apply the polygon to a
+mesh object. Then we can save the file.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="k">import</span> <span class="n">PySALEObject</span><span class="p">,</span> <span class="n">PySALEDomain</span><span class="p">,</span> <span class="n">PySALEMesh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">main</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">main</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">PySALEDomain</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">circle</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="o">.</span><span class="n">fill_to_threshold_area</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="o">.</span><span class="n">optimise_materials</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">PySALEMesh</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_cells</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_cells</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension_zones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><span class="pre">PySALESetup.mesh.ExtensionZone</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Discrete rectangular mesh construction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_cells</strong> (<em>int</em>) – </p></li>
+<li><p><strong>y_cells</strong> (<em>int</em>) – </p></li>
+<li><p><strong>cell_size</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.x_range">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.x_range" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.y_range">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.y_range" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.get_geometric_centre">
+<span class="sig-name descname"><span class="pre">get_geometric_centre</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.get_geometric_centre" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.material_meshes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">material_meshes</span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.material_meshes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.velocities">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">velocities</span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.velocities" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.cells">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cells</span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.cells" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.apply_geometry">
+<span class="sig-name descname"><span class="pre">apply_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.apply_geometry" title="Permalink to this definition"></a></dt>
+<dd><p>Project a polygon (and all its children) onto the mesh.</p>
+<p>Method calls itself recursively on all children of the polygon.
+The children at the bottom of the hierachy get priority. Once
+a cell is populated with material, new material will NOT
+overwrite it. If a child is a void object it will inevitably be
+overwritten by its parent’s material. To create voids use
+<code class="docutils literal notranslate"><span class="pre">appy_geometry_as_void</span></code> after this method. See that docstring
+for an example.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>geometry</strong> (<em>PySALEObject</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Here we create a solid circle that is 5 m x 5 m and populate
+it to 40% area fraction with circles of radius 0.5 m. Then we
+optimise the material distribution and apply the polygon to a
+mesh object. Then we plot the result.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="k">import</span> <span class="n">PySALEObject</span><span class="p">,</span> <span class="n">PySALEDomain</span><span class="p">,</span> <span class="n">PySALEMesh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">main</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">],</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">main</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">PySALEDomain</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">circle</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="o">.</span><span class="n">fill_to_threshold_area</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="o">.</span><span class="n">optimise_materials</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">PySALEMesh</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">plot_materials</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.apply_polygon_as_void">
+<span class="sig-name descname"><span class="pre">apply_polygon_as_void</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySALESetup.objects.PySALEObject</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.apply_polygon_as_void" title="Permalink to this definition"></a></dt>
+<dd><p>Apply polygon (not inc. children) as void to mesh.</p>
+<p>This is independent of the polygon’s assigned material. if this
+method is called the polygon is treated as if it were void.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>polygon</strong> (<em>PySALEObject</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Here we create a circle of material, then populate it with
+smaller circles of void. Once we have applied the parent object
+we can apply each child as void in a simple loop.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="k">import</span> <span class="n">PySALEObject</span><span class="p">,</span> <span class="n">PySALEDomain</span><span class="p">,</span> <span class="n">PySALEMesh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">main</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">],</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">main</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span> <span class="o">=</span> <span class="n">PySALEDomain</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">circle</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">circle</span><span class="o">.</span><span class="n">set_as_void</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="o">.</span><span class="n">fill_to_threshold_area</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">PySALEMesh</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">main</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">mesh</span><span class="o">.</span><span class="n">apply_polygon_as_void</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">plot_materials</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.plot_cells">
+<span class="sig-name descname"><span class="pre">plot_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_vertices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_cells" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.plot_materials">
+<span class="sig-name descname"><span class="pre">plot_materials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'terrain'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_materials" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the materials in the mesh using matplotlib.</p>
+<p>If no axes are provided, axes and a figure are made. Otherwise,
+the given axes are used and returned along with the associated
+figure object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> (<em>plt.Axes</em>) – </p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig, ax</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[plt.Axes, plt.figure]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Here we construct a simple 2D meteorite impacting flat ground.
+Once our objects have been created and applied, we use
+plot_materials to view the mesh, although we need to use
+<cite>plt.show()</cite> to visualise the object you could just as easily
+save the figure instead.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="k">import</span> <span class="n">PySALEObject</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="k">import</span> <span class="n">PySALEMesh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">impactor</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">],</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">impactor</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">impactor</span><span class="o">.</span><span class="n">set_velocity</span><span class="p">(</span><span class="mf">0.</span> <span class="o">-</span><span class="mf">1000.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">PySALEMesh</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">impactor</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">plot_materials</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.plot_velocities">
+<span class="sig-name descname"><span class="pre">plot_velocities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'viridis'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.figure.Figure</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">matplotlib.figure.Figure</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_velocities" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the velocities of cells.</p>
+<p>If axes are provided they are used. If any are not provided,
+they are created. Either way the axes and figures are returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax1</strong> (<em>Optional</em><em>[</em><em>plt.Axes</em><em>]</em>) – </p></li>
+<li><p><strong>ax2</strong> (<em>Optional</em><em>[</em><em>plt.Axes</em><em>]</em>) – </p></li>
+<li><p><strong>cmap</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig1, fig2, ax1, ax2</strong> – plt.Axes, plt.Axes]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[plt.Figure, plt.Figure,</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="k">import</span> <span class="n">PySALEObject</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup.mesh</span> <span class="k">import</span> <span class="n">PySALEMesh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">impactor</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">],</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">impactor</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">impactor</span><span class="o">.</span><span class="n">set_velocity</span><span class="p">(</span><span class="mf">0.</span> <span class="o">-</span><span class="mf">1000.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">target</span><span class="o">.</span><span class="n">set_material</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">PySALEMesh</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">cell_size</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">impactor</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">plot_materials</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('meso_m.iSALE')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save the current mesh to a meso_m.iSALE file.</p>
+<p>This compiles the integer indices of each cell,
+as well as the material in them. It saves all this to the file
+specified by the user, which defaults to <code class="docutils literal notranslate"><span class="pre">meso_m.iSALE</span></code> in
+the user’s current directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> (<em>Path</em>) – </p></li>
+<li><p><strong>compress</strong> (<em>bool</em>) – Compress the resulting text file using gunzip.
+Users are expected to add their own .gz file extension.
+If one is not present a UserWarning is raised.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.extension_zones">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extension_zones</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><span class="pre">PySALESetup.mesh.ExtensionZone</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.extension_zones" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.extension_factor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extension_factor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PySALESetup.mesh.ExtensionZoneFactors</span></em><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.extension_factor" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, J. G. Derrick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
