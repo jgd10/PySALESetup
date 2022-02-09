@@ -578,6 +578,24 @@ and assign that.</p>
 </section>
 <section id="module-PySALESetup.functions">
 <span id="pysalesetup-functions-module"></span><h2>PySALESetup.functions module<a class="headerlink" href="#module-PySALESetup.functions" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="PySALESetup.functions.mesh_from_dimensions">
+<span class="sig-prename descclassname"><span class="pre">PySALESetup.functions.</span></span><span class="sig-name descname"><span class="pre">mesh_from_dimensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><span class="pre">PySALESetup.mesh.ExtensionZone</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></span><a class="headerlink" href="#PySALESetup.functions.mesh_from_dimensions" title="Permalink to this definition"></a></dt>
+<dd><p>Given high-res zone dimensions and cell size, return PySALEMesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dimensions</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>] </em><em>X - Y Dimensions of the high-res</em>) – region in metres</p></li>
+<li><p><strong>cell_size</strong> (<em>float Dimension of a high-res cell in the mesh</em>) – </p></li>
+<li><p><strong>extensions</strong> (<em>List</em><em>[</em><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><em>ExtensionZone</em></a><em>] </em><em>List of all the extension zones</em>) – that should be applied</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>PySALEMesh instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-PySALESetup.mesh">
 <span id="pysalesetup-mesh-module"></span><h2>PySALESetup.mesh module<a class="headerlink" href="#module-PySALESetup.mesh" title="Permalink to this headline"></a></h2>
@@ -862,12 +880,24 @@ we can apply each child as void in a simple loop.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.plot_cells">
-<span class="sig-name descname"><span class="pre">plot_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_vertices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_cells" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">plot_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_cells" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the cell centres of the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ax</strong> (<em>plt.Axes</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig, ax</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[plt.Axes, plt.figure]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.plot_materials">
-<span class="sig-name descname"><span class="pre">plot_materials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'terrain'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_materials" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_materials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rainbow'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_materials" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the materials in the mesh using matplotlib.</p>
 <p>If no axes are provided, axes and a figure are made. Otherwise,
 the given axes are used and returned along with the associated
