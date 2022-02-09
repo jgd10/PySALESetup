@@ -9,6 +9,7 @@ from pathlib import Path
 import warnings
 import gzip
 from enum import Enum
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
 class Region(Enum):
@@ -202,8 +203,8 @@ class PySALEMesh:
         highres_ystart = 0
         highres_xend = self.x
         highres_yend = self.y
-        south_range = [-0.5]
-        west_range = [-0.5]
+        south_range = [-0.5 * self.cell_size]
+        west_range = [-0.5 * self.cell_size]
         if Region.SOUTH in zones:
             zone = zones[Region.SOUTH]
             y_length += zone.depth
@@ -491,22 +492,27 @@ class PySALEMesh:
             if cell.point.within(polygon):
                 self._void_cell(cell)
 
-    def plot_cells(self, ax: plt.Axes = None,
-                   include_vertices: bool = False):
+    def plot_cells(self, ax: plt.Axes = None):
+        """Plot the cell centres of the mesh.
+
+        Parameters
+        ----------
+        ax : plt.Axes
+
+        Returns
+        -------
+        fig, ax : Tuple[plt.Axes, plt.figure]
+
+        """
         ax, fig = get_figure_from_ax(ax)
         xi, yi = np.meshgrid(self.x_range, self.y_range)
         ax.scatter(xi, yi, marker='.', color='k')
-        if False:
-            ax.scatter(xi-.5*self.cell_size, yi-.5*self.cell_size, marker='+', color='r')
-            ax.scatter(xi+.5*self.cell_size, yi+.5*self.cell_size, marker='+', color='r')
-            ax.scatter(xi-.5*self.cell_size, yi+.5*self.cell_size, marker='+', color='r')
-            ax.scatter(xi+.5*self.cell_size, yi-.5*self.cell_size, marker='+', color='r')
         self._set_plot_lims_and_labels(ax)
         ax.set_title('Cell centres')
         return fig, ax
 
     def plot_materials(self, ax: plt.Axes = None,
-                       cmap: str = 'terrain'):
+                       cmap: str = 'rainbow'):
         """Plot the materials in the mesh using matplotlib.
 
         If no axes are provided, axes and a figure are made. Otherwise,
@@ -550,11 +556,28 @@ class PySALEMesh:
         for i in range(1, 9+1):
             matter = np.copy(self.material_meshes[i])*i
             matter = np.ma.masked_where(matter == 0., matter)
-            ax.pcolormesh(xi, yi, matter.T, cmap=cmap, vmin=1, vmax=9,
-                          shading='auto')
+            p = ax.pcolormesh(xi,
+                              yi,
+                              matter.T,
+                              cmap=cmap,
+                              vmin=1,
+                              vmax=9,
+                              shading='auto')
         self._set_plot_lims_and_labels(ax)
+        self._add_colorbar(ax, p, 'Material No.')
         ax.set_title('Materials')
         return fig, ax
+
+    @staticmethod
+    def _add_colorbar(ax, graph_object, label):
+        # create an axes on the right side of ax. The width of cax will be 5%
+        # of ax and the padding between cax and ax will be fixed at 0.05 inch.
+        divider = make_axes_locatable(ax)
+        cax = divider.append_axes("right", size="5%", pad=0.05)
+        ax, fig = get_figure_from_ax(ax)
+        cb = fig.colorbar(graph_object, cax=cax)
+        cb.set_label(label)
+        return cb
 
     def _set_plot_lims_and_labels(self, ax):
         ax.set_xlim(np.amin(self.x_range), np.amax(self.x_range))
@@ -612,11 +635,12 @@ class PySALEMesh:
         vy = np.ma.masked_where(matter_sum == 0., self.velocities['y'])
 
         for ax, v in [(ax1, vx), (ax2, vy)]:
-            ax.pcolormesh(xi, yi, v.T, cmap=cmap,
-                          vmin=np.amin(v),
-                          vmax=np.amax(v),
-                          shading='auto')
+            p = ax.pcolormesh(xi, yi, v.T, cmap=cmap,
+                              vmin=np.amin(v),
+                              vmax=np.amax(v),
+                              shading='auto')
             self._set_plot_lims_and_labels(ax)
+            self._add_colorbar(ax, p, 'Velocity [m/s]')
         ax1.set_title('Velocity - x')
         ax2.set_title('Velocity - y')
         return fig1, fig2, ax1, ax2
