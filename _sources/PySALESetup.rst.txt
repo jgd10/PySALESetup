@@ -12,10 +12,10 @@ PySALESetup.creation module
    :undoc-members:
    :show-inheritance:
 
-PySALESetup.domain module
--------------------------
+PySALESetup.functions module
+----------------------------
 
-.. automodule:: PySALESetup.domain
+.. automodule:: PySALESetup.functions
    :members:
    :undoc-members:
    :show-inheritance:
@@ -24,6 +24,14 @@ PySALESetup.mesh module
 -----------------------
 
 .. automodule:: PySALESetup.mesh
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PySALESetup.objects module
+--------------------------
+
+.. automodule:: PySALESetup.objects
    :members:
    :undoc-members:
    :show-inheritance:
