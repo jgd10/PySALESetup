@@ -6,8 +6,8 @@ from PySALESetup import PySALEMesh, \
 class TestExtensionZone:
     def test_no_factor(self):
         factor = ExtensionZoneFactor(1, 1)
-        zone = ExtensionZone(100, Region.NORTH)
-        assert zone.calculate_zone_length(1, factor) == 100
+        zone = ExtensionZone(100, Region.NORTH, 1, factor)
+        assert zone.length == 100
 
 
 class TestPySALEMeshHighResolutionZoneOnly:
