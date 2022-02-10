@@ -35,3 +35,11 @@ PySALESetup.objects module
    :members:
    :undoc-members:
    :show-inheritance:
+
+PySALESetup.inp_files module
+----------------------------
+
+.. automodule:: PySALESetup.inp_files
+   :members:
+   :undoc-members:
+   :show-inheritance:

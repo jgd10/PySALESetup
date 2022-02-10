@@ -34,6 +34,7 @@ class ExtensionZone:
     object is the order they will be applied.
 
     .. code-block::
+
                 North
                   |
                   |

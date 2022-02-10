@@ -6,9 +6,16 @@
 Welcome to PySALESetup's documentation!
 =======================================
 
+.. mdinclude:: ../../README.md
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+   modules
+   license
+   requirements
+   changelog
 
 
 
