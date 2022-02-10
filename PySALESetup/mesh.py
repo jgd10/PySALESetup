@@ -3,7 +3,7 @@ from collections import namedtuple
 import numpy as np
 from dataclasses import dataclass
 from shapely.geometry import Point
-from typing import Iterable, Optional, Tuple, Union, List
+from typing import Iterable, Optional, Tuple, Union, List, Dict
 import matplotlib.pyplot as plt
 from pathlib import Path
 import warnings
@@ -33,13 +33,14 @@ class ExtensionZone:
     added at a time and the order they appear in the PySALEMesh
     object is the order they will be applied.
 
-            North
-              |
-              |
-    West----MESH----East
-              |
-              |
-            South
+    .. code-block::
+                North
+                  |
+                  |
+        West----MESH----East
+                  |
+                  |
+                South
     """
     def __init__(self, depth: int, region: Region, cell_size: float,
                  factor: ExtensionZoneFactor = None):
@@ -51,7 +52,13 @@ class ExtensionZone:
         self.factor = factor
 
     @property
-    def length(self):
+    def length(self) -> float:
+        """Physical length of the zone.
+
+        Returns
+        -------
+        length : float
+        """
         return self.calculate_zone_length()
 
     def calculate_zone_length(self) -> float:
@@ -134,7 +141,9 @@ class PySALEMesh:
                  x_cells: int,
                  y_cells: int,
                  cell_size: float = 2.e-6,
-                 extension_zones: List[ExtensionZone] = None):
+                 extension_zones: List[ExtensionZone] = None,
+                 cylindrical_symmetry: bool = False,
+                 collision_index: int = 0):
         """Discrete rectangular mesh construction.
 
         Parameters
@@ -142,6 +151,9 @@ class PySALEMesh:
         x_cells : int
         y_cells : int
         cell_size : float
+        extension_zones : Optional[List[ExtensionZone]]
+        cylindrical_symmetry : bool
+        collision_index : int
         """
         self.x = x_cells
         self.y = y_cells
@@ -152,41 +164,161 @@ class PySALEMesh:
         self._material_meshes = None
         self._velocities = None
         self._extension_zones = extension_zones
-        if extension_zones:
-            assert all([e.cell_size == cell_size
-                        for e in extension_zones]), \
-                "All extension zones must have the same cell size!"
-            self._extension_factor = extension_zones[0].factor
-        else:
-            self._extension_factor = None
+        self._extension_factor = None
         self._y_physical_length = 0.
         self._x_physical_length = 0.
+        self.cylindrical_symmetry = cylindrical_symmetry
+        self._collision = collision_index
+
+    def _find_extension_factor(self):
+        if self._extension_zones:
+            assert all([e.cell_size == self.cell_size
+                        for e in self._extension_zones]), \
+                "All extension zones must have the same cell size!"
+            self._extension_factor = self._extension_zones[0].factor
+        else:
+            self._extension_factor = \
+                ExtensionZoneFactor(1., self.cell_size)
+
+    @property
+    def objresh(self) -> int:
+        """iSALE input parameter; half the **height** of the mesh.
+
+        Despite being the "horizontal" object resolution this refers to
+        the height of the mesh. This is because there IS an OBJRESV
+        but you only need to use it if your object does not cover
+        the full width of the mesh. If no OBJRESV is present, its value
+        defaults to OBJRESH. When using PySALESetup-created input files
+        we never want anything less than the full width of the mesh so
+        it is simpler to leave it out and use OBJRESH instead. In
+        PySALESetup you can easily create objects of any size or shape
+        you want!
+
+        Notes
+        -----
+        If the number of cells is not divisible by 2, this property will
+        guarantee that the returned value is rounded up, rather than
+        down.
+
+        E.g. a mesh width of 100 would return a value of 50.
+        A mesh width of 99 would *also* return a value of 50.
+        98 would return a value of 49, and so on.
+
+        Returns
+        -------
+        objresh : int
+
+        """
+        if self.y % 2 == 0:
+            objresh = int(self.y / 2)
+        else:
+            objresh = int((self.y // 2) + 1)
+        return objresh
+
+    @property
+    def vertical_offset(self) -> int:
+        """Half the vertical depth of the mesh, rounded down.
+
+        Returns
+        -------
+        offset : int
+
+        """
+        if self.y % 2 == 0:
+            offset = int(self.y / 2)
+        else:
+            offset = int((self.y-1) / 2)
+        return offset
+
+    @property
+    def max_cell_size(self) -> float:
+        """Return the maximum allowed cell size according to extensions.
+
+        No extensions returns a max cell size identical to the
+        mesh cell size.
+
+        Returns
+        -------
+        max_cell_size : float
+        """
+        max_cell_size = self.cell_size
+        if self.extension_zones:
+            max_cell_size = self.extension_factor.max_cell_size
+        return max_cell_size
+
+    @property
+    def collision_site(self) -> int:
+        """The vertical collision location in the mesh, in cells.
+
+        Defaults to 0.
+
+        Returns
+        -------
+        collision_site : int
+
+        """
+        return self._collision
+
+    @collision_site.setter
+    def collision_site(self, value: int):
+        self._collision = value
 
     @property
     def x_range(self) -> np.ndarray:
+        """Array of the cell x-positions in the mesh.
+
+        Returns
+        -------
+        x_range : float
+        """
         if self._x_range is None:
             self._populate_n_range()
         return self._x_range
 
     @property
     def y_range(self) -> np.ndarray:
+        """Array of the cell y-positions in the mesh.
+
+        Returns
+        -------
+        x_range : float
+        """
         if self._y_range is None:
             self._populate_n_range()
         return self._y_range
 
     def get_geometric_centre(self) -> Tuple[float, float]:
+        """Return the geometric centre of the mesh in physical coords.
+
+        Returns
+        -------
+        centre : Tuple[float, float]
+        """
         x = np.ptp(self.x_range)*.5 + self.x_range[0]
         y = np.ptp(self.y_range)*.5 + self.y_range[0]
         return x, y
 
     @property
-    def material_meshes(self):
+    def material_meshes(self) -> Dict[int, np.ndarray]:
+        """Dictionary of numpy arrays representing material fill,
+        indexed by material number.
+
+        Returns
+        -------
+        meshes : Dict[int, np.ndarray]
+        """
         if self._material_meshes is None:
             self._populate_material_meshes()
         return self._material_meshes
 
     @property
-    def velocities(self):
+    def velocities(self) -> Dict[str, np.ndarray]:
+        """Velocity arrays in the mesh in a dict indexed by axis.
+
+        Returns
+        -------
+        velocities : Dict[str, np.ndarray]
+        """
         if self._velocities is None:
             self._populate_velocities()
         return self._velocities
@@ -299,42 +431,6 @@ class PySALEMesh:
                         for i in range(1, highres_end-highres_start+1)]
         return np.array(highres_zone)
 
-    def _populate_x_range(self):
-        total_length = self.x
-        self._x_physical_length = self.x * self.cell_size
-        zones = {zone.region: zone for zone in self.extension_zones}
-        highres_start = 0
-        highres_end = self.x
-        west_range = [-0.5]
-        if Region.WEST in zones:
-            zone = zones[Region.WEST]
-            total_length += zone.depth
-            highres_start = zone.depth
-            highres_end += zone.depth
-            west_range = self._insert_west_zone(zone)
-        if Region.EAST in zones:
-            zone = zones[Region.EAST]
-            total_length += zone.depth
-            east_range = self._insert_east_zone(zone)
-            highres_end = highres_start + self.x + 1
-
-        self._x_range = np.zeros((total_length))
-        highres_end_pos = (self.x+.5) * self.cell_size
-        if Region.WEST in zones:
-            self._x_range[:highres_start] = west_range
-            highres_start_pos = np.amax(west_range)
-            highres_end_pos += highres_start_pos
-
-        self._x_range[highres_start:highres_end] = \
-            self._generate_highres_zone(highres_end,
-                                        highres_start,
-                                        west_range)
-
-        if Region.EAST in zones:
-            self._x_range[highres_end-1:] = east_range
-
-        return self._x_range
-
     def _populate_velocities(self):
         x_cells = self.x_range.size
         y_cells = self.y_range.size
@@ -348,7 +444,19 @@ class PySALEMesh:
                                  for i in range(1, 9 + 1)}
 
     @property
-    def cells(self):
+    def cells(self) -> List[Cell]:
+        """List of all Cell objects in the mesh.
+
+        The mesh is represented by a collection of Cell objects,
+        each of which represents a single cell in the mesh. These Cell
+        objects are namedtuples containing all the information needed
+        about that cell, including its indices, geometric centre,
+        velocity, and material.
+
+        Returns
+        -------
+        cells : List[Cell]
+        """
         if self._cells is None:
             self._populate_cells()
         return self._cells
@@ -654,6 +762,17 @@ class PySALEMesh:
               + f' {cell.velocity.x:.2f} {cell.velocity.y:.2f}\n'
         return row
 
+    @property
+    def material_numbers(self) -> List[int]:
+        """List ofnon-zero materials in the mesh.
+
+        Returns
+        -------
+        numbers : List[int]
+        """
+        return [key for key, value in self.material_meshes.items()
+                if np.sum(value) > 0.]
+
     def save(self, file_name: Path = Path('./meso_m.iSALE'),
              compress: bool = False) -> None:
         """Save the current mesh to a meso_m.iSALE file.
@@ -676,9 +795,6 @@ class PySALEMesh:
         None
         """
         cell_number = self.x * self.y
-        material_numbers = [key for key, value
-                            in self.material_meshes.items()
-                            if np.sum(value) > 0.]
         if compress:
             if file_name.suffix != '.gz':
                 warnings.warn(f'Mesh is being compressed but file '
@@ -687,12 +803,12 @@ class PySALEMesh:
             with gzip.open(file_name, 'w') as f:
                 self._write_mesh_to_file(cell_number,
                                          f,
-                                         material_numbers)
+                                         self.material_numbers)
         else:
             with open(file_name, 'w') as f:
                 self._write_mesh_to_file(cell_number,
                                          f,
-                                         material_numbers)
+                                         self.material_numbers)
 
     def _write_mesh_to_file(self,
                             cell_number: int,
@@ -774,8 +890,6 @@ class PySALEMesh:
             'south/west')
 
         west_x_range = np.array(x_coord)
-        #west_x_range += abs(np.amin(west_x_range)) + varying_cell_size
-        #self._x_physical_length += np.amax(west_x_range)
         return west_x_range[::-1]
 
     def _insert_south_zone(self, zone: ExtensionZone):
@@ -815,15 +929,32 @@ class PySALEMesh:
 
     @property
     def extension_zones(self) -> List[ExtensionZone]:
-        if self._extension_zones is None:
-            self._extension_zones = {}
-        return self._extension_zones
+        """The extension zones applied to the mesh.
+
+        Returns
+        -------
+        zones : List[ExtensionZone]
+        """
+        if self._extension_zones is not None:
+            self._find_extension_factor()
+            return self._extension_zones
+        else:
+            return []
 
     @property
     def extension_factor(self) -> ExtensionZoneFactor:
+        """The ExtensionZoneFactor associated with this mesh.
+
+        There can only be one extension factor associated with a mesh.
+        When this property is called it also checks that the given
+        extension zones don't have clashing properties.
+
+        Returns
+        -------
+        factor : ExtensionZoneFactor
+        """
         if self._extension_factor is None:
-            self._extension_factor = \
-                ExtensionZoneFactor(1., self.cell_size)
+            self._find_extension_factor()
         return self._extension_factor
 
 
