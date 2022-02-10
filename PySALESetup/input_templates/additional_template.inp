@@ -1,0 +1,9 @@
+#ISADD
+---------------------------------------------------------------------------------------------------------------------------------------
+---this is an additional input file used to specify particle classes
+---------------------------------------------------------------------------------------------------------------------------------------
+PARNUM       Number of particle classes        : $material_number
+PARMAT       Material for particle class       : $material_names
+PARHOBJ      Host object for particles         : $host_object_numbers
+---------------------------------------------------------------------------------------------------------------------------------------
+<<END

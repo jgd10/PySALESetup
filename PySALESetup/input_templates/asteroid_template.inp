@@ -1,0 +1,61 @@
+#ISINP
+------------------------------------------------------------------------
+--- this is the new input file used by iSALE versions of v7.0 and higher
+------------------------------------------------------------------------
+------------------- General Model Info ---------------------------------
+VERSION          __DO NOT MODIFY__             : 4.1
+DIMENSION        Dimension of simulation       : 2
+PATH             Data file path                : ./
+MODEL            Modelname                     : $simulation_name
+FORMAT           Data format                   : J
+DUMP             Restart Filename              : NONE
+REGRID           Regrid mesh                   : 0
+------------------- Mesh Geometry Parameters ---------------------------
+GRIDH            horizontal cells              : $east_cells           : $high_res_x        : $west_cells
+GRIDV            vertical cells                : $north_cells          : $high_res_y        : $south_cells
+GRIDSPC          grid spacing                  : $cell_size
+CYL              Cylind. geometry              : $cyl_geometry
+GRIDEXT          ext. factor                   : $ext_factor
+GRIDSPCM         max. grid spacing             : $max_cell_size
+------------------- Global setup parameters -----------------------------
+S_TYPE           setup type                    : IMPRT_GEOM
+T_SURF           Surface temp                  : $surface_temperature
+GRAD_TYPE        gradient type                 : NONE
+COL_SITE         Collision j-location          : $collision_index
+------------------- Projectile ("Object") Parameters --------------------
+OBJNUM           number of objects             : 1
+OBJRESH          CPPR horizontal               : $objresh
+OBJVEL           object velocity               : 0.0D0
+OBJMAT           object material               : VOID___
+OBJTYPE          object type                   : PLATE
+OBJTPROF         object temp prof              : CONST
+OBJOFF_V         object vertical offset        : $vert_offset
+------------------- Target Parameters ----------------------------------
+LAYNUM           layers number                 : 0
+------------------- Time Parameters ------------------------------------
+DT               Initial timestep (guess)      : $timestep
+DTMAX            Maximum permitted timestep    : $timestep_max
+TEND             end time                      : $time_end
+DTSAVE           save interval                 : $save_interval
+------------------- Boundary Condition Parameters ----------------------
+--------------- 0=no slip,1=free slip, 2=cont.outflow ------------------
+BND_L            left                          : $east_boundary_condition
+BND_R            right                         : $west_boundary_condition
+BND_B            bottom                        : $south_boundary_condition
+BND_T            top                           : $north_boundary_condition
+------------------- Numerical Stability Parameters ---------------------
+AVIS             Artificial viscosity (lin)    : 0.24D0
+AVIS2            Artificial viscosity (quad)   : 1.2D0
+------------------- Tracer Particle Parameters -------------------------
+TR_QUAL          Save tracer                   : 1
+TR_MOTION        Tracer movement alg.          : MATERIAL
+TR_AREA          Area for tracers              : 0    : 100   :  90   : 290
+TR_VAR           add. tracer fiels             : #TrP-TrT-Trp-Trt-TrM#
+------------------- (Material) Model parameters (global) ---------------
+STRESS           Consider stress               : 1
+BNDYIELD         Mixed-cell strength approx.   : med
+------------------- Data Saving Parameters -----------------------------
+QUALITY          Compression rate              : -50
+VARLIST          List of variables             : #Den-Tmp-Pre-Sie-Yld-Dam-VEL#
+------------------------------------------------------------------------
+<<END
