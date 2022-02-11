@@ -170,9 +170,22 @@ class AsteroidInput(InputFile):
 
 
 class AdditionalInput(InputFile):
+    """additional.inp file creator class.
+
+    Allows a user to build an additional.inp file and uses a simple
+    template to write one to a new file of the user's choice.
+    """
     def __init__(self, mesh: PySALEMesh,
                  material_names: Dict[int, str],
                  host_object_number: int = 1):
+        """Initialise the AdditionalInput class.
+
+        Parameters
+        ----------
+        mesh : PySALEMesh
+        material_names : Dict[int, str]
+        host_object_number : int
+        """
         super(AdditionalInput, self).__init__('additional')
         self.mesh = mesh
         self.material_names = material_names
@@ -199,7 +212,7 @@ class AdditionalInput(InputFile):
                  pathlib.Path.cwd() / 'asteroid.inp') -> None:
         """Write the asteroid.inp file to given path.
 
-        Defaults to asteroid.inp in the current working directory.
+        Defaults to additional.inp in the current working directory.
 
         Parameters
         ----------
