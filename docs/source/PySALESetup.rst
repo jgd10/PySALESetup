@@ -1,43 +1,40 @@
-PySALESetup package
-===================
+PySALESetup
+===========
 
-Submodules
-----------
-
-PySALESetup.creation module
----------------------------
+PySALESetup.creation
+--------------------
 
 .. automodule:: PySALESetup.creation
    :members:
    :undoc-members:
    :show-inheritance:
 
-PySALESetup.functions module
-----------------------------
+PySALESetup.functions
+---------------------
 
 .. automodule:: PySALESetup.functions
    :members:
    :undoc-members:
    :show-inheritance:
 
-PySALESetup.mesh module
------------------------
+PySALESetup.mesh
+----------------
 
 .. automodule:: PySALESetup.mesh
    :members:
    :undoc-members:
    :show-inheritance:
 
-PySALESetup.objects module
---------------------------
+PySALESetup.objects
+-------------------
 
 .. automodule:: PySALESetup.objects
    :members:
    :undoc-members:
    :show-inheritance:
 
-PySALESetup.inp_files module
-----------------------------
+PySALESetup.inp_files
+---------------------
 
 .. automodule:: PySALESetup.inp_files
    :members:

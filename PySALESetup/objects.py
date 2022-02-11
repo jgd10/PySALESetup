@@ -37,7 +37,7 @@ class PySALEObject(Polygon, ABC):
     >>> plt.show()
 
     This example creates an elliptical object with centroid (5, 5)
-    major axis 1, minor axis 0.5 and roateted by 10 degrees.
+    major axis 1, minor axis 0.5 and rotated by 10 degrees.
 
     >>> from PySALESetup import PySALEObject
     >>> import matplotlib.pyplot as plt
