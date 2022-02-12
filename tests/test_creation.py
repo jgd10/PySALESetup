@@ -79,6 +79,19 @@ class TestPySALEDomain:
         assert len(materials) == 9
 
 
+class TestRandomlyRotateObjects:
+    def test_object_unchanged(self, circle):
+        domain = PySALEDomain(circle)
+        new = domain.randomly_rotate_object(circle)
+        assert new.bounds == circle.bounds
+
+    def test_rectangle_rotates(self, rectangle):
+        dist = PySALENormalDistribution(45., 5.)
+        domain = PySALEDomain(rectangle)
+        new = domain.randomly_rotate_object(rectangle, dist)
+        assert new.bounds != rectangle.bounds
+
+
 class TestRandomlyResizeObjects:
     @pytest.mark.parametrize('area', [True, False])
     def test_object_unchanged(self, simple_object, area):

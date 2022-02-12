@@ -14,6 +14,16 @@ def simple_object():
 
 
 @pytest.fixture()
+def circle():
+    return PySALEObject.generate_ellipse([5., 5.], 1., 1., 0.)
+
+
+@pytest.fixture()
+def rectangle():
+    return PySALEObject([(0, 0), (2, 0), (2, 1), (0, 1)])
+
+
+@pytest.fixture()
 def square_object():
     object_ = PySALEObject([(0, 0), (0, 10), (10, 10), (10, 0)])
     return object_

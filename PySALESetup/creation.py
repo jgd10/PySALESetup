@@ -481,8 +481,7 @@ class PySALEDomain:
             angle = rotation_distribution.random_number()
         else:
             angle = 0.
-        duplicated_grain_object = \
-            rotate_polygon(duplicated_grain_object, angle)
+        duplicated_grain_object = duplicated_grain_object.rotate(angle)
         return duplicated_grain_object
 
     @staticmethod

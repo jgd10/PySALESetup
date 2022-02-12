@@ -515,7 +515,7 @@ class PySALEObject(Polygon, ABC):
         )
 
     def rotate(self, angle: float,
-                       origin: Union[str, Point] = 'center'):
+               origin: Union[str, Point] = 'center'):
         """Rotate by `angle` degrees and about the point `origin`.
 
         Returns a copy of the rotated polygon.
