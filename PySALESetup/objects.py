@@ -443,6 +443,52 @@ class PySALEObject(Polygon, ABC):
         self._material_colors[0] = void
         self._material_colors[-1] = unassigned
 
+    @property
+    def krumbein_phi(self) -> float:
+        """Return the Krumbein Phi of the object.
+
+        A dimensionless, logarithmic, grain size metric commonly used in
+        particle size distributions.
+
+        >>> krumbein_phi = -log2(D/D0)
+
+        Where D is the diameter of the sphere (circle in our case)
+        that has the same volume (area) as the grain in question,
+        and D0 is a reference length equal to 1 mm (so that the
+        equation remains dimensionally consistent.
+
+        See [Investigating the effect of mesostructure on
+        the shock response of granular materials
+        through numerical modelling
+        - James G. Derrick 2018
+        Section 6.1](https://doi.org/10.25560/66097)
+
+        Returns
+        -------
+        krumbein_phi : float
+        """
+        diameter = np.sqrt(self.area/np.pi)*2.
+        krumbein_phi = -np.log2(diameter)
+        return krumbein_phi
+
+    @property
+    def elongation(self) -> float:
+        length_bbox = max((self.bounds[2] - self.bounds[0]),
+                          (self.bounds[3] - self.bounds[1]))
+        width_bbox = min((self.bounds[2] - self.bounds[0]),
+                         (self.bounds[3] - self.bounds[1]))
+        elongation = length_bbox/width_bbox
+        return elongation
+
+    @property
+    def area_ratio(self):
+        length_bbox = max((self.bounds[2] - self.bounds[0]),
+                          (self.bounds[3] - self.bounds[1]))
+        width_bbox = min((self.bounds[2] - self.bounds[0]),
+                         (self.bounds[3] - self.bounds[1]))
+        area_ratio = (length_bbox*width_bbox)/self.area
+        return area_ratio
+
 
 def translate_polygon(polygon: PySALEObject, newx: float, newy: float):
     """Translate polygon from one centroid to another.
