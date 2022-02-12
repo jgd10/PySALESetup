@@ -1,4 +1,7 @@
-from PySALESetup import PySALEDomain, PySALEObject
+from PySALESetup import PySALEDomain, PySALEObject, \
+    PySALEDistributionBase, PySALEUniformDistribution, \
+    PySALENormalDistribution, PySALEWeibull2Distribution, \
+    PySALELogNormalDistribution, PySALECustomDistribution
 import pytest
 from math import isclose
 
@@ -65,6 +68,16 @@ class TestPySALEDomain:
         with pytest.raises(AssertionError):
             domain.insert_randomly(grain, max_attempts=max_attempts)
 
+    def test_optimise_materials(self, simple_object):
+        domain = PySALEDomain(simple_object)
+        domain.fill_to_threshold_area(
+            PySALEObject.generate_ellipse([0, 0], .5, .5, 0, 1),
+            50.
+        )
+        domain.optimise_materials()
+        materials = {grain.material for grain in domain.object.children}
+        assert len(materials) == 9
+
 
 class TestRandomlyResizeObjects:
     @pytest.mark.parametrize('area', [True, False])
@@ -103,3 +116,91 @@ class TestRandomlyResizeObjects:
         for old, new in zip(old_coords, new_coords):
             assert old != new
 
+
+class TestDistributionBase:
+    def test_cdf_defined_but_not_implemented(self):
+        with pytest.raises(NotImplementedError):
+            pdb = PySALEDistributionBase()
+            pdb.cdf(1.)
+
+    def test_random_number_defined_but_not_implemented(self):
+        with pytest.raises(NotImplementedError):
+            pdb = PySALEDistributionBase()
+            pdb.random_number()
+
+    def test_details(self):
+        pdb = PySALEDistributionBase()
+        with pytest.raises(TypeError):
+            pdb.details()
+
+    def test_frequency(self):
+        pdb = PySALEDistributionBase()
+        with pytest.raises(NotImplementedError):
+            pdb.frequency(1., (0., 1.))
+
+
+class TestAllDistributionProperties:
+    @pytest.mark.parametrize('distribution', [PySALEUniformDistribution((0., 1.)),
+                                              PySALENormalDistribution(0.5, 0.5),
+                                              PySALEWeibull2Distribution(1., 1.),
+                                              PySALELogNormalDistribution(0.5, 0.5),
+                                              PySALECustomDistribution(lambda x: 1., lambda: 1.)])
+    def test_name(self, distribution):
+        assert distribution.name is not None
+
+    @pytest.mark.parametrize('distribution', [PySALEUniformDistribution((0., 1.)),
+                                              PySALENormalDistribution(0.5, 0.5),
+                                              PySALEWeibull2Distribution(1., 1.),
+                                              PySALELogNormalDistribution(0.5, 0.5)])
+    def test_skew(self, distribution):
+        assert distribution.skew is not None
+
+    @pytest.mark.parametrize('distribution', [PySALEUniformDistribution((0., 1.)),
+                                              PySALENormalDistribution(0.5, 0.5),
+                                              PySALEWeibull2Distribution(1., 1.),
+                                              PySALELogNormalDistribution(0.5, 0.5)])
+    def test_mean(self, distribution):
+        assert distribution.mean is not None
+
+    @pytest.mark.parametrize('distribution', [PySALEUniformDistribution((0., 1.)),
+                                              PySALENormalDistribution(0.5, 0.5),
+                                              PySALEWeibull2Distribution(1., 1.),
+                                              PySALELogNormalDistribution(0.5, 0.5)])
+    def test_median(self, distribution):
+        assert distribution.median is not None
+
+    @pytest.mark.parametrize('distribution', [PySALEUniformDistribution((0., 1.)),
+                                              PySALENormalDistribution(0.5, 0.5),
+                                              PySALEWeibull2Distribution(1., 1.),
+                                              PySALELogNormalDistribution(0.5, 0.5)])
+    def test_variance(self, distribution):
+        assert distribution.variance is not None
+
+    @pytest.mark.parametrize('distribution', [PySALEUniformDistribution((0., 1.)),
+                                              PySALENormalDistribution(0.5, 0.5),
+                                              PySALEWeibull2Distribution(1., 1.),
+                                              PySALELogNormalDistribution(0.5, 0.5),
+                                              PySALECustomDistribution(lambda x: 1., lambda: 1.)])
+    def test_cdf(self, distribution):
+        v = distribution.cdf(0.5)
+        assert isinstance(v, float)
+
+    @pytest.mark.parametrize('distribution', [PySALEUniformDistribution((0., 1.)),
+                                              PySALENormalDistribution(0.5, 0.5),
+                                              PySALEWeibull2Distribution(1., 1.),
+                                              PySALELogNormalDistribution(0.5, 0.5),
+                                              PySALECustomDistribution(lambda x: 1., lambda: 1.)])
+    def test_random_number(self, distribution):
+        v = distribution.random_number()
+        assert isinstance(v, float)
+
+
+class TestCustomDistributionProperties:
+    @pytest.mark.parametrize('prop', ['mean',
+                                      'median',
+                                      'skew',
+                                      'variance'])
+    def test_properties(self, prop):
+        custom = PySALECustomDistribution(lambda x: 1., lambda: 1.)
+        value = getattr(custom, prop)
+        assert value is None

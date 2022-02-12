@@ -52,3 +52,8 @@ def object_with_weibull_distributions():
     areas = PySALEWeibull2Distribution(pi, pi)
     angles = PySALEWeibull2Distribution(0, 180)
     return object_, radii, areas, angles
+
+
+@pytest.fixture()
+def uniform():
+    return PySALEUniformDistribution((0., 1.))

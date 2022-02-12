@@ -351,6 +351,9 @@ class PySALECustomDistribution(PySALEDistributionBase):
         """Overwritten by the constructor"""
         raise NotImplementedError
 
+    def details(self):
+        return "Custom distribution in use."
+
 
 class PySALEDomain:
     """Domain class providing insertion methods and statistics.
@@ -539,7 +542,7 @@ class PySALEDomain:
                         max_attempts: int = 100) -> bool:
         """Insert object into the host at random locations until it fits
 
-        "fits" means - "is not intersecting with any other objects.
+        "fits" means - "is not intersecting with any other objects."
 
         Parameters
         ----------
