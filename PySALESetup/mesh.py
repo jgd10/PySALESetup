@@ -1,4 +1,5 @@
 from PySALESetup.objects import PySALEObject, Velocity
+from PySALESetup.functions import get_figure_from_ax
 from collections import namedtuple
 import numpy as np
 from dataclasses import dataclass
@@ -89,28 +90,8 @@ class Cell:
     point: Point
     i: int
     j: int
-    material: Optional[int]
+    material: int
     velocity: Velocity(0., 0.)
-
-
-def get_figure_from_ax(ax: Optional[plt.Axes]) -> Tuple[plt.Axes,
-                                                        plt.Figure]:
-    """Get the matplotlib figure from an Axes or create some if None.
-
-    Parameters
-    ----------
-    ax : plt.Axes
-
-    Returns
-    -------
-    (ax, fig) : Tuple[plt.Axes, plt.figure]
-    """
-    if ax is None:
-        fig = plt.figure()
-        ax = fig.add_subplot(111, aspect='equal')
-    else:
-        fig = ax.get_figure()
-    return ax, fig
 
 
 class PySALEMesh:
@@ -166,10 +147,34 @@ class PySALEMesh:
         self._velocities = None
         self._extension_zones = extension_zones
         self._extension_factor = None
-        self._y_physical_length = 0.
-        self._x_physical_length = 0.
+        self._y_physical_length = None
+        self._x_physical_length = None
         self.cylindrical_symmetry = cylindrical_symmetry
         self._collision = collision_index
+
+    @classmethod
+    def from_dimensions(cls, dimensions: Tuple[float, float],
+                        cell_size: float,
+                        extensions: Optional[List[ExtensionZone]] = None):
+        """Given high-res zone dimensions and cell size, return PySALEMesh.
+
+        Parameters
+        ----------
+        dimensions : Tuple[float, float] X - Y Dimensions of the high-res
+                     region in metres
+        cell_size : float Dimension of a high-res cell in the mesh
+        extensions : List[ExtensionZone] List of all the extension zones
+                     that should be applied
+
+        Returns
+        -------
+        PySALEMesh instance.
+        """
+        x_cells = int(dimensions[0] / cell_size)
+        y_cells = int(dimensions[1] / cell_size)
+        mesh = cls(x_cells, y_cells, cell_size,
+                   extension_zones=extensions)
+        return mesh
 
     def _find_extension_factor(self):
         if self._extension_zones:
@@ -180,6 +185,30 @@ class PySALEMesh:
         else:
             self._extension_factor = \
                 ExtensionZoneFactor(1., self.cell_size)
+
+    @property
+    def x_physical(self):
+        """The physical x-length of the mesh.
+
+        Returns
+        -------
+        length : float
+        """
+        if self._x_physical_length is None:
+            self._populate_n_range()
+        return self._x_physical_length
+
+    @property
+    def y_physical(self):
+        """The physical y-length of the mesh.
+
+        Returns
+        -------
+        length : float
+        """
+        if self._y_physical_length is None:
+            self._populate_n_range()
+        return self._y_physical_length
 
     @property
     def objresh(self) -> int:
@@ -388,42 +417,6 @@ class PySALEMesh:
             self._x_range[highres_xend-1:] = east_range
         return self._x_range, self._y_range
 
-    def _populate_y_range(self):
-        total_length = self.y
-        self._y_physical_length = self.y * self.cell_size
-        zones = {zone.region: zone for zone in self.extension_zones}
-        highres_start = 0
-        highres_end = self.y
-        south_range = [-0.5]
-        if Region.SOUTH in zones:
-            zone = zones[Region.SOUTH]
-            total_length += zone.depth
-            highres_start = zone.depth
-            highres_end += zone.depth
-            south_range = self._insert_south_zone(zone)
-        if Region.NORTH in zones:
-            zone = zones[Region.NORTH]
-            total_length += zone.depth
-            north_range = self._insert_north_zone(zone)
-            highres_end = highres_start + self.y + 1
-
-        self._y_range = np.zeros((total_length))
-        highres_end_pos = (self.y+.5) * self.cell_size
-        if Region.SOUTH in zones:
-            self._y_range[:highres_start] = south_range
-            highres_start_pos = np.amax(south_range)
-            highres_end_pos += highres_start_pos
-
-        self._y_range[highres_start:highres_end] = \
-            self._generate_highres_zone(highres_end,
-                                        highres_start,
-                                        south_range)
-
-        if Region.NORTH in zones:
-            self._y_range[highres_end-1:] = north_range
-
-        return self._y_range
-
     def _generate_highres_zone(self,
                                highres_end,
                                highres_start,
@@ -621,7 +614,8 @@ class PySALEMesh:
         return fig, ax
 
     def plot_materials(self, ax: plt.Axes = None,
-                       cmap: str = 'rainbow'):
+                       cmap: str = 'rainbow') -> Tuple[plt.Figure,
+                                                       plt.Axes]:
         """Plot the materials in the mesh using matplotlib.
 
         If no axes are provided, axes and a figure are made. Otherwise,
@@ -765,7 +759,7 @@ class PySALEMesh:
 
     @property
     def material_numbers(self) -> List[int]:
-        """List ofnon-zero materials in the mesh.
+        """List of non-zero materials in the mesh.
 
         Returns
         -------

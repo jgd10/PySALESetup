@@ -1,6 +1,30 @@
+import matplotlib.pyplot as plt
 import numpy as np
 from PySALESetup import PySALEMesh, \
-    ExtensionZone, ExtensionZoneFactor, Region
+    ExtensionZone, ExtensionZoneFactor, Region, Cell, Velocity
+from shapely.geometry import Point
+import pytest
+
+
+class TestRegion:
+    def test_regions(self):
+        counter = 0
+        for r in Region:
+            counter += 1
+        assert counter == 4
+
+
+class TestCell:
+    def test_cell_is_mutable(self):
+        c = Cell(Point(0, 0), 0, 0, 1, Velocity(0., 0.))
+        c.material = 2
+
+
+class TestExtensionZoneFactor:
+    def test_is_immutable(self):
+        factor = ExtensionZoneFactor(1, 1)
+        with pytest.raises(AttributeError):
+            factor.max_cell_size = 20.
 
 
 class TestExtensionZone:
@@ -44,3 +68,77 @@ class TestPySALEMeshHighResolutionZoneOnly:
         assert np.sum(mesh.material_meshes[3]) > 0
         assert np.sum(mesh.material_meshes[1]) == 0
 
+    def test_objresh(self, rectangular_even_mesh):
+        assert rectangular_even_mesh.objresh == rectangular_even_mesh.y / 2
+
+    def test_max_cell_size_no_ext_zones(self, square_even_mesh):
+        assert square_even_mesh.max_cell_size == square_even_mesh.max_cell_size
+
+    def test_collision_site(self, square_even_mesh):
+        # default should be 0
+        assert square_even_mesh.collision_site == 0
+
+    def test_x_range(self, rectangular_even_mesh):
+        assert rectangular_even_mesh.x == rectangular_even_mesh.x_range.size
+
+    def test_y_range(self, rectangular_even_mesh):
+        assert rectangular_even_mesh.y == rectangular_even_mesh.y_range.size
+
+    def test_geometric_centre(self, square_even_mesh):
+        centre = square_even_mesh.get_geometric_centre()
+        for val in centre:
+            assert np.isclose(val, 5.)
+
+    def test_material_meshes(self, square_even_mesh):
+        assert len(square_even_mesh.material_meshes) == 9
+        for i in range(9):
+            assert i+1 in square_even_mesh.material_meshes
+
+    def test_velocities(self, square_even_mesh):
+        assert len(square_even_mesh.velocities) == 2
+        for i in ['x', 'y']:
+            assert i in square_even_mesh.velocities
+
+    def test_cells(self, square_even_mesh):
+        assert len(square_even_mesh.cells) == square_even_mesh.x * square_even_mesh.y
+
+    def test_apply_geometry(self, square_even_mesh, simple_impactor_target):
+        target, impactor = simple_impactor_target
+        square_even_mesh.apply_geometry(target)
+        square_even_mesh.apply_geometry(impactor)
+        assert square_even_mesh.material_numbers == [1, 2]
+
+    def test_extension_zones_empty(self, square_even_mesh):
+        assert not square_even_mesh.extension_zones
+
+    def test_extension_zone_factor_default(self, square_even_mesh):
+        assert square_even_mesh.extension_factor.max_cell_size == square_even_mesh.cell_size
+        assert square_even_mesh.extension_factor.multiplier == 1.
+
+
+class TestMeshWithExtensionZones:
+    def test_build_mesh_with_zones(self, square_mesh_with_extension_zones):
+        assert square_mesh_with_extension_zones.extension_zones
+
+    def test_increased_physical_size(self, square_mesh_with_extension_zones):
+        m = square_mesh_with_extension_zones
+        assert m.x_physical > m.x * m.cell_size
+        assert m.y_physical > m.y * m.cell_size
+
+
+class TestMeshPlots:
+    def test_plot_materials(self, square_mesh_with_extension_zones):
+        f, a = square_mesh_with_extension_zones.plot_materials()
+        assert isinstance(f, plt.Figure)
+        assert isinstance(a, plt.Axes)
+
+    def test_plot_velocities(self, square_mesh_with_extension_zones):
+        f1, f2, a1, a2 = square_mesh_with_extension_zones.plot_velocities()
+        for f, a in [(f1, a1), (f2, a2)]:
+            assert isinstance(f, plt.Figure)
+            assert isinstance(a, plt.Axes)
+
+    def test_plot_cells(self, square_mesh_with_extension_zones):
+        f, a = square_mesh_with_extension_zones.plot_cells()
+        assert isinstance(f, plt.Figure)
+        assert isinstance(a, plt.Axes)

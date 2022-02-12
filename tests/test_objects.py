@@ -1,6 +1,5 @@
 import copy
-from PySALESetup import PySALEObject, resize_polygon, translate_polygon,\
-    Velocity, rotate_polygon
+from PySALESetup import PySALEObject, Velocity
 from shapely.geometry import Point
 from math import isclose
 import pytest
@@ -55,19 +54,20 @@ class TestSpawningChildren:
 
 class TestTranslatePolygon:
     def test_move_nowhere(self, simple_object):
-        new_object = translate_polygon(simple_object, simple_object.centroid.x, simple_object.centroid.y)
+        new_object = simple_object.translate(simple_object.centroid.x, simple_object.centroid.y)
         assert new_object.centroid.x == simple_object.centroid.x
         assert new_object.centroid.y == simple_object.centroid.y
 
     def test_move_positive(self, simple_object):
-        new_object = translate_polygon(simple_object, simple_object.centroid.x + 1., simple_object.centroid.y + 1.)
+        new_object = simple_object.translate(simple_object.centroid.x + 1., simple_object.centroid.y + 1.)
         assert new_object.centroid.x == simple_object.centroid.x + 1.
         assert new_object.centroid.y == simple_object.centroid.y + 1.
 
     def test_move_negative(self, simple_object):
-        new_object = translate_polygon(simple_object,
-                                       simple_object.centroid.x - 1.,
-                                       simple_object.centroid.y - 1.)
+        new_object = simple_object.translate(
+            simple_object.centroid.x - 1.,
+            simple_object.centroid.y - 1.
+        )
         assert new_object.centroid.x == simple_object.centroid.x - 1.
         assert new_object.centroid.y == simple_object.centroid.y - 1.
 
@@ -87,7 +87,7 @@ class TestResizePolygon:
         xfact, yfact = factor
         centroid = simple_object.centroid.coords.xy
         centroid = (centroid[0][0], centroid[1][0])
-        new = resize_polygon(simple_object, xfact, yfact)
+        new = simple_object.resize(xfact, yfact)
         for old_coords, new_coords in zip(simple_object.exterior.coords,
                                           new.exterior.coords):
             assert new_coords[0] - centroid[0] \
@@ -111,31 +111,31 @@ class TestRotatePolygon:
         assert new_coords == old_coords
 
     def test_rotate_nowhere_about_center(self, square_object):
-        new_object = rotate_polygon(square_object, 0., 'center')
+        new_object = square_object.rotate(0., 'center')
         self.assert_coords_equal(new_object, square_object)
 
     def test_rotate_360_about_center(self, square_object):
-        new_object = rotate_polygon(square_object, 360., 'center')
+        new_object = square_object.rotate(360., 'center')
         self.assert_coords_equal(new_object, square_object)
 
     def test_rotate_nowhere_about_another_origin(self, square_object):
-        new_object = rotate_polygon(square_object, 0.,
-                                    Point([-99, -99]))
+        new_object = square_object.rotate(0.,
+                                          Point([-99, -99]))
         self.assert_coords_equal(new_object, square_object)
 
     def test_rotate_360_about_another_origin(self, square_object):
-        new_object = rotate_polygon(square_object, 360.,
-                                    Point([-99, -99]))
+        new_object = square_object.rotate(360.,
+                                          Point([-99, -99]))
         self.assert_coords_equal(new_object, square_object)
 
     @pytest.mark.parametrize('angle', [90, 180, 270])
     def test_rotate_90_degree_multiples(self, square_object, angle):
-        new_object = rotate_polygon(square_object, angle,
-                                    'center')
+        new_object = square_object.rotate(angle,
+                                          'center')
         self.assert_coords_equivalent(new_object, square_object)
 
     def test_rotate_about_origin(self, square_object):
-        new_object = rotate_polygon(square_object, 180, Point([0., 0.]))
+        new_object = square_object.rotate(180, Point([0., 0.]))
         mock_object = PySALEObject(([0, 0],
                                     [-10, 0],
                                     [-10, -10],

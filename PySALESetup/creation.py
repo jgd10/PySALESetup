@@ -1,5 +1,4 @@
-from PySALESetup.objects import PySALEObject, translate_polygon, \
-    rotate_polygon, resize_polygon
+from PySALESetup.objects import PySALEObject
 import warnings
 from typing import Tuple, List, Callable
 from shapely.geometry import MultiPolygon
@@ -592,7 +591,7 @@ class PySALEDomain:
             -> PySALEObject:
         centroid = np.random.uniform(low=minx, high=maxx), \
                    np.random.uniform(low=miny, high=maxy)
-        grain_object = translate_polygon(grain_object, *centroid)
+        grain_object = grain_object.translate(*centroid)
         return grain_object
 
     def optimise_materials(self,

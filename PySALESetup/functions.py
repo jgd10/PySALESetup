@@ -1,26 +1,37 @@
-from typing import List, Optional, Tuple
-from .mesh import ExtensionZone, PySALEMesh
+import numbers
+from typing import Optional, Tuple, Dict, Union
+import matplotlib.pyplot as plt
 
 
-def mesh_from_dimensions(dimensions: Tuple[float, float],
-                         cell_size: float,
-                         extensions: Optional[List[ExtensionZone]] = None) -> PySALEMesh:
-    """Given high-res zone dimensions and cell size, return PySALEMesh.
+def get_figure_from_ax(ax: Optional[plt.Axes] = None) -> Tuple[plt.Axes,
+                                                               plt.Figure]:
+    """Get the matplotlib figure from an Axes or create some if None.
 
     Parameters
     ----------
-    dimensions : Tuple[float, float] X - Y Dimensions of the high-res
-                 region in metres
-    cell_size : float Dimension of a high-res cell in the mesh
-    extensions : List[ExtensionZone] List of all the extension zones
-                 that should be applied
+    ax : plt.Axes
 
     Returns
     -------
-    PySALEMesh instance.
+    (ax, fig) : Tuple[plt.Axes, plt.figure]
     """
-    x_cells = int(dimensions[0] / cell_size)
-    y_cells = int(dimensions[1] / cell_size)
-    mesh = PySALEMesh(x_cells, y_cells, cell_size,
-                      extension_zones=extensions)
-    return mesh
+    if ax is None:
+        fig = plt.figure()
+        ax = fig.add_subplot(111, aspect='equal')
+    else:
+        fig = ax.get_figure()
+    return ax, fig
+
+
+def _convert_input_to_fortran_strings(
+        input_values: Dict[str, Union[str, float, int]]
+) -> Dict[str, str]:
+    new = {}
+    for key, value in input_values.items():
+        if isinstance(value, numbers.Number) and \
+                not isinstance(value, int):
+            value = f'{value:.6e}'.replace('e', 'D')
+        else:
+            value = f'{value}'
+        new[key] = value
+    return new

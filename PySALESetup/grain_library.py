@@ -1,12 +1,7 @@
-import os
 import pathlib
 import random
-from collections import namedtuple
 from .objects import PySALEObject
-from .inp_files import PACKAGE_ROOT_DIRECTORY
-
-
-GRAIN_LIBRARY_PATH = PACKAGE_ROOT_DIRECTORY / 'grain_library_directory'
+from .constants import GRAIN_LIBRARY_PATH
 
 
 class GrainLibrary:

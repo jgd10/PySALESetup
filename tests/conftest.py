@@ -1,4 +1,5 @@
-from PySALESetup import PySALEObject
+from PySALESetup import PySALEObject, PySALEMesh, \
+    ExtensionZoneFactor, ExtensionZone, Region
 from PySALESetup.creation import PySALENormalDistribution, \
     PySALEUniformDistribution, PySALEWeibull2Distribution, \
     PySALELogNormalDistribution
@@ -55,5 +56,33 @@ def object_with_weibull_distributions():
 
 
 @pytest.fixture()
-def uniform():
-    return PySALEUniformDistribution((0., 1.))
+def square_even_mesh() -> PySALEMesh:
+    mesh = PySALEMesh.from_dimensions((10, 10), 0.5)
+    return mesh
+
+
+@pytest.fixture()
+def simple_impactor_target(square_even_mesh):
+    x = square_even_mesh.x_physical
+    y = square_even_mesh.y_physical
+    target = PySALEObject([(0, 0), (x, 0), (x, y/2), (0, y/2)])
+    impactor = PySALEObject([(0, y/2), (x, y/2), (x, y), (0, y)])
+    impactor.set_material(1)
+    target.set_material(2)
+    return target, impactor
+
+
+@pytest.fixture()
+def rectangular_even_mesh() -> PySALEMesh:
+    mesh = PySALEMesh.from_dimensions((10, 20), 0.5)
+    return mesh
+
+
+@pytest.fixture()
+def square_mesh_with_extension_zones() -> PySALEMesh:
+    n = ExtensionZone(10, Region.NORTH, .5, ExtensionZoneFactor(1.01, 3))
+    w = ExtensionZone(10, Region.WEST, .5, ExtensionZoneFactor(1.01, 3))
+    e = ExtensionZone(10, Region.EAST, .5, ExtensionZoneFactor(1.01, 3))
+    s = ExtensionZone(10, Region.SOUTH, .5, ExtensionZoneFactor(1.01, 3))
+    mesh = PySALEMesh.from_dimensions((10, 10), 0.5, extensions=[n, e, w, s])
+    return mesh

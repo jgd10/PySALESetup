@@ -382,7 +382,7 @@ class PySALEObject(Polygon, ABC):
             old_radius = self.calculate_equivalent_radius()
             new_radius = sqrt(new_area/pi)
             factor = new_radius/old_radius
-        return resize_polygon(self, factor, factor)
+        return self.resize(factor, factor)
 
     def plot(self,
              ax: Optional[plt.Axes] = None,
@@ -489,74 +489,76 @@ class PySALEObject(Polygon, ABC):
         area_ratio = (length_bbox*width_bbox)/self.area
         return area_ratio
 
+    def translate(self, newx: float, newy: float):
+        """Translate from one centroid to another.
 
-def translate_polygon(polygon: PySALEObject, newx: float, newy: float):
-    """Translate polygon from one centroid to another.
+        Returns a copy of the translated polygon.
+        Does NOT change the polygon itself.
 
-    Parameters
-    ----------
-    polygon : PySALEObject
-    newx : float
-    newy : float
+        Parameters
+        ----------
+        newx : float
+        newy : float
 
-    Returns
-    -------
-    translated_polygon : PySALEObject
-    """
-    if polygon.children:
-        print(polygon.children)
-    for child in polygon.children:
-        translate_polygon(child, newx, newy)
-    centroid = [polygon.centroid.x, polygon.centroid.y]
-    diffs = [a - centroid[i] for i, a in enumerate([newx, newy])]
-    return polygon.copy_properties_to_new_polygon(
-        affinity.translate(polygon, *diffs)
-    )
+        Returns
+        -------
+        translated_copy : PySALEObject
+        """
+        if self.children:
+            print(self.children)
+        for child in self.children:
+            child.translate(newx, newy)
+        centroid = [self.centroid.x, self.centroid.y]
+        diffs = [a - centroid[i] for i, a in enumerate([newx, newy])]
+        return self.copy_properties_to_new_polygon(
+            affinity.translate(self, *diffs)
+        )
 
+    def rotate(self, angle: float,
+                       origin: Union[str, Point] = 'center'):
+        """Rotate by `angle` degrees and about the point `origin`.
 
-def rotate_polygon(polygon: PySALEObject, angle: float,
-                   origin: Union[str, Point] = 'center'):
-    """Rotate polygon by `angle` degrees and about the point `origin`.
-
-    Parameters
-    ----------
-    polygon : PySALEObject
-    angle : float
-        rotation amount in degrees anticlockwise from the horizontal
-    origin : Union[str, Point]
-        can either be the string 'center', where the polygon origin
-        is used or it can be a shapely.geometry.Point object.
-
-    Returns
-    -------
-    rotated_polygon : PySALEObject
-    """
-    if origin == 'center':
-        for child in polygon.children:
-            rotate_polygon(child, angle, origin=polygon.centroid)
-    else:
-        for child in polygon.children:
-            rotate_polygon(child, angle, origin=origin)
-    return polygon.copy_properties_to_new_polygon(
-        affinity.rotate(polygon, angle, origin=origin)
-    )
+        Returns a copy of the rotated polygon.
+        Does NOT change the polygon itself.
 
 
-def resize_polygon(polygon: PySALEObject,
-                   xfactor: float = 1.,
-                   yfactor: float = 1.):
-    """Resize polygon by xfactor and yfactor in the x and y directions.
+        Parameters
+        ----------
+        angle : float
+            rotation amount in degrees anticlockwise from the horizontal
+        origin : Union[str, Point]
+            can either be the string 'center', where the self origin
+            is used or it can be a shapely.geometry.Point object.
 
-    Parameters
-    ----------
-    polygon : PySALEObject
-    xfactor : float
-    yfactor : float
+        Returns
+        -------
+        rotated_copy : PySALEObject
+        """
+        if origin == 'center':
+            for child in self.children:
+                child.rotate(angle, origin=self.centroid)
+        else:
+            for child in self.children:
+                child.rotate(angle, origin=origin)
+        return self.copy_properties_to_new_polygon(
+            affinity.rotate(self, angle, origin=origin)
+        )
 
-    Returns
-    -------
-    PySALEObject
-    """
-    return polygon.copy_properties_to_new_polygon(
-        affinity.scale(polygon, xfactor, yfactor)
-    )
+    def resize(self, xfactor: float = 1., yfactor: float = 1.):
+        """Resize by xfactor and yfactor in the x and y directions.
+
+        Returns a copy of the resized polygon.
+        Does NOT change the polygon itself.
+
+        Parameters
+        ----------
+        xfactor : float
+        yfactor : float
+
+        Returns
+        -------
+        resize_copy : PySALEObject
+        """
+        return self.copy_properties_to_new_polygon(
+            affinity.scale(self, xfactor, yfactor)
+        )

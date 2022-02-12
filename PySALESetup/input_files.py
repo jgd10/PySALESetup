@@ -1,33 +1,13 @@
 import pathlib
-import os
 from string import Template
 from collections import namedtuple
-from typing import Dict, Optional, Union
-import numbers
+from typing import Dict
+from .constants import ASTEROID_TEMPLATE_PATH, ADDITIONAL_TEMPLATE_PATH
+from .functions import _convert_input_to_fortran_strings
 from .mesh import PySALEMesh
-
-PACKAGE_ROOT_DIRECTORY = pathlib.Path(os.path.dirname(__file__))
-ASTEROID_TEMPLATE_PATH = PACKAGE_ROOT_DIRECTORY / 'input_templates' \
-                         / 'asteroid_template.inp'
-ADDITIONAL_TEMPLATE_PATH = PACKAGE_ROOT_DIRECTORY / 'input_templates' \
-                         / 'additional_template.inp'
 
 
 TimeStep = namedtuple('TimeStep', ['initial', 'max', 'end', 'save'])
-
-
-def _convert_input_to_fortran_strings(
-        input_values: Dict[str, Union[str, float, int]]
-) -> Dict[str, str]:
-    new = {}
-    for key, value in input_values.items():
-        if isinstance(value, numbers.Number) and \
-                not isinstance(value, int):
-            value = f'{value:.6e}'.replace('e', 'D')
-        else:
-            value = f'{value}'
-        new[key] = value
-    return new
 
 
 class InputFile:
