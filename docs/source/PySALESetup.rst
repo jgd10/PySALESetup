@@ -33,10 +33,19 @@ PySALESetup.objects
    :undoc-members:
    :show-inheritance:
 
-PySALESetup.inp_files
----------------------
+PySALESetup.input_files
+-----------------------
 
-.. automodule:: PySALESetup.inp_files
+.. automodule:: PySALESetup.input_files
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+PySALESetup.grain_library
+-------------------------
+
+.. automodule:: PySALESetup.grain_library
    :members:
    :undoc-members:
    :show-inheritance:
