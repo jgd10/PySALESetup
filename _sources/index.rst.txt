@@ -12,7 +12,8 @@ Welcome to PySALESetup's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+   getting_started
+   PySALESetup
    license
    requirements
    changelog

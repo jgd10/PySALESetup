@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PySALESetup package &mdash; PySALESetup 1.0 documentation</title>
+  <title>PySALESetup &mdash; PySALESetup 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="License" href="license.html" />
-    <link rel="prev" title="PySALESetup" href="modules.html" /> 
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,16 +39,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">PySALESetup</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">PySALESetup package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-PySALESetup.creation">PySALESetup.creation module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-PySALESetup.functions">PySALESetup.functions module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-PySALESetup.mesh">PySALESetup.mesh module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-PySALESetup.objects">PySALESetup.objects module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-PySALESetup.inp_files">PySALESetup.inp_files module</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PySALESetup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-PySALESetup.creation">PySALESetup.creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PySALESetup.functions">PySALESetup.functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PySALESetup.mesh">PySALESetup.mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PySALESetup.objects">PySALESetup.objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PySALESetup.input_files">PySALESetup.input_files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-PySALESetup.grain_library">PySALESetup.grain_library</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -70,8 +68,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="modules.html">PySALESetup</a> &raquo;</li>
-      <li>PySALESetup package</li>
+      <li>PySALESetup</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/PySALESetup.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,13 +78,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="pysalesetup-package">
-<h1>PySALESetup package<a class="headerlink" href="#pysalesetup-package" title="Permalink to this headline"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-</section>
+  <section id="pysalesetup">
+<h1>PySALESetup<a class="headerlink" href="#pysalesetup" title="Permalink to this headline"></a></h1>
 <section id="module-PySALESetup.creation">
-<span id="pysalesetup-creation-module"></span><h2>PySALESetup.creation module<a class="headerlink" href="#module-PySALESetup.creation" title="Permalink to this headline"></a></h2>
+<span id="pysalesetup-creation"></span><h2>PySALESetup.creation<a class="headerlink" href="#module-PySALESetup.creation" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="PySALESetup.creation.PySALEDistributionBase">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.creation.</span></span><span class="sig-name descname"><span class="pre">PySALEDistributionBase</span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDistributionBase" title="Permalink to this definition"></a></dt>
@@ -406,6 +400,11 @@ generated by grinding, milling, and crushing operations.</p>
 <dd><p>Overwritten by the constructor</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.creation.PySALECustomDistribution.details">
+<span class="sig-name descname"><span class="pre">details</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.creation.PySALECustomDistribution.details" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -533,7 +532,7 @@ an equivalent radius.</p></li>
 <dt class="sig sig-object py" id="PySALESetup.creation.PySALEDomain.insert_randomly">
 <span class="sig-name descname"><span class="pre">insert_randomly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grain_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject"><span class="pre">PySALESetup.objects.PySALEObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#PySALESetup.creation.PySALEDomain.insert_randomly" title="Permalink to this definition"></a></dt>
 <dd><p>Insert object into the host at random locations until it fits</p>
-<p>“fits” means - “is not intersecting with any other objects.</p>
+<p>“fits” means - “is not intersecting with any other objects.”</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -587,28 +586,27 @@ and assign that.</p>
 
 </section>
 <section id="module-PySALESetup.functions">
-<span id="pysalesetup-functions-module"></span><h2>PySALESetup.functions module<a class="headerlink" href="#module-PySALESetup.functions" title="Permalink to this headline"></a></h2>
+<span id="pysalesetup-functions"></span><h2>PySALESetup.functions<a class="headerlink" href="#module-PySALESetup.functions" title="Permalink to this headline"></a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="PySALESetup.functions.mesh_from_dimensions">
-<span class="sig-prename descclassname"><span class="pre">PySALESetup.functions.</span></span><span class="sig-name descname"><span class="pre">mesh_from_dimensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><span class="pre">PySALESetup.mesh.ExtensionZone</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></span><a class="headerlink" href="#PySALESetup.functions.mesh_from_dimensions" title="Permalink to this definition"></a></dt>
-<dd><p>Given high-res zone dimensions and cell size, return PySALEMesh.</p>
+<dt class="sig sig-object py" id="PySALESetup.functions.get_figure_from_ax">
+<span class="sig-prename descclassname"><span class="pre">PySALESetup.functions.</span></span><span class="sig-name descname"><span class="pre">get_figure_from_ax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">matplotlib.figure.Figure</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#PySALESetup.functions.get_figure_from_ax" title="Permalink to this definition"></a></dt>
+<dd><p>Get the matplotlib figure from an Axes or create some if None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dimensions</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>] </em><em>X - Y Dimensions of the high-res</em>) – region in metres</p></li>
-<li><p><strong>cell_size</strong> (<em>float Dimension of a high-res cell in the mesh</em>) – </p></li>
-<li><p><strong>extensions</strong> (<em>List</em><em>[</em><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><em>ExtensionZone</em></a><em>] </em><em>List of all the extension zones</em>) – that should be applied</p></li>
-</ul>
+<dd class="field-odd"><p><strong>ax</strong> (<em>plt.Axes</em>) – </p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>PySALEMesh instance.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>(ax, fig)</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[plt.Axes, plt.figure]</p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
 <section id="module-PySALESetup.mesh">
-<span id="pysalesetup-mesh-module"></span><h2>PySALESetup.mesh module<a class="headerlink" href="#module-PySALESetup.mesh" title="Permalink to this headline"></a></h2>
+<span id="pysalesetup-mesh"></span><h2>PySALESetup.mesh<a class="headerlink" href="#module-PySALESetup.mesh" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="PySALESetup.mesh.Region">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">Region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.Region" title="Permalink to this definition"></a></dt>
@@ -690,7 +688,7 @@ object is the order they will be applied.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="PySALESetup.mesh.Cell">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">Cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">shapely.geometry.point.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Velocity(x=0.0,</span> <span class="pre">y=0.0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.Cell" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">Cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">shapely.geometry.point.Point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Velocity(x=0.0,</span> <span class="pre">y=0.0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.Cell" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>PySALEMesh cell dataclass object.</p>
 <p>Contains cell information including the physical centroid of a cell
@@ -714,7 +712,7 @@ the velocity of the cell as a pss Velocity object.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PySALESetup.mesh.Cell.material">
-<span class="sig-name descname"><span class="pre">material</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#PySALESetup.mesh.Cell.material" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">material</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#PySALESetup.mesh.Cell.material" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -722,23 +720,6 @@ the velocity of the cell as a pss Velocity object.</p>
 <span class="sig-name descname"><span class="pre">velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Velocity(x=0.0,</span> <span class="pre">y=0.0)</span></em><a class="headerlink" href="#PySALESetup.mesh.Cell.velocity" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="PySALESetup.mesh.get_figure_from_ax">
-<span class="sig-prename descclassname"><span class="pre">PySALESetup.mesh.</span></span><span class="sig-name descname"><span class="pre">get_figure_from_ax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">matplotlib.figure.Figure</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#PySALESetup.mesh.get_figure_from_ax" title="Permalink to this definition"></a></dt>
-<dd><p>Get the matplotlib figure from an Axes or create some if None.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ax</strong> (<em>plt.Axes</em>) – </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>(ax, fig)</strong></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Tuple[plt.Axes, plt.figure]</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -780,6 +761,52 @@ mesh object. Then we can save the file.</p>
 <li><p><strong>cylindrical_symmetry</strong> (<em>bool</em>) – </p></li>
 <li><p><strong>collision_index</strong> (<em>int</em>) – </p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.from_dimensions">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dimensions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extensions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><span class="pre">PySALESetup.mesh.ExtensionZone</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.from_dimensions" title="Permalink to this definition"></a></dt>
+<dd><p>Given high-res zone dimensions and cell size, return PySALEMesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dimensions</strong> (<em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>] </em><em>X - Y Dimensions of the high-res</em>) – region in metres</p></li>
+<li><p><strong>cell_size</strong> (<em>float Dimension of a high-res cell in the mesh</em>) – </p></li>
+<li><p><strong>extensions</strong> (<em>List</em><em>[</em><a class="reference internal" href="#PySALESetup.mesh.ExtensionZone" title="PySALESetup.mesh.ExtensionZone"><em>ExtensionZone</em></a><em>] </em><em>List of all the extension zones</em>) – that should be applied</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>PySALEMesh instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.x_physical">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x_physical</span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.x_physical" title="Permalink to this definition"></a></dt>
+<dd><p>The physical x-length of the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>length</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.y_physical">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y_physical</span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.y_physical" title="Permalink to this definition"></a></dt>
+<dd><p>The physical y-length of the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>length</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1044,7 +1071,7 @@ we can apply each child as void in a simple loop.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.plot_materials">
-<span class="sig-name descname"><span class="pre">plot_materials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rainbow'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_materials" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_materials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'rainbow'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">matplotlib.figure.Figure</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">matplotlib.axes._axes.Axes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.plot_materials" title="Permalink to this definition"></a></dt>
 <dd><p>Plot the materials in the mesh using matplotlib.</p>
 <p>If no axes are provided, axes and a figure are made. Otherwise,
 the given axes are used and returned along with the associated
@@ -1128,7 +1155,7 @@ they are created. Either way the axes and figures are returned.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="PySALESetup.mesh.PySALEMesh.material_numbers">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">material_numbers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#PySALESetup.mesh.PySALEMesh.material_numbers" title="Permalink to this definition"></a></dt>
-<dd><p>List ofnon-zero materials in the mesh.</p>
+<dd><p>List of non-zero materials in the mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><strong>numbers</strong></p>
@@ -1197,7 +1224,7 @@ extension zones don’t have clashing properties.</p>
 
 </section>
 <section id="module-PySALESetup.objects">
-<span id="pysalesetup-objects-module"></span><h2>PySALESetup.objects module<a class="headerlink" href="#module-PySALESetup.objects" title="Permalink to this headline"></a></h2>
+<span id="pysalesetup-objects"></span><h2>PySALESetup.objects<a class="headerlink" href="#module-PySALESetup.objects" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="PySALESetup.objects.Velocity">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.objects.</span></span><span class="sig-name descname"><span class="pre">Velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.objects.Velocity" title="Permalink to this definition"></a></dt>
@@ -1241,7 +1268,7 @@ First here’s an example of a rectangular object 10 m x 15 m.</p>
 </pre></div>
 </div>
 <p>This example creates an elliptical object with centroid (5, 5)
-major axis 1, minor axis 0.5 and roateted by 10 degrees.</p>
+major axis 1, minor axis 0.5 and rotated by 10 degrees.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="k">import</span> <span class="n">PySALEObject</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">main</span> <span class="o">=</span> <span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">([</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">],</span> <span class="mf">1.</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mf">10.</span><span class="p">)</span>
@@ -1604,22 +1631,59 @@ AssertionError is raised.</p>
 </dl>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.krumbein_phi">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">krumbein_phi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#PySALESetup.objects.PySALEObject.krumbein_phi" title="Permalink to this definition"></a></dt>
+<dd><p>Return the Krumbein Phi of the object.</p>
+<p>A dimensionless, logarithmic, grain size metric commonly used in
+particle size distributions.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">krumbein_phi</span> <span class="o">=</span> <span class="o">-</span><span class="n">log2</span><span class="p">(</span><span class="n">D</span><span class="o">/</span><span class="n">D0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where D is the diameter of the sphere (circle in our case)
+that has the same volume (area) as the grain in question,
+and D0 is a reference length equal to 1 mm (so that the
+equation remains dimensionally consistent.</p>
+<p>See [Investigating the effect of mesostructure on
+the shock response of granular materials
+through numerical modelling
+- James G. Derrick 2018
+Section 6.1](<a class="reference external" href="https://doi.org/10.25560/66097">https://doi.org/10.25560/66097</a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>krumbein_phi</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="PySALESetup.objects.translate_polygon">
-<span class="sig-prename descclassname"><span class="pre">PySALESetup.objects.</span></span><span class="sig-name descname"><span class="pre">translate_polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject"><span class="pre">PySALESetup.objects.PySALEObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">newx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.objects.translate_polygon" title="Permalink to this definition"></a></dt>
-<dd><p>Translate polygon from one centroid to another.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.elongation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">elongation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#PySALESetup.objects.PySALEObject.elongation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.area_ratio">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area_ratio</span></span><a class="headerlink" href="#PySALESetup.objects.PySALEObject.area_ratio" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.translate">
+<span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.objects.PySALEObject.translate" title="Permalink to this definition"></a></dt>
+<dd><p>Translate from one centroid to another.</p>
+<p>Returns a copy of the translated polygon.
+Does NOT change the polygon itself.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>polygon</strong> (<a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject"><em>PySALEObject</em></a>) – </p></li>
 <li><p><strong>newx</strong> (<em>float</em>) – </p></li>
 <li><p><strong>newy</strong> (<em>float</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>translated_polygon</strong></p>
+<dd class="field-even"><p><strong>translated_copy</strong></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject">PySALEObject</a></p>
@@ -1627,21 +1691,22 @@ AssertionError is raised.</p>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="PySALESetup.objects.rotate_polygon">
-<span class="sig-prename descclassname"><span class="pre">PySALESetup.objects.</span></span><span class="sig-name descname"><span class="pre">rotate_polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject"><span class="pre">PySALESetup.objects.PySALEObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">shapely.geometry.point.Point</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'center'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.objects.rotate_polygon" title="Permalink to this definition"></a></dt>
-<dd><p>Rotate polygon by <cite>angle</cite> degrees and about the point <cite>origin</cite>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">shapely.geometry.point.Point</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'center'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.objects.PySALEObject.rotate" title="Permalink to this definition"></a></dt>
+<dd><p>Rotate by <cite>angle</cite> degrees and about the point <cite>origin</cite>.</p>
+<p>Returns a copy of the rotated polygon.
+Does NOT change the polygon itself.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>polygon</strong> (<a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject"><em>PySALEObject</em></a>) – </p></li>
 <li><p><strong>angle</strong> (<em>float</em>) – rotation amount in degrees anticlockwise from the horizontal</p></li>
-<li><p><strong>origin</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Point</em><em>]</em>) – can either be the string ‘center’, where the polygon origin
+<li><p><strong>origin</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Point</em><em>]</em>) – can either be the string ‘center’, where the self origin
 is used or it can be a shapely.geometry.Point object.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>rotated_polygon</strong></p>
+<dd class="field-even"><p><strong>rotated_copy</strong></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject">PySALEObject</a></p>
@@ -1649,65 +1714,71 @@ is used or it can be a shapely.geometry.Point object.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="PySALESetup.objects.resize_polygon">
-<span class="sig-prename descclassname"><span class="pre">PySALESetup.objects.</span></span><span class="sig-name descname"><span class="pre">resize_polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject"><span class="pre">PySALESetup.objects.PySALEObject</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">xfactor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yfactor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.objects.resize_polygon" title="Permalink to this definition"></a></dt>
-<dd><p>Resize polygon by xfactor and yfactor in the x and y directions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.resize">
+<span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xfactor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yfactor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.objects.PySALEObject.resize" title="Permalink to this definition"></a></dt>
+<dd><p>Resize by xfactor and yfactor in the x and y directions.</p>
+<p>Returns a copy of the resized polygon.
+Does NOT change the polygon itself.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>polygon</strong> (<a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject"><em>PySALEObject</em></a>) – </p></li>
 <li><p><strong>xfactor</strong> (<em>float</em>) – </p></li>
 <li><p><strong>yfactor</strong> (<em>float</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject">PySALEObject</a></p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>resize_copy</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject">PySALEObject</a></p>
 </dd>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
 </section>
-<section id="module-PySALESetup.inp_files">
-<span id="pysalesetup-inp-files-module"></span><h2>PySALESetup.inp_files module<a class="headerlink" href="#module-PySALESetup.inp_files" title="Permalink to this headline"></a></h2>
+<section id="module-PySALESetup.input_files">
+<span id="pysalesetup-input-files"></span><h2>PySALESetup.input_files<a class="headerlink" href="#module-PySALESetup.input_files" title="Permalink to this headline"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.TimeStep">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.inp_files.</span></span><span class="sig-name descname"><span class="pre">TimeStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.inp_files.TimeStep" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.TimeStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.input_files.</span></span><span class="sig-name descname"><span class="pre">TimeStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.input_files.TimeStep" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.TimeStep.end">
-<span class="sig-name descname"><span class="pre">end</span></span><a class="headerlink" href="#PySALESetup.inp_files.TimeStep.end" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.TimeStep.end">
+<span class="sig-name descname"><span class="pre">end</span></span><a class="headerlink" href="#PySALESetup.input_files.TimeStep.end" title="Permalink to this definition"></a></dt>
 <dd><p>Alias for field number 2</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.TimeStep.initial">
-<span class="sig-name descname"><span class="pre">initial</span></span><a class="headerlink" href="#PySALESetup.inp_files.TimeStep.initial" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.TimeStep.initial">
+<span class="sig-name descname"><span class="pre">initial</span></span><a class="headerlink" href="#PySALESetup.input_files.TimeStep.initial" title="Permalink to this definition"></a></dt>
 <dd><p>Alias for field number 0</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.TimeStep.max">
-<span class="sig-name descname"><span class="pre">max</span></span><a class="headerlink" href="#PySALESetup.inp_files.TimeStep.max" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.TimeStep.max">
+<span class="sig-name descname"><span class="pre">max</span></span><a class="headerlink" href="#PySALESetup.input_files.TimeStep.max" title="Permalink to this definition"></a></dt>
 <dd><p>Alias for field number 1</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.TimeStep.save">
-<span class="sig-name descname"><span class="pre">save</span></span><a class="headerlink" href="#PySALESetup.inp_files.TimeStep.save" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.TimeStep.save">
+<span class="sig-name descname"><span class="pre">save</span></span><a class="headerlink" href="#PySALESetup.input_files.TimeStep.save" title="Permalink to this definition"></a></dt>
 <dd><p>Alias for field number 3</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.InputFile">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.inp_files.</span></span><span class="sig-name descname"><span class="pre">InputFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.inp_files.InputFile" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.InputFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.input_files.</span></span><span class="sig-name descname"><span class="pre">InputFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.input_files.InputFile" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Base input file class.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.InputFile.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.inp_files.InputFile.__init__" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.InputFile.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.input_files.InputFile.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Input file type must be supplied to the constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1717,8 +1788,8 @@ is used or it can be a shapely.geometry.Point object.</p></li>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.InputFile.template_path">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">template_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pathlib.Path</span></em><a class="headerlink" href="#PySALESetup.inp_files.InputFile.template_path" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.InputFile.template_path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">template_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pathlib.Path</span></em><a class="headerlink" href="#PySALESetup.input_files.InputFile.template_path" title="Permalink to this definition"></a></dt>
 <dd><p>Path to the template</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1731,8 +1802,8 @@ is used or it can be a shapely.geometry.Point object.</p></li>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.InputFile.template">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">template</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">string.Template</span></em><a class="headerlink" href="#PySALESetup.inp_files.InputFile.template" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.InputFile.template">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">template</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">string.Template</span></em><a class="headerlink" href="#PySALESetup.input_files.InputFile.template" title="Permalink to this definition"></a></dt>
 <dd><p>The template string for the input file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1747,15 +1818,15 @@ is used or it can be a shapely.geometry.Point object.</p></li>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.AsteroidInput">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.inp_files.</span></span><span class="sig-name descname"><span class="pre">AsteroidInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.inp_files.TimeStep" title="PySALESetup.inp_files.TimeStep"><span class="pre">PySALESetup.inp_files.TimeStep</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.inp_files.AsteroidInput" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#PySALESetup.inp_files.InputFile" title="PySALESetup.inp_files.InputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.inp_files.InputFile</span></code></a></p>
+<dt class="sig sig-object py" id="PySALESetup.input_files.AsteroidInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.input_files.</span></span><span class="sig-name descname"><span class="pre">AsteroidInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.input_files.TimeStep" title="PySALESetup.input_files.TimeStep"><span class="pre">PySALESetup.input_files.TimeStep</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.input_files.AsteroidInput" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PySALESetup.input_files.InputFile" title="PySALESetup.input_files.InputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.input_files.InputFile</span></code></a></p>
 <p>asteroid.inp file creator class.</p>
 <p>Allows a user to build an asteroid.inp file and uses a simple
 template to write one to a new file of the user’s choice.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.AsteroidInput.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.inp_files.TimeStep" title="PySALESetup.inp_files.TimeStep"><span class="pre">PySALESetup.inp_files.TimeStep</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.inp_files.AsteroidInput.__init__" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.AsteroidInput.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.input_files.TimeStep" title="PySALESetup.input_files.TimeStep"><span class="pre">PySALESetup.input_files.TimeStep</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.input_files.AsteroidInput.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Construct the AsteroidInput class.</p>
 <p>Only model_name, timestep and mesh, need to be provided.
 However, multiple other properties are also set. These are:</p>
@@ -1773,7 +1844,7 @@ However, multiple other properties are also set. These are:</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model_name</strong> (<em>str</em>) – </p></li>
-<li><p><strong>timestep</strong> (<a class="reference internal" href="#PySALESetup.inp_files.TimeStep" title="PySALESetup.inp_files.TimeStep"><em>TimeStep</em></a>) – </p></li>
+<li><p><strong>timestep</strong> (<a class="reference internal" href="#PySALESetup.input_files.TimeStep" title="PySALESetup.input_files.TimeStep"><em>TimeStep</em></a>) – </p></li>
 <li><p><strong>mesh</strong> (<a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><em>PySALEMesh</em></a>) – </p></li>
 </ul>
 </dd>
@@ -1781,8 +1852,8 @@ However, multiple other properties are also set. These are:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.AsteroidInput.write_to">
-<span class="sig-name descname"><span class="pre">write_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/home/runner/work/PySALESetup/PySALESetup/docs/asteroid.inp')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.inp_files.AsteroidInput.write_to" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.AsteroidInput.write_to">
+<span class="sig-name descname"><span class="pre">write_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/home/runner/work/PySALESetup/PySALESetup/docs/asteroid.inp')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.input_files.AsteroidInput.write_to" title="Permalink to this definition"></a></dt>
 <dd><p>Write the asteroid.inp file to given path.</p>
 <p>Defaults to asteroid.inp in the current working directory.</p>
 <dl class="field-list simple">
@@ -1795,17 +1866,76 @@ However, multiple other properties are also set. These are:</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.AdditionalInput">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.inp_files.</span></span><span class="sig-name descname"><span class="pre">AdditionalInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host_object_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.inp_files.AdditionalInput" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#PySALESetup.inp_files.InputFile" title="PySALESetup.inp_files.InputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.inp_files.InputFile</span></code></a></p>
+<dt class="sig sig-object py" id="PySALESetup.input_files.AdditionalInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.input_files.</span></span><span class="sig-name descname"><span class="pre">AdditionalInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host_object_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.input_files.AdditionalInput" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#PySALESetup.input_files.InputFile" title="PySALESetup.input_files.InputFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">PySALESetup.input_files.InputFile</span></code></a></p>
+<p>additional.inp file creator class.</p>
+<p>Allows a user to build an additional.inp file and uses a simple
+template to write one to a new file of the user’s choice.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="PySALESetup.inp_files.AdditionalInput.write_to">
-<span class="sig-name descname"><span class="pre">write_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/home/runner/work/PySALESetup/PySALESetup/docs/asteroid.inp')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.inp_files.AdditionalInput.write_to" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="PySALESetup.input_files.AdditionalInput.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><span class="pre">PySALESetup.mesh.PySALEMesh</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host_object_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.input_files.AdditionalInput.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialise the AdditionalInput class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<a class="reference internal" href="#PySALESetup.mesh.PySALEMesh" title="PySALESetup.mesh.PySALEMesh"><em>PySALEMesh</em></a>) – </p></li>
+<li><p><strong>material_names</strong> (<em>Dict</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>host_object_number</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.input_files.AdditionalInput.write_to">
+<span class="sig-name descname"><span class="pre">write_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/home/runner/work/PySALESetup/PySALESetup/docs/asteroid.inp')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.input_files.AdditionalInput.write_to" title="Permalink to this definition"></a></dt>
 <dd><p>Write the asteroid.inp file to given path.</p>
-<p>Defaults to asteroid.inp in the current working directory.</p>
+<p>Defaults to additional.inp in the current working directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>path</strong> (<em>pathlib.Path</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-PySALESetup.grain_library">
+<span id="pysalesetup-grain-library"></span><h2>PySALESetup.grain_library<a class="headerlink" href="#module-PySALESetup.grain_library" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PySALESetup.grain_library.GrainLibrary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.grain_library.</span></span><span class="sig-name descname"><span class="pre">GrainLibrary</span></span><a class="headerlink" href="#PySALESetup.grain_library.GrainLibrary" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Loads and deploys grains generated from file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.grain_library.GrainLibrary.load_from_directory">
+<span class="sig-name descname"><span class="pre">load_from_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.grain_library.GrainLibrary.load_from_directory" title="Permalink to this definition"></a></dt>
+<dd><p>Given a directory, loads all grain files it can find.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>directory</strong> (<em>pathlib.Path</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.grain_library.GrainLibrary.load_builtin_library">
+<span class="sig-name descname"><span class="pre">load_builtin_library</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#PySALESetup.grain_library.GrainLibrary.load_builtin_library" title="Permalink to this definition"></a></dt>
+<dd><p>Load all grains in the builtin library</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="PySALESetup.grain_library.GrainLibrary.random_grain">
+<span class="sig-name descname"><span class="pre">random_grain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.grain_library.GrainLibrary.random_grain" title="Permalink to this definition"></a></dt>
+<dd><p>Return a random grain from the list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>grain</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject">PySALEObject</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1819,7 +1949,7 @@ However, multiple other properties are also set. These are:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="PySALESetup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

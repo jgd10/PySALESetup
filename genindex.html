@@ -36,7 +36,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">PySALESetup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PySALESetup.html">PySALESetup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
@@ -79,6 +80,7 @@
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -109,9 +111,11 @@
 </li>
         <li><a href="PySALESetup.html#PySALESetup.creation.PySALEWeibull2Distribution.__init__">(PySALESetup.creation.PySALEWeibull2Distribution method)</a>
 </li>
-        <li><a href="PySALESetup.html#PySALESetup.inp_files.AsteroidInput.__init__">(PySALESetup.inp_files.AsteroidInput method)</a>
+        <li><a href="PySALESetup.html#PySALESetup.input_files.AdditionalInput.__init__">(PySALESetup.input_files.AdditionalInput method)</a>
 </li>
-        <li><a href="PySALESetup.html#PySALESetup.inp_files.InputFile.__init__">(PySALESetup.inp_files.InputFile method)</a>
+        <li><a href="PySALESetup.html#PySALESetup.input_files.AsteroidInput.__init__">(PySALESetup.input_files.AsteroidInput method)</a>
+</li>
+        <li><a href="PySALESetup.html#PySALESetup.input_files.InputFile.__init__">(PySALESetup.input_files.InputFile method)</a>
 </li>
         <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.__init__">(PySALESetup.mesh.PySALEMesh method)</a>
 </li>
@@ -126,15 +130,17 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject.add_child">add_child() (PySALESetup.objects.PySALEObject method)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.AdditionalInput">AdditionalInput (class in PySALESetup.inp_files)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.AdditionalInput">AdditionalInput (class in PySALESetup.input_files)</a>
+</li>
+      <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.apply_geometry">apply_geometry() (PySALESetup.mesh.PySALEMesh method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.apply_geometry">apply_geometry() (PySALESetup.mesh.PySALEMesh method)</a>
-</li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.apply_polygon_as_void">apply_polygon_as_void() (PySALESetup.mesh.PySALEMesh method)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.AsteroidInput">AsteroidInput (class in PySALESetup.inp_files)</a>
+      <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject.area_ratio">area_ratio (PySALESetup.objects.PySALEObject property)</a>
+</li>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.AsteroidInput">AsteroidInput (class in PySALESetup.input_files)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -180,8 +186,12 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.creation.PySALEDistributionBase.details">details() (PySALESetup.creation.PySALEDistributionBase method)</a>
+      <li><a href="PySALESetup.html#PySALESetup.creation.PySALECustomDistribution.details">details() (PySALESetup.creation.PySALECustomDistribution method)</a>
+
+      <ul>
+        <li><a href="PySALESetup.html#PySALESetup.creation.PySALEDistributionBase.details">(PySALESetup.creation.PySALEDistributionBase method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -190,12 +200,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PySALESetup.html#PySALESetup.mesh.Region.EAST">EAST (PySALESetup.mesh.Region attribute)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.TimeStep.end">end (PySALESetup.inp_files.TimeStep attribute)</a>
+      <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject.elongation">elongation (PySALESetup.objects.PySALEObject property)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.extension_factor">extension_factor (PySALESetup.mesh.PySALEMesh property)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.TimeStep.end">end (PySALESetup.input_files.TimeStep attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.extension_factor">extension_factor (PySALESetup.mesh.PySALEMesh property)</a>
+</li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.extension_zones">extension_zones (PySALESetup.mesh.PySALEMesh property)</a>
 </li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.ExtensionZone">ExtensionZone (class in PySALESetup.mesh)</a>
@@ -220,6 +232,8 @@
         <li><a href="PySALESetup.html#PySALESetup.creation.PySALELogNormalDistribution.frequency">(PySALESetup.creation.PySALELogNormalDistribution method)</a>
 </li>
       </ul></li>
+      <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.from_dimensions">from_dimensions() (PySALESetup.mesh.PySALEMesh class method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -228,11 +242,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject.generate_ellipse">generate_ellipse() (PySALESetup.objects.PySALEObject class method)</a>
 </li>
+      <li><a href="PySALESetup.html#PySALESetup.functions.get_figure_from_ax">get_figure_from_ax() (in module PySALESetup.functions)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.mesh.get_figure_from_ax">get_figure_from_ax() (in module PySALESetup.mesh)</a>
-</li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.get_geometric_centre">get_geometric_centre() (PySALESetup.mesh.PySALEMesh method)</a>
+</li>
+      <li><a href="PySALESetup.html#PySALESetup.grain_library.GrainLibrary">GrainLibrary (class in PySALESetup.grain_library)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -250,11 +266,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PySALESetup.html#PySALESetup.mesh.Cell.i">i (PySALESetup.mesh.Cell attribute)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.TimeStep.initial">initial (PySALESetup.inp_files.TimeStep attribute)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.TimeStep.initial">initial (PySALESetup.input_files.TimeStep attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.InputFile">InputFile (class in PySALESetup.inp_files)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.InputFile">InputFile (class in PySALESetup.input_files)</a>
 </li>
       <li><a href="PySALESetup.html#PySALESetup.creation.PySALEDomain.insert_randomly">insert_randomly() (PySALESetup.creation.PySALEDomain method)</a>
 </li>
@@ -271,10 +287,24 @@
   </ul></td>
 </tr></table>
 
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject.krumbein_phi">krumbein_phi (PySALESetup.objects.PySALEObject property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="PySALESetup.html#PySALESetup.mesh.ExtensionZone.length">length (PySALESetup.mesh.ExtensionZone property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="PySALESetup.html#PySALESetup.grain_library.GrainLibrary.load_builtin_library">load_builtin_library() (PySALESetup.grain_library.GrainLibrary method)</a>
+</li>
+      <li><a href="PySALESetup.html#PySALESetup.grain_library.GrainLibrary.load_from_directory">load_from_directory() (PySALESetup.grain_library.GrainLibrary method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -294,14 +324,12 @@
 </li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.material_numbers">material_numbers (PySALESetup.mesh.PySALEMesh property)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.TimeStep.max">max (PySALESetup.inp_files.TimeStep attribute)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.TimeStep.max">max (PySALESetup.input_files.TimeStep attribute)</a>
 </li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.max_cell_size">max_cell_size (PySALESetup.mesh.PySALEMesh property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.functions.mesh_from_dimensions">mesh_from_dimensions() (in module PySALESetup.functions)</a>
-</li>
       <li>
     module
 
@@ -310,7 +338,9 @@
 </li>
         <li><a href="PySALESetup.html#module-PySALESetup.functions">PySALESetup.functions</a>
 </li>
-        <li><a href="PySALESetup.html#module-PySALESetup.inp_files">PySALESetup.inp_files</a>
+        <li><a href="PySALESetup.html#module-PySALESetup.grain_library">PySALESetup.grain_library</a>
+</li>
+        <li><a href="PySALESetup.html#module-PySALESetup.input_files">PySALESetup.input_files</a>
 </li>
         <li><a href="PySALESetup.html#module-PySALESetup.mesh">PySALESetup.mesh</a>
 </li>
@@ -367,8 +397,6 @@
 </li>
       <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject">PySALEObject (class in PySALESetup.objects)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     PySALESetup.creation
 
@@ -376,6 +404,8 @@
         <li><a href="PySALESetup.html#module-PySALESetup.creation">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     PySALESetup.functions
 
@@ -384,10 +414,17 @@
 </li>
       </ul></li>
       <li>
-    PySALESetup.inp_files
+    PySALESetup.grain_library
 
       <ul>
-        <li><a href="PySALESetup.html#module-PySALESetup.inp_files">module</a>
+        <li><a href="PySALESetup.html#module-PySALESetup.grain_library">module</a>
+</li>
+      </ul></li>
+      <li>
+    PySALESetup.input_files
+
+      <ul>
+        <li><a href="PySALESetup.html#module-PySALESetup.input_files">module</a>
 </li>
       </ul></li>
       <li>
@@ -414,6 +451,8 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="PySALESetup.html#PySALESetup.grain_library.GrainLibrary.random_grain">random_grain() (PySALESetup.grain_library.GrainLibrary method)</a>
+</li>
       <li><a href="PySALESetup.html#PySALESetup.creation.PySALECustomDistribution.random_number">random_number() (PySALESetup.creation.PySALECustomDistribution method)</a>
 
       <ul>
@@ -436,9 +475,9 @@
 </li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.Region">Region (class in PySALESetup.mesh)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.objects.resize_polygon">resize_polygon() (in module PySALESetup.objects)</a>
+      <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject.resize">resize() (PySALESetup.objects.PySALEObject method)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.objects.rotate_polygon">rotate_polygon() (in module PySALESetup.objects)</a>
+      <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject.rotate">rotate() (PySALESetup.objects.PySALEObject method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -446,7 +485,7 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.TimeStep.save">save (PySALESetup.inp_files.TimeStep attribute)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.TimeStep.save">save (PySALESetup.input_files.TimeStep attribute)</a>
 </li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.save">save() (PySALESetup.mesh.PySALEMesh method)</a>
 </li>
@@ -474,15 +513,15 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.InputFile.template">template (PySALESetup.inp_files.InputFile property)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.InputFile.template">template (PySALESetup.input_files.InputFile property)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.InputFile.template_path">template_path (PySALESetup.inp_files.InputFile property)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.InputFile.template_path">template_path (PySALESetup.input_files.InputFile property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.TimeStep">TimeStep (class in PySALESetup.inp_files)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.TimeStep">TimeStep (class in PySALESetup.input_files)</a>
 </li>
-      <li><a href="PySALESetup.html#PySALESetup.objects.translate_polygon">translate_polygon() (in module PySALESetup.objects)</a>
+      <li><a href="PySALESetup.html#PySALESetup.objects.PySALEObject.translate">translate() (PySALESetup.objects.PySALEObject method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -514,10 +553,10 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="PySALESetup.html#PySALESetup.inp_files.AdditionalInput.write_to">write_to() (PySALESetup.inp_files.AdditionalInput method)</a>
+      <li><a href="PySALESetup.html#PySALESetup.input_files.AdditionalInput.write_to">write_to() (PySALESetup.input_files.AdditionalInput method)</a>
 
       <ul>
-        <li><a href="PySALESetup.html#PySALESetup.inp_files.AsteroidInput.write_to">(PySALESetup.inp_files.AsteroidInput method)</a>
+        <li><a href="PySALESetup.html#PySALESetup.input_files.AsteroidInput.write_to">(PySALESetup.input_files.AsteroidInput method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -530,6 +569,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.x_physical">x_physical (PySALESetup.mesh.PySALEMesh property)</a>
+</li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.x_range">x_range (PySALESetup.mesh.PySALEMesh property)</a>
 </li>
   </ul></td>
@@ -542,6 +583,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.y_physical">y_physical (PySALESetup.mesh.PySALEMesh property)</a>
+</li>
       <li><a href="PySALESetup.html#PySALESetup.mesh.PySALEMesh.y_range">y_range (PySALESetup.mesh.PySALEMesh property)</a>
 </li>
   </ul></td>
