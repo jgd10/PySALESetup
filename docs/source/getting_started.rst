@@ -48,6 +48,7 @@ For example, we can create a 1m x 1m square like so:
     fig, ax = square.plot()
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/square_example.png
+    :align: center
     :width: 400
     :alt: Square example
 
@@ -63,6 +64,7 @@ Although you should note that these are not done in place. New objects are creat
     diamond.plot(ax)
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/square_diamond_example.png
+    :align: center
     :width: 400
     :alt: Rotated square example
 
@@ -88,6 +90,7 @@ of the object.
     ellipse.plot(ax)
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/ellipse_example.png
+    :align: center
     :width: 400
     :alt: Ellipse example
 
@@ -132,6 +135,7 @@ As such, you can do things like this:
     new_bed2.plot(a)
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/rotation_children_example.png
+    :align: center
     :width: 400
     :alt: Rotation of children example
 
@@ -151,6 +155,7 @@ or this
 
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/resize_children_example.png
+    :align: center
     :width: 400
     :alt: Resize of children example
 
@@ -182,6 +187,7 @@ circles all of the same size.
 
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/fill_domain_example.png
+    :align: center
     :width: 400
     :alt: domain fill example
 
@@ -222,6 +228,7 @@ The equivalent radius is the radius of a circle with the same area as the grain 
     a.set_title(f'Filled to {achieved_area*100/particle_bed.area} %')
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/fill_rectangles_domain_example.png
+    :align: center
     :width: 400
     :alt: squares domain fill example
 
@@ -264,6 +271,7 @@ So to take our earlier example and add an impactor as well as materials and velo
 
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/simple_model_example.png
+    :align: center
     :width: 400
     :alt: simple model example
 
@@ -330,6 +338,7 @@ With this in mind lets create a mesh for our example from the previous section.
     f, a = mesh.plot_materials()
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/simple_mesh_example.png
+    :align: center
     :width: 400
     :alt: simple mesh example
 
