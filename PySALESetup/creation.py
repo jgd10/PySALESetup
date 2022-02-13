@@ -388,28 +388,6 @@ class PySALEDomain:
         """
         self.object: PySALEObject = domain_object
 
-    def fill_to_threshold_area(self,
-                               grain_object: PySALEObject,
-                               threshold_fill_percent: float) -> None:
-        """Fill host object to threshold fill percent.
-        
-        Parameters
-        ----------
-        grain_object : PySALEObject
-            The filler object
-        threshold_fill_percent : float
-
-        Returns
-        -------
-        None
-        """
-        inserted_area, insertion_possible, threshold \
-            = self._check_threshold_input(threshold_fill_percent)
-        while inserted_area <= threshold and insertion_possible:
-            insertion_possible = self.insert_randomly(grain_object)
-            inserted_area = sum([c.area for c in self.object.children])
-        return inserted_area
-
     def fill_with_random_grains_to_threshold(self,
                                              grain_object: PySALEObject,
                                              threshold_fill_percent: float,
