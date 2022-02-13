@@ -1,4 +1,7 @@
 import copy
+
+import matplotlib.pyplot as plt
+
 from PySALESetup import PySALEObject, Velocity
 from shapely.geometry import Point
 from math import isclose
@@ -212,6 +215,11 @@ class TestPySALEObjectSetters:
         assert simple_object.material_colors[-1] == 'magenta'
 
 
+class TestPlotObject:
+    def test_happy(self, simple_object):
+        f, a = simple_object.plot()
+        assert isinstance(f, plt.Figure)
+        assert isinstance(a, plt.Axes)
 
 
 
