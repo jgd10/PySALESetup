@@ -19,7 +19,7 @@ class TestPySALEDomain:
     def test_fill_to_threshold(self, simple_object):
         domain = PySALEDomain(simple_object)
         grain = PySALEObject([(0, 0), (0.5, 0.5), (1, 0)])
-        domain.fill_to_threshold_area(grain, 20)
+        domain.fill_with_random_grains_to_threshold(grain, 20)
         frac = sum([c.area
                     for c in simple_object.children])/simple_object.area
         tolerance = (grain.area/simple_object.area)*100
@@ -70,7 +70,7 @@ class TestPySALEDomain:
 
     def test_optimise_materials(self, simple_object):
         domain = PySALEDomain(simple_object)
-        domain.fill_to_threshold_area(
+        domain.fill_with_random_grains_to_threshold(
             PySALEObject.generate_ellipse([0, 0], .5, .5, 0, 1),
             50.
         )
