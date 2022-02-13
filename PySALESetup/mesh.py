@@ -791,10 +791,10 @@ class PySALEMesh:
         cell_number = self.x * self.y
         if compress:
             if file_name.suffix != '.gz':
-                warnings.warn(f'Mesh is being compressed but file '
-                              f'name "{file_name}" does not have a '
-                              f'.gz extension.')
-            with gzip.open(file_name, 'w') as f:
+                raise NameError(f'Mesh is being compressed but file '
+                                f'name "{file_name}" does not have a '
+                                f'.gz extension.')
+            with gzip.open(file_name, 'wt') as f:
                 self._write_mesh_to_file(cell_number,
                                          f,
                                          self.material_numbers)

@@ -142,3 +142,28 @@ class TestMeshPlots:
         f, a = square_mesh_with_extension_zones.plot_cells()
         assert isinstance(f, plt.Figure)
         assert isinstance(a, plt.Axes)
+
+
+class TestSaveMesh:
+    def test_simple_save(self, square_even_mesh, tmp_path):
+        file_path = tmp_path / 'meso_m.iSALE'
+        square_even_mesh.save(file_path, compress=False)
+        assert file_path.is_file()
+
+    def test_extensions_save(self,
+                             square_mesh_with_extension_zones,
+                             tmp_path):
+        file_path = tmp_path / 'meso_m.iSALE'
+        square_mesh_with_extension_zones.save(file_path, compress=False)
+        assert file_path.is_file()
+
+    def test_compression(self, square_even_mesh, tmp_path):
+        file_path = tmp_path / 'meso_m.iSALE.gz'
+        square_even_mesh.save(file_path, compress=True)
+        assert file_path.is_file()
+
+    def test_compression_no_gz_suffix(self, square_even_mesh, tmp_path):
+        file_path = tmp_path / 'meso_m.iSALE'
+        with pytest.raises(NameError):
+            square_even_mesh.save(file_path, compress=True)
+            assert file_path.is_file()
