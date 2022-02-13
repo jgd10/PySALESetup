@@ -155,7 +155,8 @@ class PySALEMesh:
     @classmethod
     def from_dimensions(cls, dimensions: Tuple[float, float],
                         cell_size: float,
-                        extensions: Optional[List[ExtensionZone]] = None):
+                        extensions: Optional[List[ExtensionZone]] = None) \
+            -> 'PySALEMesh':
         """Given high-res zone dimensions and cell size, return PySALEMesh.
 
         Parameters
