@@ -339,7 +339,8 @@ class PySALEObject(Polygon, ABC):
     def spawn_ellipse_in_shape(self, xy: List[float],
                                major: float,
                                minor: float,
-                               rotation: float) -> 'PySALEObject':
+                               rotation: float,
+                               material: int = 1) -> 'PySALEObject':
         """Create a child ellipse for the object.
 
         Parameters
@@ -351,14 +352,16 @@ class PySALEObject(Polygon, ABC):
         minor : float
             minor axis
         rotation : float
-            angle to the horzontal, anticlockwise, in degrees
+            angle to the horizontal, anticlockwise, in degrees
+        material : int
+            material for the spawned object to have. Defaults to 1.
 
         Returns
         -------
         polygon : PySALEObject
         """
         ellipse = PySALEObject.generate_ellipse(xy, major, minor,
-                                                rotation)
+                                                rotation, material)
         self._process_new_child(ellipse)
         return ellipse
 
@@ -504,18 +507,18 @@ class PySALEObject(Polygon, ABC):
         -------
         translated_copy : PySALEObject
         """
-        if self.children:
-            print(self.children)
-        for child in self.children:
-            child.translate(newx, newy)
         centroid = [self.centroid.x, self.centroid.y]
         diffs = [a - centroid[i] for i, a in enumerate([newx, newy])]
-        return self.copy_properties_to_new_polygon(
+        new = self.copy_properties_to_new_polygon(
             affinity.translate(self, *diffs)
         )
 
+        new._children = [child.translate(newx, newy)
+                         for child in self.children]
+        return new
+
     def rotate(self, angle: float,
-               origin: Union[str, Point] = 'center'):
+               origin: Union[str, Tuple[float, float], Point] = 'center'):
         """Rotate by `angle` degrees and about the point `origin`.
 
         Returns a copy of the rotated polygon.
@@ -526,7 +529,7 @@ class PySALEObject(Polygon, ABC):
         ----------
         angle : float
             rotation amount in degrees anticlockwise from the horizontal
-        origin : Union[str, Point]
+        origin : Union[str, Point, Tuple[float, float]]
             can either be the string 'center', where the self origin
             is used or it can be a shapely.geometry.Point object.
 
@@ -534,15 +537,18 @@ class PySALEObject(Polygon, ABC):
         -------
         rotated_copy : PySALEObject
         """
-        if origin == 'center':
-            for child in self.children:
-                child.rotate(angle, origin=self.centroid)
-        else:
-            for child in self.children:
-                child.rotate(angle, origin=origin)
-        return self.copy_properties_to_new_polygon(
+        new = self.copy_properties_to_new_polygon(
             affinity.rotate(self, angle, origin=origin)
         )
+        if origin == 'center':
+            new._children = [child.rotate(angle, origin=self.centroid)
+                             for child in self.children]
+        else:
+            if isinstance(origin, tuple):
+                origin = Point(*origin)
+            new._children = [child.rotate(angle, origin=origin)
+                             for child in self.children]
+        return new
 
     def resize(self, xfactor: float = 1., yfactor: float = 1.):
         """Resize by xfactor and yfactor in the x and y directions.
@@ -559,6 +565,9 @@ class PySALEObject(Polygon, ABC):
         -------
         resize_copy : PySALEObject
         """
-        return self.copy_properties_to_new_polygon(
+        new = self.copy_properties_to_new_polygon(
             affinity.scale(self, xfactor, yfactor)
         )
+        new._children = [child.resize(xfactor, yfactor)
+                         for child in self.children]
+        return new
