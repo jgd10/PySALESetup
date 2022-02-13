@@ -468,8 +468,7 @@ class PySALEMesh:
         a cell is populated with material, new material will NOT
         overwrite it. If a child is a void object it will inevitably be
         overwritten by its parent's material. To create voids use
-        ``appy_geometry_as_void`` after this method. See that docstring
-        for an example.
+        set the material to void before using this method.
 
         Parameters
         ----------
