@@ -49,7 +49,7 @@ For example, we can create a 1m x 1m square like so:
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/square_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: Square example
 
 PySALEObject will also let you resize, rotate, and translate any objects you create after creation.
@@ -65,7 +65,7 @@ Although you should note that these are not done in place. New objects are creat
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/square_diamond_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: Rotated square example
 
 PySALEObject also includes several class methods that allow for the creation of common shapes
@@ -91,7 +91,7 @@ of the object.
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/ellipse_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: Ellipse example
 
 Note on circles in PySALESetup
@@ -136,7 +136,7 @@ As such, you can do things like this:
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/rotation_children_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: Rotation of children example
 
 or this
@@ -156,7 +156,7 @@ or this
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/resize_children_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: Resize of children example
 
 
@@ -188,7 +188,7 @@ circles all of the same size.
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/fill_domain_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: domain fill example
 
 It is not always possible to achieve the specified threshold fill percent, but you can set the
@@ -229,10 +229,10 @@ The equivalent radius is the radius of a circle with the same area as the grain 
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/fill_rectangles_domain_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: squares domain fill example
 
-Grains generated like this will _always_ be generated entirely within the parent object.
+Grains generated like this will *always* be generated entirely within the parent object.
 
 Set object properties
 ~~~~~~~~~~~~~~~~~~~~~
@@ -272,7 +272,7 @@ So to take our earlier example and add an impactor as well as materials and velo
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/simple_model_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: simple model example
 
 You can see that the material numbers are reflected in the plots as well!
@@ -339,7 +339,7 @@ With this in mind lets create a mesh for our example from the previous section.
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/simple_mesh_example.png
     :align: center
-    :width: 400
+    :width: 700
     :alt: simple mesh example
 
 There is a ``plot_velocities`` method as well.
