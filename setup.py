@@ -6,7 +6,7 @@ with open("./PySALESetup/_version.py") as fp:
 
 setup(
     name='PySALESetup',
-    python_requires='>=3.6, <3.10',
+    python_requires='>3.6, <3.10',
     version=version['__version__'],
     packages=['PySALESetup'],
     url='https://github.com/jgd10/PySALESetup',
