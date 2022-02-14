@@ -221,19 +221,24 @@ class PySALEObject(Polygon, ABC):
             self.set_material_colormap('viridis')
         return self._material_colors
 
-    def set_velocity(self, x: float, y: float) -> None:
+    def set_velocity(self, x: float, y: float,
+                     include_children: bool = True) -> None:
         """Set the velocity of the object.
 
         Parameters
         ----------
         x : float
         y : float
+        include_children : bool
+            Set velocity of all children as well? defaults to True.
 
         Returns
         -------
         None
         """
         self._velocity = Velocity(x=x, y=y)
+        for child in self.children:
+            child.set_velocity(x, y)
 
     def set_as_void(self) -> None:
         """Set the material to void.
