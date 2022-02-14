@@ -232,7 +232,7 @@ The equivalent radius is the radius of a circle with the same area as the grain 
     :width: 400
     :alt: squares domain fill example
 
-Grains generated like this will _always_ be generated entirely within the parent object.
+Grains generated like this will *always* be generated entirely within the parent object.
 
 Set object properties
 ~~~~~~~~~~~~~~~~~~~~~
