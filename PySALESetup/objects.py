@@ -395,7 +395,7 @@ class PySALEObject(Polygon, ABC):
     def plot(self,
              ax: Optional[plt.Axes] = None,
              include_children: bool = True,
-             cmap: str = 'viridis') -> Tuple[plt.Figure, plt.Axes]:
+             cmap: str = 'rainbow') -> Tuple[plt.Figure, plt.Axes]:
         """Plot the object on matplotlib axes.
 
         If no axes, the method will create some.
