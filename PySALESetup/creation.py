@@ -609,25 +609,30 @@ class PySALEDomain:
         -------
         None
         """
-        num_materials = len(allowed_materials)
+        num_materials = len(set(allowed_materials))
+        self._reset_domain_object_materials()
 
         for child in self.object.children:
             ordered_neighbours = sorted(self.object.children[1:],
                                         key=child.centroid.distance)
-            assigned_materials = list({o.material
-                                       for o in ordered_neighbours})
+            assigned_materials = set([o._material
+                                      for o, m in zip(ordered_neighbours,
+                                                      set(allowed_materials))
+                                      if o._material is not None])
             if len(assigned_materials) == num_materials:
                 # All material numbers have been used up and no repeats!
                 # (if there were repeats not all would have
                 # been used...)
-                new_material = random.choice(assigned_materials)
+                new_material = random.choice(allowed_materials)
             else:
                 missing_materials = [item
                                      for item in allowed_materials
                                      if item not in assigned_materials]
-                new_material = missing_materials[0]
+                new_material = random.choice(missing_materials)
             child.set_material(new_material)
 
-
+    def _reset_domain_object_materials(self):
+        for child in self.object.children:
+            child._material = None
 
 
