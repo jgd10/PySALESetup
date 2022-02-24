@@ -32,9 +32,7 @@ object3 = PySALEObject.generate_ellipse([107.2, 107.2],
                                         rotation=0)
 
 
-m.apply_geometry(object1)
-m.apply_geometry(object2)
-m.apply_geometry(object3)
+m.project_polygons_onto_mesh([object1, object2, object3])
 
 f, ax = m.plot_materials()
 # NB x_range and y_range are cell centres, not cell edges!
