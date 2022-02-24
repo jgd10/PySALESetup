@@ -90,8 +90,8 @@ class Cell:
     point: Point
     i: int
     j: int
-    material: int
-    velocity: Velocity(0., 0.)
+    material: int = None
+    velocity: Velocity = Velocity(0., 0.)
 
 
 class PySALEMesh:
@@ -113,10 +113,10 @@ class PySALEMesh:
     >>> main.set_material(0)
     >>> domain = PySALEDomain(main)
     >>> circle = PySALEObject.generate_ellipse([0., 0.], 1, 1, 0.)
-    >>> domain.fill_to_threshold_area(circle, 40)
+    >>> domain.fill_with_random_grains_to_threshold(circle, 40)
     >>> domain.optimise_materials()
     >>> mesh = PySALEMesh(100, 150, cell_size=.1)
-    >>> mesh.apply_geometry(main)
+    >>> mesh.project_polygons_onto_mesh([main])
     >>> mesh.save()
     """
     def __init__(self,
@@ -125,7 +125,8 @@ class PySALEMesh:
                  cell_size: float = 2.e-6,
                  extension_zones: List[ExtensionZone] = None,
                  cylindrical_symmetry: bool = False,
-                 collision_index: int = 0):
+                 collision_index: int = 0,
+                 origin: Tuple[int, int] = (0, 0)):
         """Discrete rectangular mesh construction.
 
         Parameters
@@ -136,9 +137,12 @@ class PySALEMesh:
         extension_zones : Optional[List[ExtensionZone]]
         cylindrical_symmetry : bool
         collision_index : int
+        origin : Tuple[int, int] - The origin cell for the
+                 coordinate system.
         """
         self.x = x_cells
         self.y = y_cells
+        self._origin = origin
         self.cell_size = cell_size
         self._x_range = None
         self._y_range = None
@@ -151,6 +155,26 @@ class PySALEMesh:
         self._x_physical_length = None
         self.cylindrical_symmetry = cylindrical_symmetry
         self._collision = collision_index
+
+    def __str__(self):
+        ezs = {Region.NORTH: 'N', Region.EAST: 'E',
+               Region.WEST: 'W', Region.SOUTH: 'S'}
+        extensions = [ezs[z.region] for z in self.extension_zones]
+        s = '[' + ','.join(extensions) + ']'
+        return f'PySALEMesh({self.x}, {self.y}, {self.cell_size}, ' \
+               f'extension_zones={s}, origin={self.origin})'
+
+    @property
+    def origin(self) -> Tuple[int, int]:
+        """The origin cell of the mesh.
+
+        All dimensions are relative to this cell. Defaults to (0, 0).
+
+        Returns
+        -------
+        origin : Tuple[int, int]
+        """
+        return self._origin
 
     @classmethod
     def from_dimensions(cls, dimensions: Tuple[float, float],
@@ -171,8 +195,8 @@ class PySALEMesh:
         -------
         PySALEMesh instance.
         """
-        x_cells = int(dimensions[0] / cell_size)
-        y_cells = int(dimensions[1] / cell_size)
+        x_cells = round(dimensions[0] / cell_size)
+        y_cells = round(dimensions[1] / cell_size)
         mesh = cls(x_cells, y_cells, cell_size,
                    extension_zones=extensions)
         return mesh
@@ -248,7 +272,7 @@ class PySALEMesh:
 
     @property
     def vertical_offset(self) -> int:
-        """Half the vertical depth of the mesh, rounded down.
+        """Half the vertical depth of the mesh, rounded down, in cells.
 
         Returns
         -------
@@ -304,6 +328,7 @@ class PySALEMesh:
         """
         if self._x_range is None:
             self._populate_n_range()
+            self._set_origin()
         return self._x_range
 
     @property
@@ -316,7 +341,15 @@ class PySALEMesh:
         """
         if self._y_range is None:
             self._populate_n_range()
+            self._set_origin()
         return self._y_range
+
+    def _set_origin(self):
+        x0 = self._x_range[self._origin[0]]
+        y0 = self._y_range[self._origin[1]]
+        self._y_range -= y0
+        self._x_range -= x0
+        return
 
     def get_geometric_centre(self) -> Tuple[float, float]:
         """Return the geometric centre of the mesh in physical coords.
@@ -461,19 +494,18 @@ class PySALEMesh:
                        for i, x in enumerate(self.x_range)
                        for j, y in enumerate(self.y_range)]
 
-    def apply_geometry(self, geometry: PySALEObject) -> None:
+    def project_polygons_onto_mesh(self,
+                                   polygons: List[PySALEObject]) -> None:
         """Project a polygon (and all its children) onto the mesh.
 
         Method calls itself recursively on all children of the polygon.
         The children at the bottom of the hierachy get priority. Once
         a cell is populated with material, new material will NOT
-        overwrite it. If a child is a void object it will inevitably be
-        overwritten by its parent's material. To create voids use
-        set the material to void before using this method.
+        overwrite it.
 
         Parameters
         ----------
-        geometry : PySALEObject
+        polygons : List[PySALEObject]
 
         Returns
         -------
@@ -492,30 +524,28 @@ class PySALEMesh:
         >>> main.set_material(1)
         >>> domain = PySALEDomain(main)
         >>> circle = PySALEObject.generate_ellipse([0., 0.], .5, .5, 0.)
-        >>> domain.fill_to_threshold_area(circle, 40)
+        >>> domain.fill_with_random_grains_to_threshold(circle, 40)
         >>> domain.optimise_materials([2, 3, 4, 5])
         >>> mesh = PySALEMesh(100, 100, cell_size=.1)
-        >>> mesh.apply_geometry(main)
+        >>> mesh.project_polygons_onto_mesh([main])
         >>> mesh.plot_materials()
         >>> plt.show()
         """
-        for child in geometry.children:
-            self.apply_geometry(child)
-        if geometry.material > 0:
-            for cell in self.cells:
-                if cell.point.within(geometry) and \
-                        sum(self.material_meshes[i][cell.i, cell.j]
-                            for i in range(1, 9+1)) < 1.:
-                    self._fill_cell(cell, geometry)
-        elif geometry.material == 0. and len(geometry.children) == 0:
-            for cell in self.cells:
-                if cell.point.within(geometry):
-                    self._void_cell(cell)
-        elif geometry.material == 0. and len(geometry.children) > 0:
-            pass
-        else:
-            raise TypeError(f'Material "{geometry.material}" is not '
-                            f'recognised')
+        for i, cell in enumerate(self.cells):
+            if cell.material is None:
+                self._project_polygons_onto_cell(cell, polygons)
+
+    def _project_polygons_onto_cell(self, cell: Cell, polygons):
+        for polygon in polygons:
+            if cell.point.within(polygon):
+                if polygon.children:
+                    self._project_polygons_onto_cell(
+                        cell,
+                        polygon.children
+                    )
+                if cell.material is None:
+                    self._fill_cell(cell, polygon)
+                    break
 
     def _fill_cell(self, cell: Cell, geometry: PySALEObject):
         """Fill a mesh cell with the properties of a given polygon.
@@ -530,11 +560,14 @@ class PySALEMesh:
         None
 
         """
-        self.material_meshes[geometry.material][cell.i, cell.j] = 1.
-        self.velocities['x'][cell.i, cell.j] = geometry.velocity.x
-        self.velocities['y'][cell.i, cell.j] = geometry.velocity.y
-        cell.material = geometry.material
-        cell.velocity = geometry.velocity
+        if geometry.material == 0:
+            self._void_cell(cell)
+        else:
+            self.material_meshes[geometry.material][cell.i, cell.j] = 1.
+            self.velocities['x'][cell.i, cell.j] = geometry.velocity.x
+            self.velocities['y'][cell.i, cell.j] = geometry.velocity.y
+            cell.material = geometry.material
+            cell.velocity = geometry.velocity
 
     def _void_cell(self, cell: Cell):
         """Fill a mesh cell with void.
@@ -551,48 +584,8 @@ class PySALEMesh:
             self.material_meshes[number][cell.i, cell.j] = 0.
         self.velocities['x'][cell.i, cell.j] = 0.
         self.velocities['y'][cell.i, cell.j] = 0.
-        cell.material = 0.
+        cell.material = 0
         cell.velocity = Velocity(0., 0.)
-
-    def apply_polygon_as_void(self, polygon: PySALEObject):
-        """Apply polygon (not inc. children) as void to mesh.
-
-        This is independent of the polygon's assigned material. if this
-        method is called the polygon is treated as if it were void.
-
-        Parameters
-        ----------
-        polygon: PySALEObject
-
-        Returns
-        -------
-        None
-
-        Examples
-        --------
-
-        Here we create a circle of material, then populate it with
-        smaller circles of void. Once we have applied the parent object
-        we can apply each child as void in a simple loop.
-
-        >>> from PySALESetup import PySALEObject, PySALEDomain, PySALEMesh
-        >>> import matplotlib.pyplot as plt
-        >>> main = PySALEObject.generate_ellipse([5., 5.], 5., 5., 0.)
-        >>> main.set_material(1)
-        >>> domain = PySALEDomain(main)
-        >>> circle = PySALEObject.generate_ellipse([0., 0.], .5, .5, 0.)
-        >>> circle.set_as_void()
-        >>> domain.fill_to_threshold_area(circle, 40)
-        >>> mesh = PySALEMesh(100, 100, cell_size=.1)
-        >>> mesh.apply_geometry(main)
-        >>> for child in main.children:
-        >>>     mesh.apply_polygon_as_void(child)
-        >>> mesh.plot_materials()
-        >>> plt.show()
-        """
-        for cell in self.cells:
-            if cell.point.within(polygon):
-                self._void_cell(cell)
 
     def plot_cells(self, ax: plt.Axes = None):
         """Plot the cell centres of the mesh.
@@ -649,8 +642,7 @@ class PySALEMesh:
         >>> target = PySALEObject([(0, 0), (0, 6), (10, 6), (10, 0)])
         >>> target.set_material(3)
         >>> mesh = PySALEMesh(100, 100, cell_size=.1)
-        >>> mesh.apply_geometry(impactor)
-        >>> mesh.apply_geometry(target)
+        >>> mesh.project_polygons_onto_mesh([impactor, target])
         >>> mesh.plot_materials()
         >>> plt.show()
         """
@@ -722,8 +714,7 @@ class PySALEMesh:
         >>> target = PySALEObject([(0, 0), (0, 6), (10, 6), (10, 0)])
         >>> target.set_material(3)
         >>> mesh = PySALEMesh(100, 100, cell_size=.1)
-        >>> mesh.apply_geometry(impactor)
-        >>> mesh.apply_geometry(target)
+        >>> mesh.project_polygons_onto_mesh([impactor, target])
         >>> mesh.plot_materials()
         >>> plt.show()
 

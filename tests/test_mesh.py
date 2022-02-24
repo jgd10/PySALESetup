@@ -47,7 +47,7 @@ class TestPySALEMeshHighResolutionZoneOnly:
     def test_apply_geometry(self, simple_object):
         simple_object.set_material(3)
         mesh = PySALEMesh(100, 100, 1)
-        mesh.apply_geometry(simple_object)
+        mesh.project_polygons_onto_mesh([simple_object])
         assert np.sum(mesh.material_meshes[3]) > 0
 
     def test_apply_geometries(self, simple_object):
@@ -55,7 +55,7 @@ class TestPySALEMeshHighResolutionZoneOnly:
         ellipse = simple_object.spawn_ellipse_in_shape([5, 5], 5, 5, 0)
         ellipse.set_material(1)
         mesh = PySALEMesh(100, 100, 1)
-        mesh.apply_geometry(simple_object)
+        mesh.project_polygons_onto_mesh([simple_object])
         assert np.sum(mesh.material_meshes[3]) > 0
         assert np.sum(mesh.material_meshes[1]) > 0
 
@@ -63,8 +63,8 @@ class TestPySALEMeshHighResolutionZoneOnly:
         simple_object.set_material(3)
         ellipse = simple_object.spawn_ellipse_in_shape([5, 5], 3, 3, 0)
         mesh = PySALEMesh(100, 100, 1)
-        mesh.apply_geometry(simple_object)
-        mesh.apply_polygon_as_void(ellipse)
+        ellipse.set_as_void()
+        mesh.project_polygons_onto_mesh([simple_object])
         assert np.sum(mesh.material_meshes[3]) > 0
         assert np.sum(mesh.material_meshes[1]) == 0
 
@@ -104,8 +104,7 @@ class TestPySALEMeshHighResolutionZoneOnly:
 
     def test_apply_geometry(self, square_even_mesh, simple_impactor_target):
         target, impactor = simple_impactor_target
-        square_even_mesh.apply_geometry(target)
-        square_even_mesh.apply_geometry(impactor)
+        square_even_mesh.project_polygons_onto_mesh([target, impactor])
         assert square_even_mesh.material_numbers == [1, 2]
 
     def test_extension_zones_empty(self, square_even_mesh):
