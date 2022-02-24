@@ -304,7 +304,7 @@ or
     mesh = PySALEMesh.from_dimensions((1., 1.), cell_size=0.01)
 
 Both will produce the same result. Once we have a mesh instance all we need to do is make use of
-the method ``apply_geometry`` to apply whichever objects we wish to the mesh. As with the
+the method ``project_polygons_onto_mesh`` to apply whichever objects we wish to the mesh. As with the
 translate/resize/rotate methods, objects and their children are applied recursively.
 
 With this in mind lets create a mesh for our example from the previous section.
@@ -333,8 +333,8 @@ With this in mind lets create a mesh for our example from the previous section.
     domain.optimise_materials([2, 3, 4, 5, 6, 7, 8, 9])
 
     mesh = PySALEMesh.from_dimensions((1., 2.), 0.002)
-    mesh.apply_geometry(particle_bed)
-    mesh.apply_geometry(impactor)
+    mesh.project_polygons_onto_mesh([particle_bed])
+    mesh.project_polygons_onto_mesh([impactor])
     f, a = mesh.plot_materials()
 
 .. image:: https://raw.githubusercontent.com/jgd10/PySALESetup/main/docs/source/media/simple_mesh_example.png
@@ -390,8 +390,8 @@ Our final script looks like this:
     domain.optimise_materials([2, 3, 4, 5, 6, 7, 8, 9])
 
     mesh = PySALEMesh.from_dimensions((1., 2.), 0.002)
-    mesh.apply_geometry(particle_bed)
-    mesh.apply_geometry(impactor)
+    mesh.project_polygons_onto_mesh([particle_bed])
+    mesh.project_polygons_onto_mesh([impactor])
     mesh.save(pathlib.Path('./meso_m.iSALE'))
 
     AsteroidInput('my_model',
