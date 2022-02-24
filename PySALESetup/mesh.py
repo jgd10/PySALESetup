@@ -126,7 +126,7 @@ class PySALEMesh:
                  extension_zones: List[ExtensionZone] = None,
                  cylindrical_symmetry: bool = False,
                  collision_index: int = 0,
-                 origin: Tuple[int, int] = (0, 0)):
+                 origin: Tuple[float, float] = (0., 0.)):
         """Discrete rectangular mesh construction.
 
         Parameters
@@ -137,7 +137,7 @@ class PySALEMesh:
         extension_zones : Optional[List[ExtensionZone]]
         cylindrical_symmetry : bool
         collision_index : int
-        origin : Tuple[int, int] - The origin cell for the
+        origin : Tuple[float, float] - The origin for the
                  coordinate system.
         """
         self.x = x_cells
@@ -166,9 +166,12 @@ class PySALEMesh:
 
     @property
     def origin(self) -> Tuple[int, int]:
-        """The origin cell of the mesh.
+        """The origin coordinate of the mesh.
 
-        All dimensions are relative to this cell. Defaults to (0, 0).
+        All dimensions are relative to this coordinate.
+        Defaults to (0, 0). This coordinate is in the coordinate system
+        of the mesh before the origin is applied. This has the 0, 0
+        at the bottom-left corner of the *high-resolution* zone.
 
         Returns
         -------
@@ -345,10 +348,8 @@ class PySALEMesh:
         return self._y_range
 
     def _set_origin(self):
-        x0 = self._x_range[self._origin[0]]
-        y0 = self._y_range[self._origin[1]]
-        self._y_range -= y0
-        self._x_range -= x0
+        self._y_range -= self._origin[1]
+        self._x_range -= self._origin[0]
         return
 
     def get_geometric_centre(self) -> Tuple[float, float]:
