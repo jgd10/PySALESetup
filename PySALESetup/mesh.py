@@ -182,7 +182,8 @@ class PySALEMesh:
     @classmethod
     def from_dimensions(cls, dimensions: Tuple[float, float],
                         cell_size: float,
-                        extensions: Optional[List[ExtensionZone]] = None) \
+                        extensions: Optional[List[ExtensionZone]] = None,
+                        origin: Tuple[float, float] = (0., 0.)) \
             -> 'PySALEMesh':
         """Given high-res zone dimensions and cell size, return PySALEMesh.
 
@@ -193,6 +194,10 @@ class PySALEMesh:
         cell_size : float Dimension of a high-res cell in the mesh
         extensions : List[ExtensionZone] List of all the extension zones
                      that should be applied
+        origin : Tuple[float, float] The coordinate to be considered the
+                 origin. This coordinate is in the same coordinate
+                 system as the default, where the origin is the bottom
+                 left of the high-res zone.
 
         Returns
         -------
@@ -201,7 +206,8 @@ class PySALEMesh:
         x_cells = round(dimensions[0] / cell_size)
         y_cells = round(dimensions[1] / cell_size)
         mesh = cls(x_cells, y_cells, cell_size,
-                   extension_zones=extensions)
+                   extension_zones=extensions,
+                   origin=origin)
         return mesh
 
     def _find_extension_factor(self):

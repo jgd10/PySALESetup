@@ -3,6 +3,7 @@ import numpy as np
 from PySALESetup import PySALEMesh, \
     ExtensionZone, ExtensionZoneFactor, Region, Cell, Velocity
 from shapely.geometry import Point
+from typing import Tuple
 import pytest
 
 
@@ -84,7 +85,7 @@ class TestPySALEMeshHighResolutionZoneOnly:
     def test_y_range(self, rectangular_even_mesh):
         assert rectangular_even_mesh.y == rectangular_even_mesh.y_range.size
 
-    def test_geometric_centre(self, square_even_mesh):
+    def test_geometric_centre_2(self, square_even_mesh):
         centre = square_even_mesh.get_geometric_centre()
         for val in centre:
             assert np.isclose(val, 5.)
@@ -102,7 +103,7 @@ class TestPySALEMeshHighResolutionZoneOnly:
     def test_cells(self, square_even_mesh):
         assert len(square_even_mesh.cells) == square_even_mesh.x * square_even_mesh.y
 
-    def test_apply_geometry(self, square_even_mesh, simple_impactor_target):
+    def test_apply_geometry_2(self, square_even_mesh, simple_impactor_target):
         target, impactor = simple_impactor_target
         square_even_mesh.project_polygons_onto_mesh([target, impactor])
         assert square_even_mesh.material_numbers == [1, 2]
@@ -113,6 +114,22 @@ class TestPySALEMeshHighResolutionZoneOnly:
     def test_extension_zone_factor_default(self, square_even_mesh):
         assert square_even_mesh.extension_factor.max_cell_size == square_even_mesh.cell_size
         assert square_even_mesh.extension_factor.multiplier == 1.
+
+    @pytest.mark.parametrize('x0', [10., -10.])
+    def test_set_origin_x(self, x0):
+        mesh = PySALEMesh.from_dimensions((1., 1.), 0.05, origin=(x0, 0.))
+        if x0 < 0.:
+            assert all(mesh.x_range > x0)
+        elif x0 > 0.:
+            assert all(mesh.x_range < x0)
+
+    @pytest.mark.parametrize('y0', [10., -10.])
+    def test_set_origin_x(self, y0):
+        mesh = PySALEMesh.from_dimensions((1., 1.), 0.05, origin=(0., y0))
+        if y0 < 0.:
+            assert all(mesh.y_range > y0)
+        elif y0 > 0.:
+            assert all(mesh.y_range < y0)
 
 
 class TestMeshWithExtensionZones:
