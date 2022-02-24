@@ -314,7 +314,7 @@ object is what we’ll use for this.</p>
 <p>Both are valid approaches. For example to make a 100 x 100 mesh that is 1m x 1m we can either do</p>
 <p>or</p>
 <p>Both will produce the same result. Once we have a mesh instance all we need to do is make use of
-the method <code class="docutils literal notranslate"><span class="pre">apply_geometry</span></code> to apply whichever objects we wish to the mesh. As with the
+the method <code class="docutils literal notranslate"><span class="pre">project_polygons_onto_mesh</span></code> to apply whichever objects we wish to the mesh. As with the
 translate/resize/rotate methods, objects and their children are applied recursively.</p>
 <p>With this in mind lets create a mesh for our example from the previous section.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PySALESetup</span> <span class="kn">import</span> <span class="n">PySALEObject</span><span class="p">,</span> <span class="n">PySALEDomain</span><span class="p">,</span> \
@@ -339,8 +339,8 @@ translate/resize/rotate methods, objects and their children are applied recursiv
 <span class="n">domain</span><span class="o">.</span><span class="n">optimise_materials</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
 
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">PySALEMesh</span><span class="o">.</span><span class="n">from_dimensions</span><span class="p">((</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">),</span> <span class="mf">0.002</span><span class="p">)</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">particle_bed</span><span class="p">)</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">impactor</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">project_polygons_onto_mesh</span><span class="p">([</span><span class="n">particle_bed</span><span class="p">])</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">project_polygons_onto_mesh</span><span class="p">([</span><span class="n">impactor</span><span class="p">])</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">plot_materials</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -382,8 +382,8 @@ class, which is just a named tuple.</p>
 <span class="n">domain</span><span class="o">.</span><span class="n">optimise_materials</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
 
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">PySALEMesh</span><span class="o">.</span><span class="n">from_dimensions</span><span class="p">((</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">),</span> <span class="mf">0.002</span><span class="p">)</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">particle_bed</span><span class="p">)</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">apply_geometry</span><span class="p">(</span><span class="n">impactor</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">project_polygons_onto_mesh</span><span class="p">([</span><span class="n">particle_bed</span><span class="p">])</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">project_polygons_onto_mesh</span><span class="p">([</span><span class="n">impactor</span><span class="p">])</span>
 <span class="n">mesh</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;./meso_m.iSALE&#39;</span><span class="p">))</span>
 
 <span class="n">AsteroidInput</span><span class="p">(</span><span class="s1">&#39;my_model&#39;</span><span class="p">,</span>
