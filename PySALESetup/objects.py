@@ -71,7 +71,7 @@ class PySALEObject(ABC):
             self._material = None
 
     def copy(self) -> 'PySALEObject':
-        """deepcopy of the objectr in question.
+        """deepcopy of the object in question.
 
         Returns
         -------
