@@ -9,7 +9,7 @@ with open("./README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='PySALESetup',
-    python_requires='>3.6, <3.10',
+    python_requires='>3.9, <3.12',
     version=version['__version__'],
     packages=['PySALESetup'],
     url='https://github.com/jgd10/PySALESetup',
@@ -32,9 +32,9 @@ setup(
             ['input_templates/*']
     },
     install_requires=[
-        'matplotlib~=3.4.3',
-        'numpy~=1.21.2',
-        'Shapely~=1.7.0',
-        'scipy~=1.2.1'
+        'matplotlib>=3.4.3',
+        'numpy>=1.21.2',
+        'Shapely>=2.0.0',
+        'scipy>=1.2.1'
     ]
 )
