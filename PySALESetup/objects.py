@@ -6,13 +6,13 @@ import shapely.affinity as affinity
 import matplotlib.pyplot as plt
 from typing import Union, Dict, List, Optional, Tuple
 from pathlib import Path
-from collections import namedtuple
 import numpy as np
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class Velocity:
+    """Immutable velocity dataclass"""
     x: float | int
     y: float | int
 
@@ -71,6 +71,12 @@ class PySALEObject(ABC):
             self._material = None
 
     def copy(self) -> 'PySALEObject':
+        """deepcopy of the objectr in question.
+
+        Returns
+        -------
+        PySALEObject
+        """
         new = PySALEObject()
         new._polygon = deepcopy(self._polygon)
         new._children = [c.copy() for c in self.children]
@@ -85,6 +91,12 @@ class PySALEObject(ABC):
 
     @property
     def polygon(self) -> Polygon:
+        """shapely.geometry.polygon.Polygon object describing this object.
+
+        Returns
+        -------
+        shapely.geometry.polygon.Polygon
+        """
         return self._polygon
 
     def copy_properties_to_new_polygon(self, polygon: 'PySALEObject') \
@@ -500,6 +512,12 @@ class PySALEObject(ABC):
 
     @property
     def elongation(self) -> float:
+        """Ratio of length of the bounding box to its width.
+
+        Returns
+        -------
+        float
+        """
         length_bbox = max((self.bounds[2] - self.bounds[0]),
                           (self.bounds[3] - self.bounds[1]))
         width_bbox = min((self.bounds[2] - self.bounds[0]),
@@ -509,6 +527,12 @@ class PySALEObject(ABC):
 
     @property
     def area_ratio(self):
+        """Ratio of the area of the bounding box to the polygon area.
+
+        Returns
+        -------
+        float
+        """
         length_bbox = max((self.bounds[2] - self.bounds[0]),
                           (self.bounds[3] - self.bounds[1]))
         width_bbox = min((self.bounds[2] - self.bounds[0]),
