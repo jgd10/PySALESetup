@@ -3,7 +3,7 @@ MesoParticles2D+
 ================
 
 This example is based on the iSALE example MesoParticles2D and uses
-the same basic geometries. However in this script we demonstrate the
+the same basic geometries. However, in this script we demonstrate the
 versatility of PySALESetup to affect things like the resolution with
 ease
 """
@@ -36,7 +36,7 @@ domain = PySALEDomain(host)
 # Its centroid does not matter here as we'll just move it around
 # anyway, so use [0, 0]
 particle = PySALEObject.generate_ellipse([0, 0], 50e-6, 50e-6, 0, 1)
-domain.fill_to_threshold_area(particle, 40)
+domain.fill_with_random_grains_to_threshold(particle, 40)
 # Optimise particle materials so that none touch of the same material
 domain.optimise_materials([2, 3, 4, 5, 6, 7, 8, 9])
 
@@ -49,8 +49,7 @@ plt.show()
 # Create the mesh onto which we'll apply these geometries
 mesh_1 = PySALEMesh(100, 500, cell_size=10.e-6)
 # Apply/project the geometries onto our mesh
-for geometry in [host, impactor, back_plate]:
-    mesh_1.apply_geometry(geometry)
+mesh_1.project_polygons_onto_mesh([host, impactor, back_plate])
 # View the result!
 mesh_1.plot_materials()
 
@@ -63,15 +62,13 @@ plt.show()
 # the resolution if we wish
 
 mesh_2 = PySALEMesh(50, 250, cell_size=20.e-6)
-for geometry in [host, impactor, back_plate]:
-    mesh_2.apply_geometry(geometry)
+mesh_2.project_polygons_onto_mesh([host, impactor, back_plate])
 mesh_2.plot_materials()
 plt.show()
 
 # or... (uncomment to see the result!)
 # mesh_3 = PySALEMesh(200, 1000, cell_size=5.e-6)
-# for geometry in [host, impactor, back_plate]:
-#     mesh_3.apply_geometry(geometry)
+# mesh_3.project_polygons_onto_mesh([host, impactor, back_plate])
 # mesh_3.plot_materials()
 # plt.show()
 
@@ -88,7 +85,7 @@ host = PySALEObject([(0-50e-6, 0.001),
 host.set_material(0)
 domain = PySALEDomain(host)
 particle = PySALEObject.generate_ellipse([0, 0], 50e-6, 50e-6, 0, 1)
-domain.fill_to_threshold_area(particle, 40)
+domain.fill_with_random_grains_to_threshold(particle, 40)
 domain.optimise_materials([2, 3, 4, 5, 6, 7, 8, 9])
 
 _, ax = host.plot()
@@ -97,7 +94,7 @@ back_plate.plot(ax)
 plt.show()
 
 mesh_4 = PySALEMesh(100, 500, cell_size=10.e-6)
-for geometry in [host, impactor, back_plate]:
-    mesh_4.apply_geometry(geometry)
+mesh_4.project_polygons_onto_mesh([host, impactor, back_plate])
+
 mesh_4.plot_materials()
 plt.show()

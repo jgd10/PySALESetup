@@ -542,16 +542,16 @@ class PySALEMesh:
             if cell.material is None:
                 self._project_polygons_onto_cell(cell, polygons)
 
-    def _project_polygons_onto_cell(self, cell: Cell, polygons):
-        for polygon in polygons:
-            if cell.point.within(polygon):
-                if polygon.children:
+    def _project_polygons_onto_cell(self, cell: Cell, polygons: list[PySALEObject]):
+        for psobject in polygons:
+            if cell.point.within(psobject.polygon):
+                if psobject.children:
                     self._project_polygons_onto_cell(
                         cell,
-                        polygon.children
+                        psobject.children
                     )
                 if cell.material is None:
-                    self._fill_cell(cell, polygon)
+                    self._fill_cell(cell, psobject)
                     break
 
     def _fill_cell(self, cell: Cell, geometry: PySALEObject):

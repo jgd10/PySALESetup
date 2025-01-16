@@ -13,16 +13,16 @@ class TestPySALEDomain:
             domain._move_object_to_random_coordinate_in_domain(
                 simple_object, 1., 1., 0., 0.
             )
-        assert 0. < simple_object.centroid.x < 1.
-        assert 0. < simple_object.centroid.y < 1.
+        assert 0. < simple_object.polygon.centroid.x < 1.
+        assert 0. < simple_object.polygon.centroid.y < 1.
 
     def test_fill_to_threshold(self, simple_object):
         domain = PySALEDomain(simple_object)
         grain = PySALEObject([(0, 0), (0.5, 0.5), (1, 0)])
         domain.fill_with_random_grains_to_threshold(grain, 20)
-        frac = sum([c.area
-                    for c in simple_object.children])/simple_object.area
-        tolerance = (grain.area/simple_object.area)*100
+        frac = sum([c.polygon.area
+                    for c in simple_object.children])/simple_object.polygon.area
+        tolerance = (grain.polygon.area/simple_object.polygon.area)*100
         assert isclose(frac*100., 20., abs_tol=tolerance)
 
     @pytest.mark.parametrize('threshold_', [10., 30., 60., 90.])
@@ -83,13 +83,13 @@ class TestRandomlyRotateObjects:
     def test_object_unchanged(self, circle):
         domain = PySALEDomain(circle)
         new = domain.randomly_rotate_object(circle)
-        assert new.bounds == circle.bounds
+        assert new.polygon.bounds == circle.polygon.bounds
 
     def test_rectangle_rotates(self, rectangle):
         dist = PySALENormalDistribution(45., 5.)
         domain = PySALEDomain(rectangle)
         new = domain.randomly_rotate_object(rectangle, dist)
-        assert new.bounds != rectangle.bounds
+        assert new.polygon.bounds != rectangle.polygon.bounds
 
 
 class TestRandomlyResizeObjects:
@@ -97,7 +97,7 @@ class TestRandomlyResizeObjects:
     def test_object_unchanged(self, simple_object, area):
         domain = PySALEDomain(simple_object)
         new = domain.randomly_resize_object(simple_object, area=area)
-        assert new.area == simple_object.area
+        assert new.polygon.area == simple_object.polygon.area
 
     def test_with_normal_dist(self, object_with_normal_distributions):
         object_, radii, areas, angles = object_with_normal_distributions
@@ -124,8 +124,8 @@ class TestRandomlyResizeObjects:
 
     @staticmethod
     def assert_shapes_different_coords(object_, result):
-        old_coords = object_.exterior.coords.xy
-        new_coords = result.exterior.coords.xy
+        old_coords = object_.polygon.exterior.coords.xy
+        new_coords = result.polygon.exterior.coords.xy
         for old, new in zip(old_coords, new_coords):
             assert old != new
 

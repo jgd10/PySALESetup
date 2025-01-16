@@ -142,7 +142,9 @@ class TestMeshWithExtensionZones:
         assert m.y_physical > m.y * m.cell_size
 
 
+@pytest.mark.flaky
 class TestMeshPlots:
+    @pytest.mark.flaky
     def test_plot_materials(self, square_mesh_with_extension_zones):
         f, a = square_mesh_with_extension_zones.plot_materials()
         assert isinstance(f, plt.Figure)

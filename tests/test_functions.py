@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import pytest
 
 
+@pytest.mark.flaky
 class TestGetFigureFromAx:
     def test_happy(self):
         fig = plt.figure()

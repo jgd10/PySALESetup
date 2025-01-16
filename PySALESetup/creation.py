@@ -436,7 +436,7 @@ class PySALEDomain:
             if insertion_possible is not True:
                 retries += 1
                 continue
-            inserted_area = sum([c.area for c in self.object.children])
+            inserted_area = sum([c.polygon.area for c in self.object.children])
         return inserted_area
 
     @staticmethod
@@ -490,24 +490,24 @@ class PySALEDomain:
         if size_distribution is not None:
             rand_val = size_distribution.random_number()
         else:
-            rand_val = grain_object.area if area \
+            rand_val = grain_object.polygon.area if area \
                 else grain_object.calculate_equivalent_radius()
 
         if area is True:
-            factor = rand_val/grain_object.area
+            factor = rand_val/grain_object.polygon.area
         else:
             factor = rand_val/grain_object.calculate_equivalent_radius()
         return grain_object.scale_object(factor, area)
 
     def _check_threshold_input(self, threshold_fill_percent: float):
         target_fraction = threshold_fill_percent / 100.
-        threshold = target_fraction * self.object.area
+        threshold = target_fraction * self.object.polygon.area
         assert 0. < target_fraction < 1., f"Target area percentage " \
                                           f"must be between 0 and 100, " \
                                           f"exclusive;" \
             f" not {threshold_fill_percent}"
-        inserted_area = sum([c.area for c in self.object.children])
-        current_fraction = inserted_area / self.object.area
+        inserted_area = sum([c.polygon.area for c in self.object.children])
+        current_fraction = inserted_area / self.object.polygon.area
         assert current_fraction < target_fraction, \
             f"Target fraction ({target_fraction}) " \
             f"less than current fraction ({current_fraction})."
@@ -534,20 +534,21 @@ class PySALEDomain:
         assert type(max_attempts) == int and max_attempts > 0,\
             f'Maximum number of attempts ' \
             f'MUST be a positive integer and not {max_attempts}'
-        minx, miny, maxx, maxy = self.object.bounds
+        minx, miny, maxx, maxy = self.object.polygon.bounds
         if not self.object.has_children:
             intersects_with_other_shapes = False
         else:
             intersects_with_other_shapes = True
         is_within_domain = False
-        mp = MultiPolygon(self.object.children)
+        mp = MultiPolygon([c.polygon for c in self.object.children])
         counter = 0
         success = False
         while intersects_with_other_shapes \
                 or is_within_domain is not True:
             grain_object = self._move_object_to_random_coordinate_in_domain(grain_object, maxx, maxy, minx, miny)
-            is_within_domain = self.object.contains(grain_object)
-            intersects_with_other_shapes = mp.intersects(grain_object)
+            is_within_domain = self.object.polygon.contains(
+                grain_object.polygon)
+            intersects_with_other_shapes = mp.intersects(grain_object.polygon)
             counter += 1
             if counter >= max_attempts:
                 warnings.warn(f'Max insertion attempts '
@@ -614,7 +615,11 @@ class PySALEDomain:
 
         for child in self.object.children:
             ordered_neighbours = sorted(self.object.children[1:],
-                                        key=child.centroid.distance)
+                                        key=
+                                        lambda
+                                            x:
+                                        child.polygon.centroid.distance(
+                                            x.polygon))
             assigned_materials = set([o._material
                                       for o, m in zip(ordered_neighbours,
                                                       set(allowed_materials))

@@ -1,4 +1,5 @@
 from abc import ABC
+from copy import deepcopy
 from math import pi, sqrt
 from shapely.geometry import Polygon, Point
 import shapely.affinity as affinity
@@ -7,12 +8,16 @@ from typing import Union, Dict, List, Optional, Tuple
 from pathlib import Path
 from collections import namedtuple
 import numpy as np
+from dataclasses import dataclass
 
 
-Velocity = namedtuple('Velocity', ['x', 'y'])
+@dataclass(frozen=True)
+class Velocity:
+    x: float | int
+    y: float | int
 
 
-class PySALEObject(Polygon, ABC):
+class PySALEObject(ABC):
     """Base object for all objects in PySALESetup
 
     Based on `shapely.geometry.Polygon`.
@@ -56,7 +61,7 @@ class PySALEObject(Polygon, ABC):
         kwargs
             See shapely.geometry.Polygon kwargs
         """
-        super(PySALEObject, self).__init__(*args, **kwargs)
+        self._polygon: Polygon = Polygon(*args, **kwargs)
         self._children = None
         self._material_colors = None
         self._velocity = Velocity(x=0., y=0.)
@@ -65,9 +70,22 @@ class PySALEObject(Polygon, ABC):
         else:
             self._material = None
 
+    def copy(self) -> 'PySALEObject':
+        new = PySALEObject()
+        new._polygon = deepcopy(self._polygon)
+        new._children = [c.copy() for c in self.children]
+        new._material_colors = deepcopy(self.material_colors)
+        new._velocity = deepcopy(self.velocity)
+        new._material = deepcopy(self.material)
+        return new
+
     def __repr__(self):
-        coords = [(i, j) for i, j in zip(*self.exterior.xy)]
+        coords = [(i, j) for i, j in zip(*self.polygon.exterior.xy)]
         return f"<PySALEObject({coords})>"
+
+    @property
+    def polygon(self) -> Polygon:
+        return self._polygon
 
     def copy_properties_to_new_polygon(self, polygon: 'PySALEObject') \
             -> 'PySALEObject':
@@ -87,6 +105,7 @@ class PySALEObject(Polygon, ABC):
         -------
         target : PySALEObject
         """
+        polygon._polygon = self._polygon
         polygon._children = self._children[:] \
             if self._children is not None else None
         polygon._velocity = self._velocity
@@ -243,7 +262,7 @@ class PySALEObject(Polygon, ABC):
     def set_as_void(self) -> None:
         """Set the material to void.
 
-        Additionally sets the velocities to 0.0.
+        Additionally, sets the velocities to 0.0.
 
         Returns
         -------
@@ -283,7 +302,7 @@ class PySALEObject(Polygon, ABC):
             Radius of the equivalent circle
         """
 
-        return sqrt(self.area/pi)
+        return sqrt(self.polygon.area/pi)
 
     @property
     def has_children(self) -> bool:
@@ -336,10 +355,10 @@ class PySALEObject(Polygon, ABC):
         return child
 
     def _process_new_child(self, child) -> None:
-        assert self.contains(child), \
+        assert self.polygon.contains(child.polygon), \
             "child objects must remain within the host"
         self._initialise_children()
-        self._children.append(child)
+        self.children.append(child)
 
     def spawn_ellipse_in_shape(self, xy: List[float],
                                major: float,
@@ -386,7 +405,7 @@ class PySALEObject(Polygon, ABC):
             The new scaled object
         """
         if area is True:
-            new_area = self.area * abs(factor)
+            new_area = self.polygon.area * abs(factor)
             old_radius = self.calculate_equivalent_radius()
             new_radius = sqrt(new_area/pi)
             factor = new_radius/old_radius
@@ -419,7 +438,7 @@ class PySALEObject(Polygon, ABC):
             ax = fig.add_subplot(111)
         else:
             fig = ax.get_figure()
-        x, y = self.exterior.xy
+        x, y = self.polygon.exterior.xy
         if self.material is not None:
             ax.plot(x, y, color=self.material_colors[self.material])
         else:
@@ -512,11 +531,10 @@ class PySALEObject(Polygon, ABC):
         -------
         translated_copy : PySALEObject
         """
-        centroid = [self.centroid.x, self.centroid.y]
+        centroid = [self._polygon.centroid.x, self._polygon.centroid.y]
         diffs = [a - centroid[i] for i, a in enumerate([newx, newy])]
-        new = self.copy_properties_to_new_polygon(
-            affinity.translate(self, *diffs)
-        )
+        new = self.copy()
+        new._polygon = affinity.translate(self._polygon, *diffs)
 
         new._children = [child.translate(newx, newy)
                          for child in self.children]
@@ -536,23 +554,21 @@ class PySALEObject(Polygon, ABC):
             rotation amount in degrees anticlockwise from the horizontal
         origin : Union[str, Point, Tuple[float, float]]
             can either be the string 'center', where the self origin
-            is used or it can be a shapely.geometry.Point object.
+            is used, or it can be a shapely.geometry.Point object.
 
         Returns
         -------
         rotated_copy : PySALEObject
         """
-        new = self.copy_properties_to_new_polygon(
-            affinity.rotate(self, angle, origin=origin)
-        )
+        new = self.copy()
+        new._polygon = affinity.rotate(self._polygon, angle, origin=origin)
         if origin == 'center':
-            new._children = [child.rotate(angle, origin=self.centroid)
-                             for child in self.children]
+            origin = self._polygon.centroid
         else:
-            if isinstance(origin, tuple):
+            if not isinstance(origin, Point):
                 origin = Point(*origin)
-            new._children = [child.rotate(angle, origin=origin)
-                             for child in self.children]
+        new._children = [child.rotate(angle, origin)
+                         for child in self.children]
         return new
 
     def resize(self, xfactor: float = 1., yfactor: float = 1.):
@@ -570,9 +586,8 @@ class PySALEObject(Polygon, ABC):
         -------
         resize_copy : PySALEObject
         """
-        new = self.copy_properties_to_new_polygon(
-            affinity.scale(self, xfactor, yfactor)
-        )
+        new = self.copy()
+        new._polygon = affinity.scale(self._polygon, xfactor, yfactor)
         new._children = [child.resize(xfactor, yfactor)
                          for child in self.children]
         return new
