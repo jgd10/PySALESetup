@@ -1370,6 +1370,7 @@ extension zones don’t have clashing properties.</p>
 <dt class="sig sig-object py" id="PySALESetup.objects.Velocity">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">PySALESetup.objects.</span></span><span class="sig-name descname"><span class="pre">Velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PySALESetup.objects.Velocity" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Immutable velocity dataclass</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="PySALESetup.objects.Velocity.x">
 <span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#PySALESetup.objects.Velocity.x" title="Link to this definition"></a></dt>
@@ -1432,12 +1433,24 @@ major axis 1, minor axis 0.5 and rotated by 10 degrees.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.copy">
 <span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject"><span class="pre">PySALEObject</span></a></span></span><a class="headerlink" href="#PySALESetup.objects.PySALEObject.copy" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>deepcopy of the objectr in question.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#PySALESetup.objects.PySALEObject" title="PySALESetup.objects.PySALEObject">PySALEObject</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.polygon">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">polygon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Polygon</span></em><a class="headerlink" href="#PySALESetup.objects.PySALEObject.polygon" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>shapely.geometry.polygon.Polygon object describing this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>shapely.geometry.polygon.Polygon</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.copy_properties_to_new_polygon">
@@ -1813,12 +1826,24 @@ Section 6.1](<a class="reference external" href="https://doi.org/10.25560/66097"
 <dl class="py property">
 <dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.elongation">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">elongation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#PySALESetup.objects.PySALEObject.elongation" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Ratio of length of the bounding box to its width.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.area_ratio">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area_ratio</span></span><a class="headerlink" href="#PySALESetup.objects.PySALEObject.area_ratio" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Ratio of the area of the bounding box to the polygon area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="PySALESetup.objects.PySALEObject.translate">
