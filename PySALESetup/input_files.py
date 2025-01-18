@@ -1,13 +1,20 @@
 import pathlib
 from string import Template
 from collections import namedtuple
+from dataclasses import dataclass
 from typing import Dict
 from .constants import ASTEROID_TEMPLATE_PATH, ADDITIONAL_TEMPLATE_PATH
 from .functions import _convert_input_to_fortran_strings
 from .mesh import PySALEMesh
 
 
-TimeStep = namedtuple('TimeStep', ['initial', 'max', 'end', 'save'])
+@dataclass(frozen=True)
+class TimeStep:
+    """Immutable time step dataclass."""
+    initial: float
+    max: float
+    end: float
+    save: float
 
 
 class InputFile:
