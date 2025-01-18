@@ -1,6 +1,5 @@
 import pathlib
 from string import Template
-from collections import namedtuple
 from dataclasses import dataclass
 from typing import Dict
 from .constants import ASTEROID_TEMPLATE_PATH, ADDITIONAL_TEMPLATE_PATH
