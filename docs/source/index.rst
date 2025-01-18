@@ -17,6 +17,7 @@ Welcome to PySALESetup's documentation!
    license
    requirements
    changelog
+   auto_examples/index
 
 
 

@@ -10,7 +10,7 @@ PySALESetup can be installed simply using pip.
 
     ~/$ pip install pysalesetup
 
-and requires Python 3.7+ to operate.
+and requires Python 3.11+ to operate.
 
 How to use PySALESetup
 ======================
