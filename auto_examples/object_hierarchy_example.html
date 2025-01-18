@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Object Hierarchy Demo &mdash; PySALESetup 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MesoParticles2D+" href="MesoParticles2D%2B.html" />
+    <link rel="prev" title="Extension Zone Demo" href="extension_zones.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PySALESetup
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PySALESetup.html">PySALESetup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">PySALESetup Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="grain_library_showcase.html">Grain Library Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pores_example.html">Pore Creation Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aluminum_1100_2D.html">Aluminum 1100 2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regolith_example.html">Regolith Sample Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extension_zones.html">Extension Zone Demo</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Object Hierarchy Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MesoParticles2D%2B.html">MesoParticles2D+</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PySALESetup</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">PySALESetup Examples</a></li>
+      <li class="breadcrumb-item active">Object Hierarchy Demo</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/auto_examples/object_hierarchy_example.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-object-hierarchy-example-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="object-hierarchy-demo">
+<span id="sphx-glr-auto-examples-object-hierarchy-example-py"></span><h1>Object Hierarchy Demo<a class="headerlink" href="#object-hierarchy-demo" title="Link to this heading"></a></h1>
+<p>The geometry of the simulation is built like a tree graph. There is a root (
+or roots) at the top, a host object, and then child objects can be added to
+the host, and those children can have children and so on. The top level is
+considered to be at depth = 0. The grandchild of a root object would be at
+depth = 2.</p>
+<p>Objects at the lowest depth are placed into the mesh first.
+Objects are inserted in the order their parents were added when they are at
+the same depth. Then they are inserted in the order <em>they</em> were added when
+these objects have the same parent at the same depth.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">PySALESetup</span> <span class="k">as</span> <span class="nn">pss</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<p>In this example we create two identical circles and give them an offset to
+demonstrate how this works.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">top_circle</span> <span class="o">=</span> <span class="n">pss</span><span class="o">.</span><span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                                               <span class="n">material</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">top_circle</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">pss</span><span class="o">.</span><span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span>
+                                                       <span class="n">rotation</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                                                       <span class="n">material</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">top_circle</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">pss</span><span class="o">.</span><span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span>
+                                                       <span class="n">rotation</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                                                       <span class="n">material</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">top_circle</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+    <span class="n">child</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span>
+        <span class="n">pss</span><span class="o">.</span><span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">polygon</span><span class="o">.</span><span class="n">centroid</span><span class="p">,</span>
+                                          <span class="n">major</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                          <span class="n">minor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                          <span class="n">rotation</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                                          <span class="n">material</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">top_circle</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">child2</span> <span class="ow">in</span> <span class="n">child</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+        <span class="n">child2</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">pss</span><span class="o">.</span><span class="n">PySALEObject</span><span class="o">.</span><span class="n">generate_ellipse</span><span class="p">(</span>
+            <span class="n">child2</span><span class="o">.</span><span class="n">polygon</span><span class="o">.</span><span class="n">centroid</span><span class="p">,</span> <span class="n">major</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">minor</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">material</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Finally lets plot this situation.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">top_circle</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_object_hierarchy_example_001.png" srcset="../_images/sphx_glr_object_hierarchy_example_001.png" alt="object hierarchy example" class = "sphx-glr-single-img"/><p>Create our mesh and fill in the objects. See how the mesh is populated.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">pss</span><span class="o">.</span><span class="n">PySALEMesh</span><span class="o">.</span><span class="n">from_dimensions</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
+                                      <span class="n">cell_size</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                                      <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">100.</span><span class="p">,</span> <span class="o">-</span><span class="mf">100.</span><span class="p">))</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">project_polygons_onto_mesh</span><span class="p">([</span><span class="n">top_circle</span><span class="p">])</span>
+<span class="n">fig2</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">plot_materials</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_object_hierarchy_example_002.png" srcset="../_images/sphx_glr_object_hierarchy_example_002.png" alt="Materials" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.401 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-object-hierarchy-example-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/f5df5d2e309483f78a43649b5127e573/object_hierarchy_example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">object_hierarchy_example.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/df56c9e7f2c79be3663e8c78853e1369/object_hierarchy_example.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">object_hierarchy_example.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/ad024897bec8564e5ad45405d026c78e/object_hierarchy_example.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">object_hierarchy_example.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="extension_zones.html" class="btn btn-neutral float-left" title="Extension Zone Demo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MesoParticles2D%2B.html" class="btn btn-neutral float-right" title="MesoParticles2D+" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, J. G. Derrick.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
