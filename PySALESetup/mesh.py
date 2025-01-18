@@ -13,6 +13,13 @@ from enum import Enum
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
+@dataclass(frozen=True)
+class CellCoords:
+    """Cell coordinates in absolute indices"""
+    i: int
+    j: int
+
+
 class Region(Enum):
     NORTH = 1
     SOUTH = 2
@@ -20,8 +27,11 @@ class Region(Enum):
     WEST = 4
 
 
-ExtensionZoneFactor = namedtuple('ExtensionZoneFactors',
-                                 ['multiplier', 'max_cell_size'])
+@dataclass(frozen=True)
+class ExtensionZoneFactor:
+    """Immutable dataclass recording how the extension zone scales."""
+    multiplier: float | int
+    max_cell_size: float
 
 
 class ExtensionZone:
@@ -138,7 +148,8 @@ class PySALEMesh:
         cylindrical_symmetry : bool
         collision_index : int
         origin : Tuple[float, float] - The origin for the
-                 coordinate system.
+                 coordinate system. AKA coordinate of the bottom-left point
+                 of mesh.
         """
         self.x = x_cells
         self.y = y_cells
@@ -155,6 +166,7 @@ class PySALEMesh:
         self._x_physical_length = None
         self.cylindrical_symmetry = cylindrical_symmetry
         self._collision = collision_index
+        self._cells_by_point = None
 
     def __str__(self):
         ezs = {Region.NORTH: 'N', Region.EAST: 'E',
@@ -165,7 +177,7 @@ class PySALEMesh:
                f'extension_zones={s}, origin={self.origin})'
 
     @property
-    def origin(self) -> Tuple[int, int]:
+    def origin(self) -> Tuple[float, float]:
         """The origin coordinate of the mesh.
 
         All dimensions are relative to this coordinate.
@@ -354,8 +366,8 @@ class PySALEMesh:
         return self._y_range
 
     def _set_origin(self):
-        self._y_range -= self._origin[1]
-        self._x_range -= self._origin[0]
+        self._y_range += self._origin[1]
+        self._x_range += self._origin[0]
         return
 
     def get_geometric_centre(self) -> Tuple[float, float]:
@@ -395,8 +407,6 @@ class PySALEMesh:
         return self._velocities
 
     def _populate_n_range(self):
-        # funcs. they are a bit off. I think y-range works now
-        # but x-range still broke. They should be combined probably
         y_length = self.y
         x_length = self.x
         self._y_physical_length = self.y * self.cell_size
@@ -501,6 +511,20 @@ class PySALEMesh:
                        for i, x in enumerate(self.x_range)
                        for j, y in enumerate(self.y_range)]
 
+    @property
+    def cells_by_point(self):
+        """Cells as a dict indexed by their absolute position in the mesh
+        Point.
+
+        Returns
+        -------
+        dict[CellCoords, Cell]
+        """
+        if self._cells_by_point is None:
+            self._cells_by_point = {CellCoords(c.i, c.j): c for c in
+                                    self.cells}
+        return self._cells_by_point
+
     def project_polygons_onto_mesh(self,
                                    polygons: List[PySALEObject]) -> None:
         """Project a polygon (and all its children) onto the mesh.
@@ -538,9 +562,70 @@ class PySALEMesh:
         >>> mesh.plot_materials()
         >>> plt.show()
         """
-        for i, cell in enumerate(self.cells):
-            if cell.material is None:
-                self._project_polygons_onto_cell(cell, polygons)
+        self._project_polygons_onto_mesh(polygons)
+        #for cell in self.cells:
+        #    self._project_polygons_onto_cell(cell, polygons)
+
+    def _project_polygons_onto_mesh(self, polygons: list[PySALEObject]):
+        def collect_polygons_by_depth(polygon_: PySALEObject,
+                                      depth: int = 0,
+                                      collected: list[tuple[int,
+                                      PySALEObject]] = None,
+                                      root: bool = False):
+            if collected is None:
+                collected = []
+            if not root:
+                collected.append((depth, polygon_))  # Store (depth, node)
+            for child in polygon_.children:
+                collect_polygons_by_depth(child, depth + 1, collected)
+            return collected
+
+        def get_nodes_in_depth_order(polygons_: list[PySALEObject]):
+            """Returns a list of nodes sorted by depth (deepest first)."""
+            root = PySALEObject()
+            root._children = polygons_
+            collected_nodes = collect_polygons_by_depth(root, root=True)
+            # Sort by depth descending
+            sorted_nodes = sorted(collected_nodes, key=lambda x: -x[0])
+            return [node for _, node in sorted_nodes]
+
+        polygon_hierarchy = get_nodes_in_depth_order(polygons)
+        filled_cells = set()
+        while polygon_hierarchy:
+            current_poly = polygon_hierarchy.pop(0)
+            minx, miny, maxx, maxy = current_poly.polygon.bounds
+            mini = int((minx - self.origin[0]) / self.cell_size)
+            minj = int((miny - self.origin[1]) / self.cell_size)
+            maxi = int((maxx - self.origin[0]) / self.cell_size)
+            maxj = int((maxy - self.origin[1]) / self.cell_size)
+            mini -= 5
+            minj -= 5
+            maxi += 5
+            maxj += 5
+            mini = max(0, mini)
+            minj = max(0, minj)
+            maxi = min(self.x, maxi)
+            maxj = min(self.y, maxj)
+            for i in range(mini, maxi):
+                for j in range(minj, maxj):
+                    cc = CellCoords(i, j)
+                    if cc in self.cells_by_point and cc not in filled_cells:
+                        cell = self.cells_by_point[cc]
+                        if cell.material is None and cell.point.within(
+                                current_poly.polygon
+                        ):
+                            self._fill_cell(cell, current_poly)
+                            filled_cells.add(cc)
+
+
+        # for polygon in polygons:
+        #     if polygon.children:
+        #         self._project_polygons_onto_mesh(polygon.children)
+        #     for cell in self.cells:
+        #         if cell.material is None and cell.point.within(
+        #                 polygon.polygon):
+        #             self._fill_cell(cell, polygon)
+        #             break
 
     def _project_polygons_onto_cell(self, cell: Cell, polygons: list[PySALEObject]):
         for psobject in polygons:
@@ -552,7 +637,7 @@ class PySALEMesh:
                     )
                 if cell.material is None:
                     self._fill_cell(cell, psobject)
-                    break
+                    return
 
     def _fill_cell(self, cell: Cell, geometry: PySALEObject):
         """Fill a mesh cell with the properties of a given polygon.
@@ -690,7 +775,7 @@ class PySALEMesh:
     def plot_velocities(self,
                         ax1: Optional[plt.Axes] = None,
                         ax2: Optional[plt.Axes] = None,
-                        cmap: str = 'viridis') -> Tuple[plt.Figure,
+                        cmap: str = 'coolwarm') -> Tuple[plt.Figure,
                                                         plt.Figure,
                                                         plt.Axes,
                                                         plt.Axes]:

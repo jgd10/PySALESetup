@@ -4,7 +4,7 @@ from math import pi, sqrt
 from shapely.geometry import Polygon, Point
 import shapely.affinity as affinity
 import matplotlib.pyplot as plt
-from typing import Union, Dict, List, Optional, Tuple
+from typing import Iterable, Union, Dict, List, Optional, Tuple
 from pathlib import Path
 import numpy as np
 from dataclasses import dataclass
@@ -89,6 +89,10 @@ class PySALEObject(ABC):
         coords = [(i, j) for i, j in zip(*self.polygon.exterior.xy)]
         return f"<PySALEObject({coords})>"
 
+    def __str__(self):
+        coords = [(i, j) for i, j in zip(*self.polygon.exterior.xy)]
+        return f'PySALEObject(num_coords={len(coords)}, mat={self.material}, children={len(self.children)})'
+
     @property
     def polygon(self) -> Polygon:
         """shapely.geometry.polygon.Polygon object describing this object.
@@ -126,7 +130,7 @@ class PySALEObject(ABC):
         return polygon
 
     @classmethod
-    def generate_ellipse(cls, xy: List[float],
+    def generate_ellipse(cls, xy: Iterable[float] | Point,
                          major: float,
                          minor: float,
                          rotation: float,
@@ -155,7 +159,10 @@ class PySALEObject(ABC):
         -------
         ellipse : PySALEObject
         """
-        ellipse = Point(*xy).buffer(1)
+        if isinstance(xy, Point):
+            ellipse = xy.buffer(1)
+        else:
+            ellipse = Point(*xy).buffer(1)
         ellipse = affinity.scale(ellipse, float(major), float(minor))
         ellipse = affinity.rotate(ellipse, rotation) \
             if rotation > 0 else ellipse

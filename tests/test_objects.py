@@ -12,6 +12,9 @@ class TestObjectCreation:
     def test_object_creation(self, simple_object):
         assert simple_object.polygon.is_valid
 
+    def test_str(self, simple_object):
+        s = f'{simple_object}'
+
 
 class TestSpawningChildren:
     @staticmethod

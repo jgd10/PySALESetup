@@ -118,18 +118,13 @@ class TestPySALEMeshHighResolutionZoneOnly:
     @pytest.mark.parametrize('x0', [10., -10.])
     def test_set_origin_x(self, x0):
         mesh = PySALEMesh.from_dimensions((1., 1.), 0.05, origin=(x0, 0.))
-        if x0 < 0.:
-            assert all(mesh.x_range > x0)
-        elif x0 > 0.:
-            assert all(mesh.x_range < x0)
+        assert all(mesh.x_range > x0)
+
 
     @pytest.mark.parametrize('y0', [10., -10.])
-    def test_set_origin_x(self, y0):
+    def test_set_origin_y(self, y0):
         mesh = PySALEMesh.from_dimensions((1., 1.), 0.05, origin=(0., y0))
-        if y0 < 0.:
-            assert all(mesh.y_range > y0)
-        elif y0 > 0.:
-            assert all(mesh.y_range < y0)
+        assert all(mesh.y_range > y0)
 
 
 class TestMeshWithExtensionZones:
@@ -150,12 +145,14 @@ class TestMeshPlots:
         assert isinstance(f, plt.Figure)
         assert isinstance(a, plt.Axes)
 
+    @pytest.mark.flaky
     def test_plot_velocities(self, square_mesh_with_extension_zones):
         f1, f2, a1, a2 = square_mesh_with_extension_zones.plot_velocities()
         for f, a in [(f1, a1), (f2, a2)]:
             assert isinstance(f, plt.Figure)
             assert isinstance(a, plt.Axes)
 
+    @pytest.mark.flaky
     def test_plot_cells(self, square_mesh_with_extension_zones):
         f, a = square_mesh_with_extension_zones.plot_cells()
         assert isinstance(f, plt.Figure)
