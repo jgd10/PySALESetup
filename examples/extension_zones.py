@@ -1,4 +1,7 @@
 """
+Extension Zone Demo
+===================
+
 Extension zones are a bit fiddly in PySALESetup. They need
 to be created before the mesh object and fed in as arguments.
 

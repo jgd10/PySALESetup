@@ -1,3 +1,11 @@
+"""
+Pore Creation Demo
+==================
+
+PySaleSetup can be used to create meshes containing material with pores
+populating them. This is a short demo to show how.
+"""
+
 from PySALESetup import PySALEObject, PySALEDomain, PySALEMesh
 import matplotlib.pyplot as plt
 main = PySALEObject.generate_ellipse([5., 5.], 5., 5., 0.)

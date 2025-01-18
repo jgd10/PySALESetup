@@ -1,3 +1,10 @@
+"""
+Grain Library Demo
+==================
+
+Demos selection of Grain geometries available within the library.
+"""
+
 from PySALESetup import GrainLibrary
 import matplotlib.pyplot as plt
 
