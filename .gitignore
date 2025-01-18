@@ -4,3 +4,5 @@ __pycache__/
 .idea/
 *.png
 *.jpg
+*.prof
+*.html
