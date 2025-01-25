@@ -79,6 +79,10 @@ class TestPySALEMeshHighResolutionZoneOnly:
         # default should be 0
         assert square_even_mesh.collision_site == 0
 
+    def test_collision_site_populated(self, populated_square_even_mesh):
+        assert populated_square_even_mesh.collision_site > 0
+
+
     def test_x_range(self, rectangular_even_mesh):
         assert rectangular_even_mesh.x == rectangular_even_mesh.x_range.size
 
@@ -119,7 +123,6 @@ class TestPySALEMeshHighResolutionZoneOnly:
     def test_set_origin_x(self, x0):
         mesh = PySALEMesh.from_dimensions((1., 1.), 0.05, origin=(x0, 0.))
         assert all(mesh.x_range > x0)
-
 
     @pytest.mark.parametrize('y0', [10., -10.])
     def test_set_origin_y(self, y0):

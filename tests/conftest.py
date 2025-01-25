@@ -72,6 +72,15 @@ def square_even_mesh() -> PySALEMesh:
 
 
 @pytest.fixture()
+def populated_square_even_mesh(square_even_mesh):
+    grain1 = PySALEObject.generate_ellipse([5., 3.], 2., 1.5, 90., 2)
+    grain2 = PySALEObject.generate_ellipse([5., 7.], 2., 1.5, 90., 3)
+    grain2.set_velocity(0., y=-500.)
+    square_even_mesh.project_polygons_onto_mesh([grain1, grain2])
+    return square_even_mesh
+
+
+@pytest.fixture()
 def simple_impactor_target(square_even_mesh):
     x = square_even_mesh.x_physical
     y = square_even_mesh.y_physical

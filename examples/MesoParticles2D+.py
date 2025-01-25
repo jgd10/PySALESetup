@@ -64,7 +64,7 @@ plt.show()
 # Create the mesh onto which we'll apply these geometries
 #
 
-mesh_1 = PySALEMesh(50, 250, cell_size=20.e-6)
+mesh_1 = PySALEMesh(100, 500, cell_size=10.e-6)
 
 ####################################################
 # Apply/project the geometries onto our mesh
@@ -107,20 +107,28 @@ add.write_to(pathlib.Path('./additional.inp'))
 
 ####################################################
 # The geometries are mesh-independent so we can easily change
-# the resolution if we wish
+# the resolution if we wish, and we don't have to keep it as multiples
+# of the original! For example, let's do a mini resolution test...
 #
 
-mesh_2 = PySALEMesh(50, 250, cell_size=20.e-6)
-mesh_2.project_polygons_onto_mesh([host, impactor, back_plate])
-mesh_2.plot_materials()
+for factor in [3/5, 4/5, 6/5, 7/5]:
+    mesh_ = PySALEMesh(int(mesh_1.x*factor),
+                       int(mesh_1.y*factor),
+                       cell_size=mesh_1.cell_size*(1./factor))
+    mesh_.project_polygons_onto_mesh([host, impactor, back_plate])
+    mesh_.save(pathlib.Path(f'./meso_m__{factor:g}.iSALE.gz'), compress=True)
+    ast = AsteroidInput(f'MesoParticles2D_{factor:g}',
+                        TimeStep(4e-10, 1e-8, 4e-6, 1e-7),
+                        mesh_)
+    ast.write_to(pathlib.Path(f'./asteroid_s{factor:g}.inp'))
+    add = AdditionalInput(mesh_,
+                          {i+1: f'matter{i+1}' for i in range(9)},
+                          host_object_number=1)
+    add.write_to(pathlib.Path(f'./additional_{factor:g}.inp'))
+
+mesh_.plot_materials()
 plt.show()
 
-
-# or... (uncomment to see the result!)
-# mesh_3 = PySALEMesh(200, 1000, cell_size=5.e-6)
-# mesh_3.project_polygons_onto_mesh([host, impactor, back_plate])
-# mesh_3.plot_materials()
-# plt.show()
 
 ####################################################
 # Finally, if we wanted to have particles that appear to extend

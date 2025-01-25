@@ -135,7 +135,7 @@ class PySALEMesh:
                  cell_size: float = 2.e-6,
                  extension_zones: List[ExtensionZone] = None,
                  cylindrical_symmetry: bool = False,
-                 collision_index: int = 0,
+                 collision_index: int = None,
                  origin: Tuple[float, float] = (0., 0.)):
         """Discrete rectangular mesh construction.
 
@@ -326,13 +326,25 @@ class PySALEMesh:
     def collision_site(self) -> int:
         """The vertical collision location in the mesh, in cells.
 
-        Defaults to 0.
+        Defaults to 0, and normally returns the smallest y-coordinate
+        of the mesh with below zero y-velocity.
+
+        This does not make sense for horizontal velocity or many-velocity
+        scenarios, and in those a manual site should be found, but it is
+        required by iSALE to be specified in some circumstances.
 
         Returns
         -------
         collision_site : int
 
         """
+        if self._collision is None:
+            yvel = self.velocities['y']
+            result = np.argwhere(yvel < 0)
+            if result.any():
+                self._collision = int(min(result[:, 1]))
+            else:
+                self._collision = 0
         return self._collision
 
     @collision_site.setter
@@ -616,16 +628,6 @@ class PySALEMesh:
                         ):
                             self._fill_cell(cell, current_poly)
                             filled_cells.add(cc)
-
-
-        # for polygon in polygons:
-        #     if polygon.children:
-        #         self._project_polygons_onto_mesh(polygon.children)
-        #     for cell in self.cells:
-        #         if cell.material is None and cell.point.within(
-        #                 polygon.polygon):
-        #             self._fill_cell(cell, polygon)
-        #             break
 
     def _project_polygons_onto_cell(self, cell: Cell, polygons: list[PySALEObject]):
         for psobject in polygons:
