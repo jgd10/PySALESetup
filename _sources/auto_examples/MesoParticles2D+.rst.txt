@@ -103,10 +103,8 @@ anyway, so use [0, 0]
 
  .. code-block:: none
 
-    /home/runner/work/PySALESetup/PySALESetup/PySALESetup/creation.py:554: UserWarning: Max insertion attempts reached (100). Object can not be placed.
-      warnings.warn(f'Max insertion attempts '
 
-    8.076612363155797e-07
+    8.076612363155798e-07
 
 
 
@@ -370,7 +368,7 @@ side).
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 11.400 seconds)
+   **Total running time of the script:** (0 minutes 11.383 seconds)
 
 
 .. _sphx_glr_download_auto_examples_MesoParticles2D+.py:
