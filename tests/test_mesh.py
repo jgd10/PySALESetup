@@ -4,6 +4,7 @@ from PySALESetup import PySALEMesh, \
     ExtensionZone, ExtensionZoneFactor, Region, Cell, Velocity
 from shapely.geometry import Point
 from typing import Tuple
+import math
 import pytest
 
 
@@ -78,6 +79,16 @@ class TestPySALEMeshHighResolutionZoneOnly:
     def test_collision_site(self, square_even_mesh):
         # default should be 0
         assert square_even_mesh.collision_site == 0
+
+    @pytest.mark.parametrize('scale', [(1., 20, 0.5),
+                                       (2., 40, 0.25),
+                                       (0.5, 10, 1.),
+                                       (0.9, 18, 0.5/0.9)])
+    def test_spawn_copy(self, square_even_mesh, scale):
+        factor, target_cells, target_cell_size = scale
+        new = square_even_mesh.spawn_copy(factor)
+        assert new.x == target_cells
+        assert math.isclose(new.cell_size, target_cell_size)
 
     def test_collision_site_populated(self, populated_square_even_mesh):
         assert populated_square_even_mesh.collision_site > 0

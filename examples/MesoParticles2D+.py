@@ -112,15 +112,13 @@ add.write_to(pathlib.Path('./additional.inp'))
 #
 
 for factor in [3/5, 4/5, 6/5, 7/5]:
-    mesh_ = PySALEMesh(int(mesh_1.x*factor),
-                       int(mesh_1.y*factor),
-                       cell_size=mesh_1.cell_size*(1./factor))
+    mesh_ = mesh_1.spawn_copy(factor)
     mesh_.project_polygons_onto_mesh([host, impactor, back_plate])
     mesh_.save(pathlib.Path(f'./meso_m__{factor:g}.iSALE.gz'), compress=True)
     ast = AsteroidInput(f'MesoParticles2D_{factor:g}',
                         TimeStep(4e-10, 1e-8, 4e-6, 1e-7),
                         mesh_)
-    ast.write_to(pathlib.Path(f'./asteroid_s{factor:g}.inp'))
+    ast.write_to(pathlib.Path(f'./asteroid_{factor:g}.inp'))
     add = AdditionalInput(mesh_,
                           {i+1: f'matter{i+1}' for i in range(9)},
                           host_object_number=1)

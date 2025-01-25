@@ -176,6 +176,16 @@ class PySALEMesh:
         return f'PySALEMesh({self.x}, {self.y}, {self.cell_size}, ' \
                f'extension_zones={s}, origin={self.origin})'
 
+    def spawn_copy(self, scale_factor: float = 1.0):
+        if self.extension_zones:
+            raise NotImplementedError("This helper does not work with "
+                                      "extension zones.")
+        return PySALEMesh(int(self.x*scale_factor),
+                          int(self.y*scale_factor),
+                          cell_size=self.cell_size*(1./scale_factor),
+                          cylindrical_symmetry=self.cylindrical_symmetry,
+                          origin=self.origin)
+
     @property
     def origin(self) -> Tuple[float, float]:
         """The origin coordinate of the mesh.
