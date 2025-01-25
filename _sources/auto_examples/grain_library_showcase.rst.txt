@@ -69,7 +69,7 @@ Demos selection of Grain geometries available within the library.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.126 seconds)
+   **Total running time of the script:** (0 minutes 1.115 seconds)
 
 
 .. _sphx_glr_download_auto_examples_grain_library_showcase.py:

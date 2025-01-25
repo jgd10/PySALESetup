@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:28.992** total execution time for 7 files **from auto_examples**:
+**00:37.840** total execution time for 7 files **from auto_examples**:
 
 .. container::
 
@@ -33,23 +33,23 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_regolith_example.py` (``regolith_example.py``)
-     - 00:19.111
+     - 00:21.370
      - 0.0
    * - :ref:`sphx_glr_auto_examples_MesoParticles2D+.py` (``MesoParticles2D+.py``)
-     - 00:04.904
+     - 00:11.400
      - 0.0
    * - :ref:`sphx_glr_auto_examples_object_hierarchy_example.py` (``object_hierarchy_example.py``)
-     - 00:01.388
+     - 00:01.362
      - 0.0
    * - :ref:`sphx_glr_auto_examples_aluminum_1100_2D.py` (``aluminum_1100_2D.py``)
-     - 00:01.154
+     - 00:01.171
      - 0.0
    * - :ref:`sphx_glr_auto_examples_grain_library_showcase.py` (``grain_library_showcase.py``)
-     - 00:01.126
+     - 00:01.115
      - 0.0
    * - :ref:`sphx_glr_auto_examples_pores_example.py` (``pores_example.py``)
-     - 00:00.751
+     - 00:00.862
      - 0.0
    * - :ref:`sphx_glr_auto_examples_extension_zones.py` (``extension_zones.py``)
-     - 00:00.557
+     - 00:00.558
      - 0.0
