@@ -6,3 +6,5 @@ __pycache__/
 *.jpg
 *.prof
 *.html
+docs/build/
+docs/auto_examples/
