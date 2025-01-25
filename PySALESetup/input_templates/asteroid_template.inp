@@ -29,7 +29,6 @@ OBJVEL           object velocity               : 0.0D0
 OBJMAT           object material               : VOID___
 OBJTYPE          object type                   : PLATE
 OBJTPROF         object temp prof              : CONST
-OBJOFF_V         object vertical offset        : $vert_offset
 ------------------- Target Parameters ----------------------------------
 LAYNUM           layers number                 : 0
 ------------------- Time Parameters ------------------------------------
