@@ -835,9 +835,9 @@ class PySALEMesh:
     def _cell_to_row(cell: Cell, materials: Iterable[int]) -> str:
         material_columns = ['1.000' if cell.material == m
                             else '0.000' for m in materials]
-        row = f'{cell.i} {cell.j} ' \
-              + ' '.join(material_columns) \
-              + f' {cell.velocity.x:.2f} {cell.velocity.y:.2f}\n'
+        row = f'{cell.j} {cell.i} ' \
+              + f' {cell.velocity.x:.2f} {cell.velocity.y:.2f} ' \
+              + ' '.join(material_columns) + '\n'
         return row
 
     @property

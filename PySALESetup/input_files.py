@@ -140,6 +140,15 @@ class AsteroidInput(InputFile):
         )
         return output
 
+    def _ready_file_for_writing(self) -> str:
+        string = self._perform_substitutions()
+        lines = string.split('\n')
+        if not self.mesh.extension_zones:
+            lines = [s for s in lines if not ('GRIDEXT' in s or 'GRIDSPCM'
+                                              in s)]
+            string = '\n'.join(lines)
+        return string
+
     def write_to(self,
                  path: pathlib.Path =
                  pathlib.Path.cwd() / 'asteroid.inp') -> None:
@@ -152,7 +161,8 @@ class AsteroidInput(InputFile):
         path : pathlib.Path
         """
         with open(path, 'w') as f:
-            f.write(self._perform_substitutions())
+            s = self._ready_file_for_writing()
+            f.write(s)
 
 
 class AdditionalInput(InputFile):
