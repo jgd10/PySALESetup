@@ -26,11 +26,14 @@ the same basic geometries. However, in this script we demonstrate the
 versatility of PySALESetup to affect things like the resolution with
 ease
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-33
+.. GENERATED FROM PYTHON SOURCE LINES 10-36
 
 .. code-block:: Python
 
-    from PySALESetup import PySALEObject, PySALEMesh, PySALEDomain
+    import pathlib
+
+    from PySALESetup import (PySALEObject, PySALEMesh, PySALEDomain,
+                             AsteroidInput, AdditionalInput, TimeStep)
     import matplotlib.pyplot as plt
 
     # Create The geometries for the simulation
@@ -60,12 +63,12 @@ ease
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-36
+.. GENERATED FROM PYTHON SOURCE LINES 37-39
 
 Create a domain object which will perform the particle insertions
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-38
+.. GENERATED FROM PYTHON SOURCE LINES 39-41
 
 .. code-block:: Python
 
@@ -78,14 +81,14 @@ Create a domain object which will perform the particle insertions
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-43
+.. GENERATED FROM PYTHON SOURCE LINES 42-46
 
 Create a particle to be used for insertion
 Its centroid does not matter here as we'll just move it around
 anyway, so use [0, 0]
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-46
+.. GENERATED FROM PYTHON SOURCE LINES 46-49
 
 .. code-block:: Python
 
@@ -107,12 +110,12 @@ anyway, so use [0, 0]
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-49
+.. GENERATED FROM PYTHON SOURCE LINES 50-52
 
 Optimise particle materials so that none touch of the same material
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 49-52
+.. GENERATED FROM PYTHON SOURCE LINES 52-55
 
 .. code-block:: Python
 
@@ -126,12 +129,12 @@ Optimise particle materials so that none touch of the same material
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-55
+.. GENERATED FROM PYTHON SOURCE LINES 56-58
 
 plot the geometries we've created
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 55-60
+.. GENERATED FROM PYTHON SOURCE LINES 58-63
 
 .. code-block:: Python
 
@@ -152,17 +155,17 @@ plot the geometries we've created
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-63
+.. GENERATED FROM PYTHON SOURCE LINES 64-66
 
 Create the mesh onto which we'll apply these geometries
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 63-66
+.. GENERATED FROM PYTHON SOURCE LINES 66-69
 
 .. code-block:: Python
 
 
-    mesh_1 = PySALEMesh(100, 500, cell_size=10.e-6)
+    mesh_1 = PySALEMesh(50, 250, cell_size=20.e-6)
 
 
 
@@ -171,12 +174,12 @@ Create the mesh onto which we'll apply these geometries
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 67-69
+.. GENERATED FROM PYTHON SOURCE LINES 70-72
 
 Apply/project the geometries onto our mesh
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-72
+.. GENERATED FROM PYTHON SOURCE LINES 72-75
 
 .. code-block:: Python
 
@@ -190,22 +193,18 @@ Apply/project the geometries onto our mesh
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 73-75
+.. GENERATED FROM PYTHON SOURCE LINES 76-78
 
 View the result!
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 75-83
+.. GENERATED FROM PYTHON SOURCE LINES 78-82
 
 .. code-block:: Python
 
 
     mesh_1.plot_materials()
     plt.show()
-
-    # we can also save the meso_m.iSALE file as well if needed
-    # mesh_1.save()
-
 
 
 
@@ -219,13 +218,65 @@ View the result!
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-87
+.. GENERATED FROM PYTHON SOURCE LINES 83-87
+
+we can also save the meso_m.iSALE file as well if needed
+We won't compress it here (although that is recommended) so you can
+inspect the result and see what it looks like.
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 87-91
+
+.. code-block:: Python
+
+
+    mesh_1.save(pathlib.Path('./meso_m.iSALE.gz'), compress=True)
+
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 92-97
+
+To make life a bit easier this package will also assist in creating the
+correct iSALE input files required of the simulation. You may still have to
+merge/edit them yourself until they work, but the bones of the files can
+be created like the example below.
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 97-108
+
+.. code-block:: Python
+
+
+    ast = AsteroidInput('MesoParticles2D+',
+                        TimeStep(4e-10, 1e-8, 4e-6, 1e-7),
+                        mesh_1)
+    ast.write_to(pathlib.Path('./asteroid.inp'))
+    add = AdditionalInput(mesh_1,
+                          {i+1: f'matter{i+1}' for i in range(9)},
+                          host_object_number=1)
+    add.write_to(pathlib.Path('./additional.inp'))
+
+
+
+
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 109-112
 
 The geometries are mesh-independent so we can easily change
 the resolution if we wish
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 87-100
+.. GENERATED FROM PYTHON SOURCE LINES 112-125
 
 .. code-block:: Python
 
@@ -254,7 +305,7 @@ the resolution if we wish
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 101-106
+.. GENERATED FROM PYTHON SOURCE LINES 126-131
 
 Finally, if we wanted to have particles that appear to extend
 beyond the mesh, we can do that too! We just need to make the
@@ -262,7 +313,7 @@ host object slightly wider (here we do it by one radii on each
 side).
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 106-127
+.. GENERATED FROM PYTHON SOURCE LINES 131-151
 
 .. code-block:: Python
 
@@ -284,7 +335,6 @@ side).
 
     mesh_4 = PySALEMesh(100, 500, cell_size=10.e-6)
     mesh_4.project_polygons_onto_mesh([host, impactor, back_plate])
-
     mesh_4.plot_materials()
     plt.show()
 
@@ -314,7 +364,7 @@ side).
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 6.384 seconds)
+   **Total running time of the script:** (0 minutes 4.904 seconds)
 
 
 .. _sphx_glr_download_auto_examples_MesoParticles2D+.py:

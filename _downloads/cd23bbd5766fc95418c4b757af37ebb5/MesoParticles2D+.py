@@ -7,7 +7,10 @@ the same basic geometries. However, in this script we demonstrate the
 versatility of PySALESetup to affect things like the resolution with
 ease
 """
-from PySALESetup import PySALEObject, PySALEMesh, PySALEDomain
+import pathlib
+
+from PySALESetup import (PySALEObject, PySALEMesh, PySALEDomain,
+                         AsteroidInput, AdditionalInput, TimeStep)
 import matplotlib.pyplot as plt
 
 # Create The geometries for the simulation
@@ -61,7 +64,7 @@ plt.show()
 # Create the mesh onto which we'll apply these geometries
 #
 
-mesh_1 = PySALEMesh(100, 500, cell_size=10.e-6)
+mesh_1 = PySALEMesh(50, 250, cell_size=20.e-6)
 
 ####################################################
 # Apply/project the geometries onto our mesh
@@ -76,8 +79,30 @@ mesh_1.project_polygons_onto_mesh([host, impactor, back_plate])
 mesh_1.plot_materials()
 plt.show()
 
+####################################################
 # we can also save the meso_m.iSALE file as well if needed
-# mesh_1.save()
+# We won't compress it here (although that is recommended) so you can
+# inspect the result and see what it looks like.
+#
+
+mesh_1.save(pathlib.Path('./meso_m.iSALE.gz'), compress=True)
+
+
+####################################################
+# To make life a bit easier this package will also assist in creating the
+# correct iSALE input files required of the simulation. You may still have to
+# merge/edit them yourself until they work, but the bones of the files can
+# be created like the example below.
+#
+
+ast = AsteroidInput('MesoParticles2D+',
+                    TimeStep(4e-10, 1e-8, 4e-6, 1e-7),
+                    mesh_1)
+ast.write_to(pathlib.Path('./asteroid.inp'))
+add = AdditionalInput(mesh_1,
+                      {i+1: f'matter{i+1}' for i in range(9)},
+                      host_object_number=1)
+add.write_to(pathlib.Path('./additional.inp'))
 
 
 ####################################################
@@ -121,6 +146,5 @@ plt.show()
 
 mesh_4 = PySALEMesh(100, 500, cell_size=10.e-6)
 mesh_4.project_polygons_onto_mesh([host, impactor, back_plate])
-
 mesh_4.plot_materials()
 plt.show()

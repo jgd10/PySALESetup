@@ -70,6 +70,13 @@ from the grain library to use.
 
 
 
+.. rst-class:: sphx-glr-script-out
+
+ .. code-block:: none
+
+    /home/runner/work/PySALESetup/PySALESetup/PySALESetup/objects.py:197: UserWarning: genfromtxt: Empty input file: "/home/runner/work/PySALESetup/PySALESetup/PySALESetup/grain_library_directory/__init__.py"
+      coords = np.genfromtxt(file_name, delimiter=',')
+
 
 
 
@@ -189,7 +196,7 @@ Let's also plot the velocities for completion's sake.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 19.498 seconds)
+   **Total running time of the script:** (0 minutes 19.111 seconds)
 
 
 .. _sphx_glr_download_auto_examples_regolith_example.py:
