@@ -82,23 +82,6 @@ Examples demonstrating how PySALESetup can be used in full scripts.
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Extension zones are a bit fiddly in PySALESetup. They need to be created before the mesh object and fed in as arguments.">
-
-.. only:: html
-
-  .. image:: /auto_examples/images/thumb/sphx_glr_extension_zones_thumb.png
-    :alt:
-
-  :ref:`sphx_glr_auto_examples_extension_zones.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Extension Zone Demo</div>
-    </div>
-
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="The geometry of the simulation is built like a tree graph. There is a root ( or roots) at the top, a host object, and then child objects can be added to the host, and those children can have children and so on. The top level is considered to be at depth = 0. The grandchild of a root object would be at depth = 2.">
 
 .. only:: html
@@ -111,6 +94,23 @@ Examples demonstrating how PySALESetup can be used in full scripts.
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Object Hierarchy Demo</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Extension zones are a bit fiddly in PySALESetup. They need to be created before the mesh object and fed in as arguments.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_extension_zones_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_extension_zones.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Extension Zone Demo</div>
     </div>
 
 
@@ -145,8 +145,8 @@ Examples demonstrating how PySALESetup can be used in full scripts.
    /auto_examples/pores_example
    /auto_examples/aluminum_1100_2D
    /auto_examples/regolith_example
-   /auto_examples/extension_zones
    /auto_examples/object_hierarchy_example
+   /auto_examples/extension_zones
    /auto_examples/MesoParticles2D+
 
 

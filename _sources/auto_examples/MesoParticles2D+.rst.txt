@@ -103,8 +103,10 @@ anyway, so use [0, 0]
 
  .. code-block:: none
 
+    /home/runner/work/PySALESetup/PySALESetup/PySALESetup/creation.py:554: UserWarning: Max insertion attempts reached (100). Object can not be placed.
+      warnings.warn(f'Max insertion attempts '
 
-    8.076612363155798e-07
+    8.076612363155795e-07
 
 
 
@@ -280,7 +282,7 @@ of the original! For example, let's do a mini resolution test...
 .. code-block:: Python
 
 
-    for factor in [3/5, 4/5, 6/5, 7/5]:
+    for factor in [1/5, 2/5, 3/5, 4/5, 6/5, 7/5]:
         mesh_ = mesh_1.spawn_copy(factor)
         mesh_.project_polygons_onto_mesh([host, impactor, back_plate])
         mesh_.save(pathlib.Path(f'./meso_m__{factor:g}.iSALE.gz'), compress=True)
@@ -368,7 +370,7 @@ side).
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 11.383 seconds)
+   **Total running time of the script:** (0 minutes 12.350 seconds)
 
 
 .. _sphx_glr_download_auto_examples_MesoParticles2D+.py:
