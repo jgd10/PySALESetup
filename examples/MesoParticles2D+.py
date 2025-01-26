@@ -111,7 +111,7 @@ add.write_to(pathlib.Path('./additional.inp'))
 # of the original! For example, let's do a mini resolution test...
 #
 
-for factor in [3/5, 4/5, 6/5, 7/5]:
+for factor in [1/5, 2/5, 3/5, 4/5, 6/5, 7/5]:
     mesh_ = mesh_1.spawn_copy(factor)
     mesh_.project_polygons_onto_mesh([host, impactor, back_plate])
     mesh_.save(pathlib.Path(f'./meso_m__{factor:g}.iSALE.gz'), compress=True)

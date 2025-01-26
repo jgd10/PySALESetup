@@ -529,7 +529,16 @@ class PySALEMesh:
         return self._cells
 
     def _populate_cells(self):
-        self._cells = [Cell(Point(x, y), i, j, None, Velocity(0., 0.))
+        origin_icoord = int(
+            np.argwhere(self.x_range == self.cell_size * .5)[0][0]
+        )
+        origin_jcoord = int(
+            np.argwhere(self.y_range == self.cell_size * .5)[0][0]
+        )
+        self._cells = [Cell(Point(x, y),
+                            i - origin_icoord,
+                            j - origin_jcoord, None,
+                            Velocity(0., 0.))
                        for i, x in enumerate(self.x_range)
                        for j, y in enumerate(self.y_range)]
 
@@ -616,28 +625,26 @@ class PySALEMesh:
         while polygon_hierarchy:
             current_poly = polygon_hierarchy.pop(0)
             minx, miny, maxx, maxy = current_poly.polygon.bounds
-            mini = int((minx - self.origin[0]) / self.cell_size)
-            minj = int((miny - self.origin[1]) / self.cell_size)
-            maxi = int((maxx - self.origin[0]) / self.cell_size)
-            maxj = int((maxy - self.origin[1]) / self.cell_size)
+            mini = int((minx) / self.cell_size)
+            minj = int((miny) / self.cell_size)
+            maxi = int((maxx) / self.cell_size)
+            maxj = int((maxy) / self.cell_size)
             mini -= 5
             minj -= 5
             maxi += 5
             maxj += 5
-            mini = max(0, mini)
-            minj = max(0, minj)
-            maxi = min(self.x, maxi)
-            maxj = min(self.y, maxj)
             for i in range(mini, maxi):
                 for j in range(minj, maxj):
                     cc = CellCoords(i, j)
                     if cc in self.cells_by_point and cc not in filled_cells:
                         cell = self.cells_by_point[cc]
+
                         if cell.material is None and cell.point.within(
                                 current_poly.polygon
                         ):
                             self._fill_cell(cell, current_poly)
                             filled_cells.add(cc)
+        return
 
     def _project_polygons_onto_cell(self, cell: Cell, polygons: list[PySALEObject]):
         for psobject in polygons:
@@ -664,12 +671,24 @@ class PySALEMesh:
         None
 
         """
+        xfactor, yfactor = 0, 0
+        for zone in self.extension_zones:
+            if zone.region == Region.SOUTH:
+                yfactor = zone.depth
+            if zone.region == Region.WEST:
+                xfactor = zone.depth
         if geometry.material == 0:
             self._void_cell(cell)
         else:
-            self.material_meshes[geometry.material][cell.i, cell.j] = 1.
-            self.velocities['x'][cell.i, cell.j] = geometry.velocity.x
-            self.velocities['y'][cell.i, cell.j] = geometry.velocity.y
+            self.material_meshes[geometry.material][
+                cell.i+xfactor, cell.j+yfactor
+            ] = 1.
+            self.velocities['x'][
+                cell.i+xfactor, cell.j+yfactor
+            ] = geometry.velocity.x
+            self.velocities['y'][
+                cell.i+xfactor, cell.j+yfactor
+            ] = geometry.velocity.y
             cell.material = geometry.material
             cell.velocity = geometry.velocity
 
