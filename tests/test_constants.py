@@ -1,5 +1,4 @@
-from PySALESetup.constants import PACKAGE_ROOT_DIRECTORY, \
-    ASTEROID_TEMPLATE_PATH, \
+from PySALESetup.constants import ASTEROID_TEMPLATE_PATH, \
     ADDITIONAL_TEMPLATE_PATH, \
     GRAIN_LIBRARY_PATH
 import pathlib
@@ -7,15 +6,13 @@ import pytest
 
 
 class TestPaths:
-    @pytest.mark.parametrize('directory', [PACKAGE_ROOT_DIRECTORY,
-                                           ASTEROID_TEMPLATE_PATH,
+    @pytest.mark.parametrize('directory', [ASTEROID_TEMPLATE_PATH,
                                            ADDITIONAL_TEMPLATE_PATH,
                                            GRAIN_LIBRARY_PATH])
     def test_is_path(self, directory):
         assert isinstance(directory, pathlib.Path)
 
-    @pytest.mark.parametrize('directory', [PACKAGE_ROOT_DIRECTORY,
-                                           GRAIN_LIBRARY_PATH])
+    @pytest.mark.parametrize('directory', [GRAIN_LIBRARY_PATH])
     def test_is_directory(self, directory):
         assert directory.is_dir()
 
